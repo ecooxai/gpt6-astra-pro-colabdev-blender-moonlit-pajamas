@@ -14,7 +14,8 @@ def build_hair(M):
             # Forehead opening stays in front; side and rear scalp wrap below the ears.
             end=.98+1.32*smoothstep(.54,1.20,abs(a))-.17*exp(-((a-.40)/.18)**2)
             p=.006+(end-.006)*i/nr
-            verts.append((.553*sin(p)*sin(a),.07-.461*sin(p)*cos(a),6.07+.660*cos(p)))
+            c=cos(a); front=abs(c)**.48 if c>0 else abs(c)
+            verts.append((.558*sin(p)*sin(a),.07-.478*sin(p)*front*(1 if c>=0 else -1),6.07+.660*cos(p)))
             uv.append((j/ns,i/nr))
     for i in range(nr):
         for j in range(ns):
