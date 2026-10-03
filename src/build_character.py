@@ -19,7 +19,7 @@ def material(name,h,texture=None,roughness=.86,emission=.15,metallic=0):
         im=bpy.data.images.load(str(ROOT/'src/textures'/texture));im.pack();t=n.new('ShaderNodeTexImage');t.image=im;t.extension='REPEAT';m.node_tree.links.new(t.outputs['Color'],p.inputs['Base Color']);m.node_tree.links.new(t.outputs['Color'],p.inputs['Emission Color'])
     return m
 M={}
-for key,h in dict(skin='fff0e9',hair='7772a2',hairLight='8881b2',hairDark='5d547f',hairInk='4d446b',white='faffff',pillowBack='d8e3f1',fabricShade='a9cddf',cuffCotton='b8e0ef',collarShade='c4d5e0',piping='9dbccc',lash='363047',eyeWhite='fff9fb',mouth='b78190',pink='b96594',pinkLight='e2b0cb',nail='f9e2e8',sole='a9b1c4',halo='242732',haloTop='686b76',haloInner='181b25').items():M[key]=material(key,h,texture={'hair':'hair_base_height_original.png','hairLight':'hair_light_height_original.png','hairDark':'hair_dark_height_original.png'}.get(key))
+for key,h in dict(skin='fff0e9',hair='7772a2',hairLight='8881b2',hairDark='5d547f',hairInk='4d446b',hairSheen='8f91c1',white='faffff',pillowBack='d8e3f1',fabricShade='a9cddf',cuffCotton='b8e0ef',collarShade='c4d5e0',piping='9dbccc',lash='363047',eyeWhite='fff9fb',mouth='b78190',pink='b96594',pinkLight='e2b0cb',nail='f9e2e8',sole='a9b1c4',halo='242732',haloTop='686b76',haloInner='181b25').items():M[key]=material(key,h,texture={'hair':'hair_base_height_original.png','hairLight':'hair_light_height_original.png','hairDark':'hair_dark_height_original.png'}.get(key))
 M['fabric']=material('Original cat-print cotton','d3f2fb','cat_cotton_original.png',emission=.2)
 M['face']=material('Original face wash','ffefe9','face_wash_original.png',emission=.24)
 M['iris']=material('Original violet iris','7262bb','violet_iris_original.png',roughness=.58,emission=.35)
@@ -34,7 +34,7 @@ bpy.context.scene['upper_leg_length']=L1;bpy.context.scene['lower_leg_length']=L
 LEG_DATA={}
 def knee_position(hip,ankle):
     v=ankle-hip;d=v.length;axis=v.normalized();along=(L1*L1-L2*L2+d*d)/(2*d);height=sqrt(max(0,L1*L1-along*along));pole=Vector((0,-1,0));pole=(pole-axis*pole.dot(axis)).normalized();return hip+axis*along+pole*height
-for label,hip,ankle in [('front',Vector((.13,.025,3.38)),Vector((-.11,-.18,.235))),('rear',Vector((-.38,.07,3.38)),Vector((-.34,.25,.58)))]:
+for label,hip,ankle in [('front',Vector((.13,.025,3.38)),Vector((-.11,-.18,.235))),('rear',Vector((-.38,.07,3.38)),Vector((-.34,.25,.70)))]:
     knee=knee_position(hip,ankle);sections=[]
     for t,rx,ry in [(0,.231,.217),(.18,.233,.207),(.45,.211,.181),(.76,.166,.153),(.95,.146,.14),(1,.144,.145)]:
         p=hip.lerp(knee,t);sections.append((*p,rx,ry))

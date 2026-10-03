@@ -42,7 +42,7 @@ def build_hair(M):
                       M['hair' if i%2 else 'hairDark'],normal=(0,-1,0),groove_mat=M['hairInk'])
     hair_lock('HairLong_flowing_outer_curl',[(.40,.20,6.22),(.56,.29,5.45),(.87,.27,4.97),(1.17,.19,4.64),(1.23,.12,4.31),(1.03,.12,4.07)],[.035,.075,.115,.12,.065,.001],[.016,.040,.060,.042,.024,.001],M['hair'],groove_mat=M['hairInk'])
     def lock(name,pts,widths,key='hair'):
-        return hair_lock('HairTop_'+name,pts,widths,[min(.044,max(.002,w*.31)) for w in widths],M[key],groove_mat=M['hairInk'],sides=16)
+        return hair_lock('HairTop_'+name,pts,widths,[min(.044,max(.002,w*.31)) for w in widths],M[key],groove_mat=M['hairInk'],sides=16,shine_mat=M['hairSheen'] if name in ('central_swept_fringe','left_inner_fringe') else None)
     lock('left_outer_fringe',[(-.05,-.20,6.69),(-.31,-.32,6.46),(-.49,-.33,6.12),(-.50,-.345,5.85),(-.36,-.34,5.69)],[.085,.15,.15,.08,.002])
     lock('left_inner_fringe',[(-.07,-.22,6.69),(-.23,-.44,6.40),(-.33,-.46,6.27),(-.28,-.43,6.105)],[.06,.105,.085,.002],'hairLight')
     lock('fine_fringe_split',[(-.05,-.27,6.66),(-.20,-.47,6.38),(-.15,-.51,6.20),(-.025,-.47,6.105)],[.035,.070,.062,.001])

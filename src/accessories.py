@@ -9,7 +9,7 @@ def pillow_point(u,v,side):
     folds+=.018*sin(19*v-6*u)*exp(-((u-.83)**2+(v+.68)**2)/.18)
     folds+=.038*exp(-((u+.32-.22*v)/.085)**2)*max(0,1-v*v)**.6
     pinch=-.207*exp(-d/.085)
-    pinch-=.180*exp(-((u+.68)**2/.055+(v-.90)**2/.035))
+    pinch-=.155*exp(-((u+.68+.45*(v-.90))**2/.050+(v-.90)**2/.130))
     x=.86+.47*u+.45*v+.036*sin(pi*v)*(1-u*u)+.019*sin(3*pi*v)*abs(u)**9
     x-=.26*exp(-((u+1)**2+(v+1)**2)/.16)
     z=2.14-.44*u+.79*v+.027*sin(pi*u)*sin(pi*v)+.015*sin(3*pi*u)*abs(v)**9-.13*exp(-d/.12)
@@ -79,7 +79,7 @@ def slipper_ribbon(label,cx,cy,base,sign,M):
     curve('Accessory_'+label+'_bow_stitch_'+str(sign),edge[::3],M['pinkLight'],.0015)
 
 def build_slippers(M,legs):
-    for label,base in [('front',.035),('rear',.38)]:
+    for label,base in [('front',.035),('rear',.50)]:
         ankle=Vector(legs[label]['ankle']);cx=ankle.x;cy=ankle.y-.13
         sphere('Body_'+label+'_foot',(cx,ankle.y-.06,base+.132),(.097,.232,.091),M['skin'])
         sections=[(cx,cy,base,.152,.25),(cx,cy,base+.021,.176,.29),(cx,cy,base+.058,.179,.294),(cx,cy,base+.076,.166,.28)]

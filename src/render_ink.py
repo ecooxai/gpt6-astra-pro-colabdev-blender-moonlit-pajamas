@@ -15,7 +15,7 @@ def install(scale=1.0):
         for key,value in {'select_silhouette':name!='Cotton ink','select_external_contour':True,'select_contour':False,'select_border':False,'select_crease':False,'select_material_boundary':False,'select_edge_mark':False}.items():
             if hasattr(line,key):setattr(line,key,value)
     for ob in list(s.objects):
-        if ob.type!='MESH':continue
+        if ob.type!='MESH' or ob.name.endswith('_sheen'):continue
         name=ob.name;group=None
         if name.startswith(('HairTop_','HairLong_')):group='Hair ink'
         elif name.startswith(('Body_raised_arm_five','Body_relaxed_arm_five','Body_front_leg','Body_rear_leg','Head_original')):group='Skin ink'

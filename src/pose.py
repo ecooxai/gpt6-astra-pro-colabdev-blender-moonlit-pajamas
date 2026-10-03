@@ -22,9 +22,14 @@ def adjust_pose():
         elif name.startswith('Accessory_') and 'pillow' in name:
             t=max(0,min(1,(3.3-z)/2.44));p.x=.86+(p.x-.86)*1.10-.36*t;p.z=.86+(z-.86)*1.08
         elif name.startswith(('Accessory_front_','Accessory_rear_')):
-            front=name.startswith('Accessory_front_');cx=-.11 if front else -.34;cy=-.31 if front else .12;base=.035 if front else .38
+            front=name.startswith('Accessory_front_');cx=-.11 if front else -.34;cy=-.31 if front else .12;base=.035 if front else .50
             p.x=cx+(p.x-cx)*1.30;p.y=cy+(p.y-cy)*1.08
             if 'slipper_upper' in name:p.z=base+.081+(p.z-base-.081)*1.20
+        if name.startswith('Accessory_rear_') or name=='Body_rear_foot':
+            # Rotate the lifted foot at its ankle; never scale or shorten a leg.
+            y=p.y-.25;zz=p.z-.70;angle=.28
+            p.y=.25+y*cos(angle)-zz*sin(angle)
+            p.z=.70+y*sin(angle)+zz*cos(angle)
         return p
     for ob in list(bpy.context.scene.objects):
         matrix=ob.matrix_world.copy();inverse=matrix.inverted()

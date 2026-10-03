@@ -50,14 +50,20 @@ def finish(root,out,args,legs):
         if view in details:
             point,position,scale=details[view];target=Vector(point);positions[view]=position;cam.data.ortho_scale=scale
         cam.location=positions[view];cam.rotation_euler=(target-cam.location).to_track_quat('-Z','Y').to_euler()
-        scene.render.resolution_x=720 if args.quality=='draft' else 1200
-        scene.render.resolution_y=1260 if args.quality=='draft' else 2100
+        polished=args.quality not in ('draft','showcase') or (args.quality=='showcase' and view in ('front','face','quarter'))
+        scene.render.resolution_x=1200 if polished else 720
+        scene.render.resolution_y=2100 if polished else 1260
+        for name,width in [('Hair ink',.80),('Skin ink',.60),('Cotton ink',.72)]:
+            ink=bpy.data.linestyles.get(name)
+            if ink:ink.thickness=width*scene.render.resolution_x/720
         if view in ['face','hand','hand_side','grip','feet','cuffs']:scene.render.resolution_y=scene.render.resolution_x
     camera_view('front')
     from render_ink import install as install_ink
     install_ink(scene.render.resolution_x/720)
     scene['author']='GPT-6 Astra Pro / MCP Colabdev / Blender';scene['source']='Entirely original procedural geometry and authored textures'
     scene['revision']=args.revision
+    import subprocess
+    scene['geometry_source_commit']=subprocess.check_output(['git','rev-parse','HEAD'],cwd=str(root),text=True).strip()
     scene['source_commit']=subprocess.check_output(['git','rev-parse','HEAD'],cwd=root,text=True).strip()
     blend=out/(root.name+'.blend');bpy.ops.wm.save_as_mainfile(filepath=str(blend),compress=True);atomic_copy(blend,assets/blend.name)
     for view in views:
@@ -78,7 +84,7 @@ def finish(root,out,args,legs):
         bpy.ops.export_scene.gltf(filepath=str(glb),export_format='GLB',use_selection=True,export_apply=True,export_extras=True,export_cameras=False,export_lights=False)
         atomic_copy(glb,assets/glb.name)
         tri=sum(sum(max(0,len(p.vertices)-2) for p in o.data.polygons) for o in bpy.context.selected_objects if o.type=='MESH')
-        stats={'revision':args.revision,'source_commit':scene['source_commit'],'triangles':tri,'objects':len(bpy.context.selected_objects),'legs':legs,'upper_leg_length':scene['upper_leg_length'],'lower_leg_length':scene['lower_leg_length'],'digits_per_hand':5,'asset_origin':'All geometry and textures authored from scratch'}
+        stats={'revision':args.revision,'geometry_source_commit':scene['geometry_source_commit'],'source_commit':scene['source_commit'],'triangles':tri,'objects':len(bpy.context.selected_objects),'legs':legs,'upper_leg_length':scene['upper_leg_length'],'lower_leg_length':scene['lower_leg_length'],'digits_per_hand':5,'asset_origin':'All geometry and textures authored from scratch'}
         from web_export import export_web
         stats.update(export_web(root,out,assets,list(bpy.context.selected_objects)))
         (out/'model_stats.json').write_text(json.dumps(stats,indent=2));atomic_copy(out/'model_stats.json',assets/'model_stats.json')

@@ -95,7 +95,7 @@ def panel(name,boundary,mat,bulge=.012,thickness=.014,uvscale=1):
         mod=ob.modifiers.new('Sewn fabric thickness','SOLIDIFY');mod.thickness=thickness
     return ob,bd
 
-def hair_lock(name,points,widths,depths,mat,normal=(0,-1,0),steps=8,sides=12,groove_mat=None):
+def hair_lock(name,points,widths,depths,mat,normal=(0,-1,0),steps=8,sides=12,groove_mat=None,shine_mat=None):
     ps,ws=sample(points,widths,steps);_,ds=sample(points,depths,steps);norm=Vector(normal);verts=[];faces=[];uv=[];edges=[];strands=[]
     for i,p in enumerate(ps):
         t=(ps[min(i+1,len(ps)-1)]-ps[max(0,i-1)]).normalized();b=t.cross(norm).normalized();n=b.cross(t).normalized();w=max(.001,ws[i]);d=max(.001,ds[i]);edges.append(p+b*w*.80+n*d*.60);strands.append(p+b*w*.18+n*d*.979)
@@ -112,6 +112,20 @@ def hair_lock(name,points,widths,depths,mat,normal=(0,-1,0),steps=8,sides=12,gro
     if groove_mat and len(strands)>15:
         pp=[strands[i] for i in range(int(len(strands)*.34),int(len(strands)*.90),5)]
         if len(pp)>2:curve(name+'_fine_flow',pp,groove_mat,.0013,radii=[.02]+[.45]*(len(pp)-2)+[.02])
+    if shine_mat:
+        vv=[];ff=[];nu=12;lo=max(1,int(len(ps)*.18));hi=min(len(ps)-2,int(len(ps)*.57))
+        for i in range(lo,hi+1):
+            v=(i-lo)/max(1,hi-lo);p=ps[i]
+            tangent=(ps[i+1]-ps[i-1]).normalized();across=tangent.cross(norm).normalized();outward=across.cross(tangent).normalized()
+            width=.35*max(0,sin(pi*v))**.7
+            for j in range(nu+1):
+                q=.12+width*(2*j/nu-1)
+                height=max(.001,ds[i])*(max(0,1-q*q)**.5)+.002
+                vv.append(p+across*max(.001,ws[i])*q+outward*height)
+        for i in range(hi-lo):
+            for j in range(nu):
+                k=i*(nu+1)+j;ff.append((k,k+1,k+nu+2,k+nu+1))
+        mesh(name+'_sheen',vv,ff,shine_mat)
     return ob
 
 def union(name,objects,voxel=.015,smooth=3):
