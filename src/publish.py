@@ -5,6 +5,8 @@ ROOT=Path(__file__).resolve().parents[1];OUT=Path('/build')/ROOT.name;PREVIEW=RO
 p=argparse.ArgumentParser();p.add_argument('--revision',required=True);p.add_argument('--score',type=int);p.add_argument('--title',required=True);p.add_argument('--notes',required=True);p.add_argument('--review',action='store_true');a=p.parse_args()
 status_path=PREVIEW/'status.json';d=json.loads(status_path.read_text());now=datetime.datetime.now(datetime.timezone.utc).isoformat(timespec='seconds')
 d.update(revision=a.revision,phase=a.title,note=a.notes,updated=now)
+stats=PREVIEW/'assets/model_stats.json'
+if stats.is_file():d['modelRevision']=json.loads(stats.read_text()).get('revision',a.revision)
 files=[]
 for ext,label in [('glb','Interactive 3D model · GLB'),('blend','Editable Blender source · BLEND'),('zip','Complete project · ZIP')]:
     f=PREVIEW/'assets'/(ROOT.name+'.'+ext)
@@ -15,6 +17,11 @@ renders=[]
 for view,label in [('front','Front silhouette'),('quarter','Three-quarter'),('back','Back construction'),('face','Face & expression'),('side','Side anatomy')]:
     f=PREVIEW/'assets'/(ROOT.name+'_'+view+'.png')
     if f.is_file():renders.append(dict(label=label,url='assets/'+f.name,path=str(f)))
+
+for item in renders:
+    view=Path(item['url']).stem.rsplit('_',1)[-1]
+    versions=list((ROOT/'renders/review').glob('R*-'+view+'.png'))
+    if versions:item['revision']=max(versions,key=lambda p:int(p.stem.split('-')[0][1:])).stem.split('-')[0]
 d['files']=files;d['renders']=renders
 history=PREVIEW/'history';history.mkdir(exist_ok=True)
 if a.review:

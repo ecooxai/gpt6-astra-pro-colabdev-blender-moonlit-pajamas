@@ -16,13 +16,14 @@ def sleeve(name,start,end,material,piping):
     ob=mesh(name,verts,faces,material,uv);sol=ob.modifiers.new('Cotton shell','SOLIDIFY');sol.thickness=.018
     curve(name+'_white_scallop_edge',edge[::5],piping,.008,cyclic=True)
 
-def cuff(name,cx,M):
+def cuff(name,cx,M,leg=None):
     verts=[];faces=[];uv=[];ns=96;nr=10;edge=[]
     for i in range(nr+1):
         t=i/nr
         for j in range(ns+1):
             a=2*pi*j/ns;r=.285+.027*sin(pi*t);z=3.025-.13*t-.082*(.5+.5*cos(8*a))*t**2
-            p=(cx+r*sin(a),.024-(.251+.022*sin(pi*t))*cos(a),z);verts.append(p);uv.append((j/ns*1.6,z*.91))
+            center=leg_center(leg,z) if leg else Vector((cx,.024,z))
+            p=(center.x+r*sin(a),center.y-(.251+.022*sin(pi*t))*cos(a),z);verts.append(p);uv.append((j/ns*1.6,z*.91))
             if i==0:edge.append(p)
     for i in range(nr):
         for j in range(ns):
@@ -30,7 +31,7 @@ def cuff(name,cx,M):
     ob=mesh(name,verts,faces,M['fabric'],uv);sol=ob.modifiers.new('Rounded cuff thickness','SOLIDIFY');sol.thickness=.025
     curve(name+'_upper_piping',edge[::4],M['white'],.008,cyclic=True)
 
-def build_clothes(M):
+def build_clothes(M,legs):
     verts=[];faces=[];uv=[];ns=128;nr=48;hem=[]
     for i in range(nr+1):
         t=i/nr
@@ -49,13 +50,7 @@ def build_clothes(M):
     curve('Clothes_shirt_hem_seam',hem[::5],M['piping'],.0035,cyclic=True)
     sleeve('Clothes_raised_scalloped_sleeve',(-.43,.02,5.335),(-.77,-.015,5.235),M['fabric'],M['white'])
     sleeve('Clothes_relaxed_scalloped_sleeve',(.455,.025,5.285),(.585,-.025,4.665),M['fabric'],M['white'])
-    pants=[]
-    for s in [-1,1]:
-        sections=[(s*.29,.024,2.945,.285,.254),(s*.30,.025,3.16,.333,.283),(s*.285,.03,3.44,.331,.292),(s*.28,.02,3.80,.315,.295)]
-        pants.append(loft('Clothes_short_leg_'+str(s),sections,M['fabric'],sides=64,steps=5,uvscale=1.8,wrinkle=.014))
-    pants.append(loft('Clothes_short_waist',[(0,.03,3.42,.59,.291),(0,.025,3.67,.615,.305),(0,.02,3.86,.604,.294)],M['fabric'],sides=80,steps=4,uvscale=2.8))
-    pants=union('Clothes_soft_pajama_shorts',pants,.019,4);box_uv(pants,.96)
-    cuff('Clothes_left_gathered_cuff',-.29,M);cuff('Clothes_right_gathered_cuff',.29,M)
+    fitted_shorts(M,legs)
     garment_details(M);close_shoulders(M)
 
 def garment_details(M):
@@ -86,3 +81,23 @@ def close_shoulders(M):
     for i in range(n):
         if abs(2*pi*(i+.5)/n-pi)>.36:faces.append((2*i,2*i+2,2*i+3,2*i+1))
     mesh('Clothes_closed_shoulders',verts,faces,M['fabric'],uv)
+
+def leg_center(leg,z):
+    hip=Vector(leg['hip']);knee=Vector(leg['knee'])
+    t=max(0,min(1,(hip.z-z)/(hip.z-knee.z)))
+    return hip.lerp(knee,t)
+
+def fitted_shorts(M,legs):
+    pants=[]
+    for sign,label in [(-1,'rear'),(1,'front')]:
+        sections=[];leg=legs[label]
+        for z,rx,ry in [(2.945,.30,.28),(3.16,.34,.31),(3.44,.33,.31),(3.80,.315,.30)]:
+            p=leg_center(leg,z);p.x+=sign*.025
+            if z>3.4:p.x=sign*.28;p.y=.026+(p.y-.026)*max(0,(3.8-z)/.4)
+            sections.append((p.x,p.y,z,rx,ry))
+        pants.append(loft('Clothes_short_leg_'+label,sections,M['fabric'],sides=64,steps=5,uvscale=1.8,wrinkle=.01))
+    waist=[(0,.03,3.42,.59,.31),(0,.025,3.67,.615,.31),(0,.02,3.86,.604,.30)]
+    pants.append(loft('Clothes_short_waist',waist,M['fabric'],sides=80,steps=4,uvscale=2.8))
+    pants=union('Clothes_soft_pajama_shorts',pants,.015,4);box_uv(pants,.96)
+    for sign,label in [(-1,'rear'),(1,'front')]:
+        cuff('Clothes_'+label+'_gathered_cuff',sign*.29,M,leg=legs[label])

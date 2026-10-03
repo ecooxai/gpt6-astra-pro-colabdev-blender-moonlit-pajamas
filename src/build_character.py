@@ -4,6 +4,7 @@ from mathutils import Vector
 from math import sin,cos,pi,sqrt,exp
 ROOT=pathlib.Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/'src'))
 from geometry import *
+from legs import rounded_leg
 P=argparse.ArgumentParser();P.add_argument('--revision',default='R01');P.add_argument('--quality',default='draft');P.add_argument('--views',default='front');P.add_argument('--no-export',action='store_true');A=P.parse_args(sys.argv[sys.argv.index('--')+1:] if '--' in sys.argv else [])
 OUT=pathlib.Path('/build')/ROOT.name;OUT.mkdir(parents=True,exist_ok=True)
 CFG=json.loads((ROOT/'src/config.json').read_text()) if (ROOT/'src/config.json').exists() else {}
@@ -39,7 +40,7 @@ for label,hip,ankle in [('front',Vector((.25,.025,3.38)),Vector((-.025,-.18,.235
         p=hip.lerp(knee,t);sections.append((*p,rx,ry))
     for t,rx,ry in [(.12,.151,.15),(.30,.175,.158),(.52,.149,.135),(.78,.102,.107),(.94,.078,.091),(1,.076,.085)]:
         p=knee.lerp(ankle,t);sections.append((*p,rx,ry))
-    ob=loft('Body_'+label+'_leg',list(reversed(sections)),M['skin'],sides=64,steps=4);ob['upper_segment']=L1;ob['lower_segment']=L2;LEG_DATA[label]={'hip':list(hip),'knee':list(knee),'ankle':list(ankle)}
+    ob=rounded_leg(label,hip,knee,ankle,M['skin']);ob['upper_segment']=L1;ob['lower_segment']=L2;LEG_DATA[label]={'hip':list(hip),'knee':list(knee),'ankle':list(ankle)}
 # Raised arm and relaxed arm have curved elbow transitions, not stacked primitives.
 upper=tube('Body_raised_arm',[(-.43,.025,5.31),(-.81,-.01,5.18),(-1.12,-.055,5.22),(-1.015,-.13,5.48),(-.83,-.17,5.72),(-.64,-.20,6.02)],[.151,.143,.125,.12,.097,.061],M['skin'],sides=28,steps=8)
 lower=tube('Body_relaxed_arm',[(.47,.025,5.25),(.56,-.015,4.70),(.55,-.04,4.21),(.63,-.12,3.74),(.78,-.16,3.29)],[.15,.137,.101,.111,.061],M['skin'],sides=28,steps=8)
@@ -48,7 +49,7 @@ from face import build_face
 from hair import build_hair
 from clothing import build_clothes
 from accessories import build_pillow,build_headwear,build_slippers
-build_hands(M,upper,lower);build_face(M);build_hair(M);build_clothes(M)
+build_hands(M,upper,lower);build_face(M);build_hair(M);build_clothes(M,LEG_DATA)
 build_pillow(M);build_headwear(M);build_slippers(M,LEG_DATA)
 from pose import adjust_pose
 bpy.context.view_layer.update();adjust_pose()
