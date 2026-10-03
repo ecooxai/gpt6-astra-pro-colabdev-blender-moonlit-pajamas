@@ -50,12 +50,12 @@ def build_clothes(M,legs):
     curve('Clothes_shirt_hem_seam',hem[::5],M['piping'],.0035,cyclic=True)
     sleeve('Clothes_raised_scalloped_sleeve',(-.43,.02,5.335),(-.77,-.015,5.235),M['fabric'],M['white'])
     sleeve('Clothes_relaxed_scalloped_sleeve',(.455,.025,5.285),(.585,-.025,4.665),M['fabric'],M['white'])
-    fitted_shorts(M,legs)
+    shoulder_caps(M);fitted_shorts(M,legs)
     garment_details(M);close_shoulders(M)
 
 def garment_details(M):
     for sign in [-1,1]:
-        boundary=[(sign*.14,-.135,5.46),(sign*.36,-.17,5.42),(sign*.48,-.185,5.30),(sign*.285,-.305,5.20),(sign*.35,-.265,5.055),(sign*.022,-.343,4.985),(sign*.16,-.267,5.315)]
+        boundary=[(sign*.14,-.135,5.46),(sign*.36,-.17,5.42),(sign*.48,-.235,5.30),(sign*.285,-.305,5.20),(sign*.35,-.265,5.055),(sign*.022,-.343,4.985),(sign*.16,-.267,5.315)]
         ob,edge=flat_panel('Clothes_white_lapel_'+str(sign),boundary,M['white'],bulge=.017,thickness=.014)
         crease('Clothes_collar_piping_'+str(sign),edge,M['piping'],.0045)
     line=[(.005,-.30,3.83),(-.012,-.302,4.11),(.011,-.295,4.43),(.014,-.29,4.72),(.008,-.293,4.995)]
@@ -101,3 +101,9 @@ def fitted_shorts(M,legs):
     pants=union('Clothes_soft_pajama_shorts',pants,.015,4);box_uv(pants,.96)
     for sign,label in [(-1,'rear'),(1,'front')]:
         cuff('Clothes_'+label+'_gathered_cuff',sign*.29,M,leg=legs[label])
+
+def shoulder_caps(M):
+    specs=[('raised',(-.43,.02,5.29),(.23,.23,.16)),('relaxed',(.435,.015,5.27),(.21,.235,.15))]
+    for label,location,scale in specs:
+        ob=sphere('Clothes_'+label+'_shoulder_patch',location,scale,M['fabric'])
+        bpy.context.view_layer.update();box_uv(ob,.96)

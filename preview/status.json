@@ -1,23 +1,23 @@
 {
-  "revision": "R04",
-  "phase": "Rounded knees; fitted shorts",
-  "note": "The legs retain matched segment lengths, the knee transitions are rounded in profile, and the thighs stay inside the shorts. Remaining priorities are the visible back-hair roots, side-scalp coverage, sleeve joins, and a softer pillow silhouette.",
-  "iterations": 4,
-  "score": 74,
+  "revision": "R05",
+  "phase": "R05 reviewed: hair and profile corrections next",
+  "note": "Reviewed front, side, back, and face. The model is recognizable, with rounded equal-length legs and original clothing. Side-scalp gaps, abrupt back-hair roots, a squared collar, and stiff raised fingers remain visible.",
+  "iterations": 5,
+  "score": 75,
   "projectPath": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas",
   "buildPath": "/build/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas",
-  "updated": "2026-10-03T11:47:23+00:00",
+  "updated": "2026-10-03T12:02:08+00:00",
   "files": [
     {
       "label": "Interactive 3D model \u00b7 GLB",
       "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas.glb",
-      "size": "9.3 MB",
+      "size": "9.4 MB",
       "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas.glb"
     },
     {
       "label": "Editable Blender source \u00b7 BLEND",
       "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas.blend",
-      "size": "14.4 MB",
+      "size": "14.7 MB",
       "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas.blend"
     }
   ],
@@ -26,7 +26,7 @@
       "label": "Front silhouette",
       "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_front.png",
       "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_front.png",
-      "revision": "R04"
+      "revision": "R05"
     },
     {
       "label": "Three-quarter",
@@ -38,19 +38,19 @@
       "label": "Back construction",
       "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_back.png",
       "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_back.png",
-      "revision": "R03"
+      "revision": "R05"
     },
     {
       "label": "Face & expression",
       "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_face.png",
       "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_face.png",
-      "revision": "R03"
+      "revision": "R05"
     },
     {
       "label": "Side anatomy",
       "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_side.png",
       "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_side.png",
-      "revision": "R04"
+      "revision": "R05"
     }
   ],
   "journal": [
@@ -89,8 +89,17 @@
       "time": "2026-10-03T11:47:23+00:00",
       "kind": "Subjective visual review",
       "image": "history/R04-front.png"
+    },
+    {
+      "revision": "R05",
+      "title": "R05 reviewed: hair and profile corrections next",
+      "notes": "Reviewed front, side, back, and face. The model is recognizable, with rounded equal-length legs and original clothing. Side-scalp gaps, abrupt back-hair roots, a squared collar, and stiff raised fingers remain visible.",
+      "score": 75,
+      "time": "2026-10-03T12:02:08+00:00",
+      "kind": "Subjective visual review",
+      "image": "history/R05-front.png"
     }
   ],
   "model": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas.glb",
-  "modelRevision": "R04"
+  "modelRevision": "R05"
 }
