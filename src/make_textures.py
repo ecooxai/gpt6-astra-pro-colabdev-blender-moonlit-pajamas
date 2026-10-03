@@ -40,3 +40,14 @@ for c in [.385,.615]:
     w=np.exp(-((u-c)/.043)**2-((v-.27)/.068)**2)*.42;skin=skin*(1-w[:,:,None])+np.array([244,157,165])*w[:,:,None]
 Image.fromarray(np.uint8(np.clip(skin,0,255)),'RGB').save(OUT/'face_wash_original.png')
 print('Created original cotton, iris, and face textures')
+
+# Root-color transitions are authored gradients, never sampled reference pixels.
+height,width=256,32
+v=1-np.arange(height)[:,None]/(height-1);u=np.arange(width)[None,:]/(width-1)
+t=np.clip(v/.38,0,1);t=t*t*(3-2*t)
+for name,color in [('hairlight_roots_original.png',[136,129,178]),('hairdark_roots_original.png',[93,84,127])]:
+    root=np.array([119,114,162]);target=np.array(color)
+    rgb=root[None,None,:]*(1-t[:,:,None])+target[None,None,:]*t[:,:,None]
+    rgb=np.broadcast_to(rgb,(height,width,3)).copy()
+    rgb+=3*np.exp(-((u-.43)/.24)**2)[:,:,None]*np.sin(np.pi*v)[:,:,None]
+    Image.fromarray(np.uint8(np.clip(rgb,0,255)),'RGB').save(OUT/name)

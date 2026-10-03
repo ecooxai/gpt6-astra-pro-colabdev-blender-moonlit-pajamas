@@ -10,7 +10,8 @@ def pillow_point(u,v,side):
     folds+=.038*exp(-((u+.32-.22*v)/.085)**2)*max(0,1-v*v)**.6
     pinch=-.207*exp(-d/.085)
     x=.86+.47*u+.45*v+.036*sin(pi*v)*(1-u*u)+.019*sin(3*pi*v)*abs(u)**9
-    z=2.08-.37*u+.85*v+.027*sin(pi*u)*sin(pi*v)+.015*sin(3*pi*u)*abs(v)**9
+    x-=.26*exp(-((u+1)**2+(v+1)**2)/.16)
+    z=2.14-.44*u+.79*v+.027*sin(pi*u)*sin(pi*v)+.015*sin(3*pi*u)*abs(v)**9-.13*exp(-d/.12)
     return (x,.12+side*(.018+inflate+folds)+pinch,z)
 
 def build_pillow(M):

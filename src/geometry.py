@@ -107,7 +107,8 @@ def hair_lock(name,points,widths,depths,mat,normal=(0,-1,0),steps=8,sides=12,gro
     faces.append(tuple(reversed(range(sides))));faces.append(tuple((len(ps)-1)*sides+j for j in range(sides)))
     ob=mesh(name,verts,faces,mat,uv)
     if groove_mat and len(edges)>8:
-        pp=[edges[i] for i in range(3,len(edges)-3,5)];curve(name+'_edge_ink',pp,groove_mat,.0025,radii=[.1]+[.7]*(len(pp)-2)+[.03])
+        pp=[edges[i] for i in range(3,len(edges)-3,5) if not name.startswith('HairLong_') or edges[i].z<6.15]
+        if len(pp)>=2:curve(name+'_edge_ink',pp,groove_mat,.0025,radii=[.04]+[.7]*(len(pp)-2)+[.03])
     return ob
 
 def union(name,objects,voxel=.015,smooth=3):

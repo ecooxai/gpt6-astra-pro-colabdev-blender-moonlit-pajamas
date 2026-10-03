@@ -1,4 +1,4 @@
-import bpy,bmesh,math,json,shutil
+import bpy,bmesh,math,json,shutil,subprocess
 from mathutils import Vector
 from io_helpers import atomic_copy
 
@@ -33,6 +33,8 @@ def finish(root,out,args,legs):
     scene,cam=setup(args.quality)
     import toon;toon.install()
     assets=out/'pending-preview';assets.mkdir(exist_ok=True)
+    for old in assets.iterdir():
+        if old.is_file():old.unlink()
     views=args.views.split(',')
     if 'all' in views:views=['front','quarter','side','back','face']
     def camera_view(view):
@@ -49,6 +51,7 @@ def finish(root,out,args,legs):
     camera_view('front')
     scene['author']='GPT-6 Astra Pro / MCP Colabdev / Blender';scene['source']='Entirely original procedural geometry and authored textures'
     scene['revision']=args.revision
+    scene['source_commit']=subprocess.check_output(['git','rev-parse','HEAD'],cwd=root,text=True).strip()
     blend=out/(root.name+'.blend');bpy.ops.wm.save_as_mainfile(filepath=str(blend));atomic_copy(blend,assets/blend.name)
     for view in views:
         camera_view(view);path=out/(root.name+'_'+view+'.png');scene.render.filepath=str(path)
@@ -66,7 +69,7 @@ def finish(root,out,args,legs):
         bpy.ops.export_scene.gltf(filepath=str(glb),export_format='GLB',use_selection=True,export_apply=True,export_extras=True,export_cameras=False,export_lights=False)
         atomic_copy(glb,assets/glb.name)
         tri=sum(sum(max(0,len(p.vertices)-2) for p in o.data.polygons) for o in bpy.context.selected_objects if o.type=='MESH')
-        stats={'revision':args.revision,'triangles':tri,'objects':len(bpy.context.selected_objects),'legs':legs,'upper_leg_length':scene['upper_leg_length'],'lower_leg_length':scene['lower_leg_length'],'digits_per_hand':5,'asset_origin':'All geometry and textures authored from scratch'}
+        stats={'revision':args.revision,'source_commit':scene['source_commit'],'triangles':tri,'objects':len(bpy.context.selected_objects),'legs':legs,'upper_leg_length':scene['upper_leg_length'],'lower_leg_length':scene['lower_leg_length'],'digits_per_hand':5,'asset_origin':'All geometry and textures authored from scratch'}
         from web_export import export_web
         stats.update(export_web(root,out,assets,list(bpy.context.selected_objects)))
         (out/'model_stats.json').write_text(json.dumps(stats,indent=2));atomic_copy(out/'model_stats.json',assets/'model_stats.json')
