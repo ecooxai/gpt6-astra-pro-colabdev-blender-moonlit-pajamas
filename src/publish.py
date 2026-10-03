@@ -5,7 +5,7 @@ from io_helpers import atomic_copy
 ROOT=Path(__file__).resolve().parents[1];OUT=Path('/build')/ROOT.name;PREVIEW=ROOT/'preview'
 p=argparse.ArgumentParser();p.add_argument('--revision',required=True);p.add_argument('--score',type=int);p.add_argument('--title',required=True);p.add_argument('--notes',required=True);p.add_argument('--review',action='store_true');a=p.parse_args()
 previous=json.loads((PREVIEW/'status.json').read_text())
-previous_views={Path(f['url']).stem.rsplit('_',1)[-1]:f.get('revision','unknown') for f in previous.get('renders',[])}
+previous_views={Path(f['url']).stem.removeprefix(ROOT.name+'_'):f.get('revision','unknown') for f in previous.get('renders',[])}
 staged_views={}
 pending=OUT/'pending-preview'
 if pending.exists() and a.review:
@@ -34,7 +34,7 @@ for view,label in [('front','Front silhouette'),('quarter','Three-quarter'),('ba
     if f.is_file():renders.append(dict(label=label,url='assets/'+f.name,path=str(f)))
 
 for item in renders:
-    view=Path(item['url']).stem.rsplit('_',1)[-1]
+    view=Path(item['url']).stem.removeprefix(ROOT.name+'_')
     item['revision']=staged_views.get(view,previous_views.get(view,'unknown'))
 web=PREVIEW/'assets'/(ROOT.name+'_web.glb')
 if web.exists():

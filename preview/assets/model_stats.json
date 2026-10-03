@@ -1,8 +1,8 @@
 {
-  "revision": "R29",
-  "source_commit": "5e038f1cbcf8d79b5065da008968b47828a499ab",
-  "triangles": 579016,
-  "objects": 227,
+  "revision": "R30",
+  "source_commit": "300efe41114d779df3705d8b8e44eadc93e4f264",
+  "triangles": 580352,
+  "objects": 229,
   "legs": {
     "front": {
       "hip": [
@@ -43,8 +43,8 @@
   "lower_leg_length": 1.83,
   "digits_per_hand": 5,
   "asset_origin": "All geometry and textures authored from scratch",
-  "web_triangles": 353004,
-  "web_bytes": 8287392,
-  "web_draw_batches": 21,
-  "source_mesh_objects": 227
+  "web_triangles": 353762,
+  "web_bytes": 8313440,
+  "web_draw_batches": 22,
+  "source_mesh_objects": 229
 }

@@ -26,3 +26,5 @@ R27 accepted at 92/100 after actual front, face, side and back review. R26 was r
 R28 reviewed at 93/100 subjective. Full GLB 558232 triangles; web 326689 triangles, 21 batches / 23 actual browser draw calls. Desktop 1440x1000 and mobile 390x844 viewport tests pass with 8 images and no offscreen frames. Contact triangle gap 0.0037272 authoring units passes. Restored missing contact_search_progress.json from committed candidate-count metadata, not newly run visual iterations.
 
 R29 accepted at 94/100 subjective after front, cuffs and three-quarter review. Rounded cuff petals and soft sleeve folds replace the zigzag band. Full GLB 579016 triangles; browser GLB 353004. All nine views generated. HTML reports open instead of downloading; archives are no longer listed after a new model until regenerated from a matching commit.
+
+R30 maintained at 94/100 after front, grip, opposite-side and hand-profile review. Newly added Left orbit preset and eleven-image gallery are tested. Four images are R30; unchanged older views keep R29 labels. The rear foot needs a modest pose adjustment before the final complete render set.
