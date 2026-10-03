@@ -1,0 +1,85 @@
+{
+  "revision": "R21",
+  "result": "PASS",
+  "exports": [
+    {
+      "file": "gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas.glb",
+      "result": "PASS",
+      "bytes": 10863708,
+      "triangles": 534876,
+      "vertex_entries": 276824,
+      "embedded_images": 3,
+      "largest_meshes": [
+        [
+          108432,
+          "Body_relaxed_continuous_mesh"
+        ],
+        [
+          103044,
+          "Body_raised_continuous_mesh"
+        ],
+        [
+          46964,
+          "Clothes_short_leg_rear_mesh"
+        ],
+        [
+          25280,
+          "Clothes_pajama_shirt_mesh"
+        ],
+        [
+          21244,
+          "Head_original_anime_head_mesh"
+        ],
+        [
+          13824,
+          "HairTop_crown_cap_mesh"
+        ]
+      ]
+    },
+    {
+      "file": "gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_web.glb",
+      "result": "PASS",
+      "bytes": 7114680,
+      "triangles": 332373,
+      "vertex_entries": 174693,
+      "embedded_images": 3,
+      "largest_meshes": [
+        [
+          34698,
+          "Body_relaxed_continuous_mesh"
+        ],
+        [
+          32974,
+          "Body_raised_continuous_mesh"
+        ],
+        [
+          28178,
+          "Clothes_short_leg_rear_mesh"
+        ],
+        [
+          21244,
+          "Head_original_anime_head_mesh"
+        ],
+        [
+          15168,
+          "Clothes_pajama_shirt_mesh"
+        ],
+        [
+          8293,
+          "HairTop_crown_cap_mesh"
+        ]
+      ]
+    }
+  ],
+  "authored_leg_center_lengths": {
+    "front": {
+      "upper": 1.3599999228482305,
+      "lower": 1.8299999544705354
+    },
+    "rear": {
+      "upper": 1.3599999707592159,
+      "lower": 1.829999963075666
+    }
+  },
+  "scope": "Finite mesh data, valid indices, embedded textures, triangle-count agreement, and matching authored leg-center segment lengths. Not a visual score or animation-rig test."
+}

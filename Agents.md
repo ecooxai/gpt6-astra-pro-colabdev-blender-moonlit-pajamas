@@ -12,3 +12,5 @@ Push source and latest actual artifacts after each reviewed step. A prior runtim
 R19 completed and reviewed: 84/100, seven retained review entries. Front, side, back, face, hand and grip images exist. Next: collar intersections, squared hair-cap ends, continuous wrist and actual slipper ribbons.
 
 R20 completed: 87/100 subjective. Eight retained reviews. New builds stage in /build/<project>/pending-preview; publish.py copies them only during an explicit publish. Browser controls passed on desktop/mobile but the report included an extraneous favicon 404; empty favicon added. Model web export is 333645 triangles vs 542952 full. Next R21: hand twist, more natural cloth gathers and collar asymmetry, cap toe openings.
+
+R21 completed and reviewed from front/back/three-quarter: 88/100 subjective, nine retained passes. Hand audit PASS: each full arm/hand is one connected closed surface. Full GLB 534876 triangles; web 332373. Reconstructive work after lost R17 is deliberately numbered R19 onward; unperformed builds are not counted. Next priorities: raised hand, accurate curved shirt tails, longer relaxed sleeve, smooth root-color transitions.
