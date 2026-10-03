@@ -62,6 +62,8 @@ for ob in list(bpy.context.scene.objects):
 head_root.rotation_euler=(0,-.075,-.045)
 from pose import blend_long_hair_pose
 blend_long_hair_pose(head_root)
+from surface_refinement import fit_collar_in_pose
+fit_collar_in_pose()
 if not A.no_contact:
     from contact_pose import apply
     apply(ROOT)

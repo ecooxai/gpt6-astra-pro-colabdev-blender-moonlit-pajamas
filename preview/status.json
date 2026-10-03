@@ -1,8 +1,8 @@
 {
   "revision": "R25",
-  "phase": "Recovered hand contact; verified five-view rebuild",
-  "note": "Visually reviewed actual front, face, hand and side renders. The raised index now reaches the headband without elongating the wrist. Likeness still needs hair value separation, more expressive eyes, cloth definition and lapels that follow the torso in profile. Subjective visual review, not a certified benchmark.",
-  "iterations": 13,
+  "phase": "Correcting R26 collar collision; R25 remains live",
+  "note": "Actual front render reviewed at 89/100. The new hair values and eyes are retained in source, but the projected lapels intersect the skin. R25 remains the accepted live model until this defect is corrected.",
+  "iterations": 14,
   "score": 91,
   "projectPath": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas",
   "buildPath": "/build/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas",
@@ -218,6 +218,15 @@
       "time": "2026-10-03T19:53:29+00:00",
       "kind": "Subjective visual review",
       "image": "history/R25/index.html"
+    },
+    {
+      "revision": "R26",
+      "title": "Hair and eyes improved; collar fit rejected",
+      "notes": "Actual front render reviewed at 89/100. The new hair values and eyes are retained in source, but the projected lapels intersect the skin. R25 remains the accepted live model until this defect is corrected.",
+      "score": 89,
+      "time": "2026-10-03T20:00:41+00:00",
+      "kind": "Rejected visual review",
+      "image": "history/R26/index.html"
     }
   ],
   "model": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_web.glb",

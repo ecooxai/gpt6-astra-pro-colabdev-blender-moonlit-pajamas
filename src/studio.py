@@ -33,6 +33,9 @@ def finish(root,out,args,legs):
     scene,cam=setup(args.quality)
     import toon;toon.install()
     assets=out/'pending-preview';assets.mkdir(exist_ok=True)
+    for old_file in assets.iterdir():
+        if old_file.is_file():old_file.unlink()
+    render_versions={}
     for old in assets.iterdir():
         if old.is_file():old.unlink()
     views=args.views.split(',')
@@ -57,6 +60,8 @@ def finish(root,out,args,legs):
         camera_view(view);path=out/(root.name+'_'+view+'.png');scene.render.filepath=str(path)
         bpy.ops.render.render(write_still=True);atomic_copy(path,assets/path.name)
         review=root/'renders/review';review.mkdir(parents=True,exist_ok=True);atomic_copy(path,review/(args.revision+'-'+view+'.png'))
+        render_versions[view]=args.revision
+        (assets/'render_versions.json').write_text(json.dumps(render_versions,indent=2))
         print('RENDER_READY',view,str(path),flush=True)
     if not args.no_export:
         toon.export_fallback()
