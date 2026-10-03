@@ -18,16 +18,18 @@ if pending.exists() and a.review:
         if source.is_file():atomic_copy(source,PREVIEW/'assets'/source.name)
 status_path=PREVIEW/'status.json';d=json.loads(status_path.read_text());now=datetime.datetime.now(datetime.timezone.utc).isoformat(timespec='seconds')
 d.update(revision=a.revision,phase=a.title,note=a.notes,updated=now)
+if a.review:
+    d.pop('sourceCommit',None);d.pop('archiveRevision',None)
 stats=PREVIEW/'assets/model_stats.json'
 if stats.is_file():d['modelRevision']=json.loads(stats.read_text()).get('revision',a.revision)
 files=[]
-for ext,label in [('glb','Interactive 3D model · GLB'),('blend','Editable Blender source · BLEND'),('zip','Complete project · ZIP')]:
+for ext,label in [('glb','Interactive 3D model · GLB'),('blend','Editable Blender source · BLEND')]:
     f=PREVIEW/'assets'/(ROOT.name+'.'+ext)
     if f.is_file():
         size=f.stat().st_size;files.append(dict(label=label,url='assets/'+f.name,size=f'{size/1048576:.1f} MB',path=str(f)))
         if ext=='glb':d['model']='assets/'+f.name
 renders=[]
-for view,label in [('front','Front silhouette'),('quarter','Three-quarter'),('back','Back construction'),('face','Face & expression'),('side','Side anatomy'),('hand','Raised hand detail'),('grip','Pillow grip detail'),('feet','Slippers and ribbons')]:
+for view,label in [('front','Front silhouette'),('quarter','Three-quarter'),('back','Back construction'),('face','Face & expression'),('side','Side anatomy'),('hand','Raised hand detail'),('grip','Pillow grip detail'),('feet','Slippers and ribbons'),('cuffs','Rounded cotton gathers')]:
     f=PREVIEW/'assets'/(ROOT.name+'_'+view+'.png')
     if f.is_file():renders.append(dict(label=label,url='assets/'+f.name,path=str(f)))
 
@@ -38,7 +40,7 @@ web=PREVIEW/'assets'/(ROOT.name+'_web.glb')
 if web.exists():
     files.insert(0,dict(label='Optimized interactive model · GLB',url='assets/'+web.name,size=f'{web.stat().st_size/1048576:.1f} MB',path=str(web)))
     d['model']='assets/'+web.name
-for name,label in [('validation.json','Model validation'),('browser_validation.json','Desktop / mobile test report'),('hand_audit.json','Hand surface audit')]:
+for name,label in [('validation.json','Model validation'),('browser_validation.json','Desktop / mobile test report'),('hand_audit.json','Hand surface audit'),('contact_surface_audit.json','Fingertip / headband contact audit')]:
     f=PREVIEW/'assets'/name
     if f.exists():files.append(dict(label=label,url='assets/'+name,size='JSON',path=str(f)))
 renders.sort(key=lambda item:(-int(item.get('revision','R00')[1:]),0 if 'front.png' in item['url'] else 1))

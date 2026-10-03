@@ -24,3 +24,5 @@ R25: rebuilt after restoring remote code. Reviewed front, face, hand and side at
 R27 accepted at 92/100 after actual front, face, side and back review. R26 was rejected at 89/100 due to skin clipping; its journal remains visible. R27 regenerates all eight views, clears old staging and fits collar meshes against both posed skin and shirt.
 
 R28 reviewed at 93/100 subjective. Full GLB 558232 triangles; web 326689 triangles, 21 batches / 23 actual browser draw calls. Desktop 1440x1000 and mobile 390x844 viewport tests pass with 8 images and no offscreen frames. Contact triangle gap 0.0037272 authoring units passes. Restored missing contact_search_progress.json from committed candidate-count metadata, not newly run visual iterations.
+
+R29 accepted at 94/100 subjective after front, cuffs and three-quarter review. Rounded cuff petals and soft sleeve folds replace the zigzag band. Full GLB 579016 triangles; browser GLB 353004. All nine views generated. HTML reports open instead of downloading; archives are no longer listed after a new model until regenerated from a matching commit.

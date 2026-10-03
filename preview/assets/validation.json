@@ -1,13 +1,13 @@
 {
-  "revision": "R28",
+  "revision": "R29",
   "result": "PASS",
   "exports": [
     {
       "file": "gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas.glb",
       "result": "PASS",
-      "bytes": 11425660,
-      "triangles": 558232,
-      "vertex_entries": 290496,
+      "bytes": 11815000,
+      "triangles": 579016,
+      "vertex_entries": 301282,
       "embedded_images": 6,
       "largest_meshes": [
         [
@@ -39,9 +39,9 @@
     {
       "file": "gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_web.glb",
       "result": "PASS",
-      "bytes": 7693292,
-      "triangles": 326689,
-      "vertex_entries": 173034,
+      "bytes": 8287392,
+      "triangles": 353004,
+      "vertex_entries": 186665,
       "embedded_images": 6,
       "largest_meshes": [
         [
@@ -57,7 +57,7 @@
           "Clothes_raised_scalloped_sleeve_white_scallop_edge_curve"
         ],
         [
-          30449,
+          35980,
           "HairTop_crown_cap_mesh"
         ],
         [
@@ -65,8 +65,8 @@
           "HairLong_layer_1_edge_ink_curve"
         ],
         [
-          21244,
-          "Head_original_anime_head_mesh"
+          27136,
+          "Clothes_shirt_hem_seam_curve"
         ]
       ]
     }

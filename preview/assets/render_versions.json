@@ -1,10 +1,11 @@
 {
-  "front": "R28",
-  "face": "R28",
-  "side": "R28",
-  "quarter": "R28",
-  "back": "R28",
-  "hand": "R28",
-  "grip": "R28",
-  "feet": "R28"
+  "front": "R29",
+  "cuffs": "R29",
+  "quarter": "R29",
+  "back": "R29",
+  "face": "R29",
+  "side": "R29",
+  "hand": "R29",
+  "grip": "R29",
+  "feet": "R29"
 }

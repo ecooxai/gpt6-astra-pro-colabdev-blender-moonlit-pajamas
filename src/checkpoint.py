@@ -13,8 +13,10 @@ if __name__=='__main__':
     commit=run(['git','rev-parse','HEAD']);status=json.loads((PREVIEW/'status.json').read_text());stats=json.loads((ASSETS/'model_stats.json').read_text())
     assert status['modelRevision']==stats['revision'],'Model/review revision mismatch'
     dest=ASSETS/(ROOT.name+'.zip');run(['git','archive','--format=zip','--prefix='+ROOT.name+'/','--output='+str(dest),commit])
+    with zipfile.ZipFile(dest,'a',compression=zipfile.ZIP_DEFLATED) as archive:
+        archive.writestr(ROOT.name+'/CHECKPOINT.json',json.dumps({'sourceCommit':commit,'modelRevision':stats['revision'],'scope':'Immutable Git source, model and preview snapshot'},indent=2))
     item={'label':'Complete source and model · ZIP','url':'assets/'+dest.name,'size':f'{dest.stat().st_size/1048576:.1f} MB','path':str(dest)}
-    status['files']=[f for f in status['files'] if not f['url'].endswith('.zip')]+[item];status['sourceCommit']=commit;(PREVIEW/'status.json').write_text(json.dumps(status,indent=2))
+    status['files']=[f for f in status['files'] if not f['url'].endswith('.zip')]+[item];status['sourceCommit']=commit;status['archiveRevision']=stats['revision'];(PREVIEW/'status.json').write_text(json.dumps(status,indent=2))
     print('ARCHIVE',str(dest),dest.stat().st_size,'COMMIT',commit)
     if a.deploy:
         pages=OUT/'pages-deploy';pages.mkdir(parents=True,exist_ok=True)
