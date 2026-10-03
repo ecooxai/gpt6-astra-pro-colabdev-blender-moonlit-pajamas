@@ -8,3 +8,5 @@ Recovered from R06 after Colab rollback. R07–R17 were previously reviewed but 
 All geometry and texture pixels authored in Python here. The reference is viewed visually only, never baked into the model.
 ## Persistence
 Push source and latest actual artifacts after each reviewed step. A prior runtime rollback erased unpushed work. Never start a new Colab instance or stop the current one without verified backup.
+
+R19 completed and reviewed: 84/100, seven retained review entries. Front, side, back, face, hand and grip images exist. Next: collar intersections, squared hair-cap ends, continuous wrist and actual slipper ribbons.

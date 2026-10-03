@@ -1,23 +1,23 @@
 {
-  "revision": "R06",
-  "phase": "Crown-rooted hair and quieter expression",
-  "note": "Reviewed actual front, side, and back renders. Back tresses now flow from the crown and the eyelids better match the quiet reference expression. The side forehead still escapes the scalp shell, and the collar became too scalloped; these need targeted geometry fixes, not a higher claimed score.",
-  "iterations": 6,
-  "score": 78,
+  "revision": "R19",
+  "phase": "Reconstructed proportions, hands and soft pajama details",
+  "note": "Actual front, face, side and grip renders reviewed. Matched leg lengths and a higher knee line improve the pose; the original print and pocket have been rebuilt. Remaining defects: blunt side-hair endings, collar intersections, a wrist crease and underspecified slipper bows. This is a recovery checkpoint, not the 95/100 target.",
+  "iterations": 7,
+  "score": 84,
   "projectPath": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas",
   "buildPath": "/build/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas",
-  "updated": "2026-10-03T12:07:25+00:00",
+  "updated": "2026-10-03T15:15:31+00:00",
   "files": [
     {
       "label": "Interactive 3D model \u00b7 GLB",
       "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas.glb",
-      "size": "10.0 MB",
+      "size": "11.8 MB",
       "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas.glb"
     },
     {
       "label": "Editable Blender source \u00b7 BLEND",
       "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas.blend",
-      "size": "15.2 MB",
+      "size": "18.0 MB",
       "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas.blend"
     }
   ],
@@ -26,7 +26,7 @@
       "label": "Front silhouette",
       "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_front.png",
       "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_front.png",
-      "revision": "R06"
+      "revision": "R19"
     },
     {
       "label": "Three-quarter",
@@ -38,19 +38,19 @@
       "label": "Back construction",
       "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_back.png",
       "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_back.png",
-      "revision": "R06"
+      "revision": "R19"
     },
     {
       "label": "Face & expression",
       "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_face.png",
       "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_face.png",
-      "revision": "R06"
+      "revision": "R19"
     },
     {
       "label": "Side anatomy",
       "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_side.png",
       "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_side.png",
-      "revision": "R06"
+      "revision": "R19"
     }
   ],
   "journal": [
@@ -107,8 +107,20 @@
       "time": "2026-10-03T12:07:25+00:00",
       "kind": "Subjective visual review",
       "image": "history/R06-front.png"
+    },
+    {
+      "revision": "R19",
+      "title": "Reconstructed proportions, hands and soft pajama details",
+      "notes": "Actual front, face, side and grip renders reviewed. Matched leg lengths and a higher knee line improve the pose; the original print and pocket have been rebuilt. Remaining defects: blunt side-hair endings, collar intersections, a wrist crease and underspecified slipper bows. This is a recovery checkpoint, not the 95/100 target.",
+      "score": 84,
+      "time": "2026-10-03T15:15:31+00:00",
+      "kind": "Subjective visual review",
+      "image": "history/R19-front.png"
     }
   ],
   "model": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas.glb",
-  "modelRevision": "R06"
+  "modelRevision": "R19",
+  "recoveryNote": "R07\u2013R17 were reviewed before an earlier Colab rollback but their images and source were lost. Retained-pass count includes only entries with preserved artifacts.",
+  "requestedIterations": 20000,
+  "requestedScore": 95
 }

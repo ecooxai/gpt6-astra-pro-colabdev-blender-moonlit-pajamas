@@ -6,3 +6,6 @@ __pycache__/
 
 renders/
 *.partial
+
+renders/
+preview/assets/*.zip
