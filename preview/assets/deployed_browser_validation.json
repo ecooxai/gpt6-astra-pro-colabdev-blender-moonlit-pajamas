@@ -1,0 +1,35 @@
+{
+  "testedAt": "2026-10-03T21:42:24.075Z",
+  "report": [
+    {
+      "device": "desktop",
+      "ready": true,
+      "triangles": 354552,
+      "drawCalls": 26,
+      "geometryCount": 26,
+      "revision": "R31",
+      "overflow": false,
+      "galleryImages": 11,
+      "artifactLinks": 11,
+      "idleFrameDelta": 0,
+      "offscreenFrameDelta": 0,
+      "result": "PASS"
+    },
+    {
+      "device": "mobile",
+      "ready": true,
+      "triangles": 354552,
+      "drawCalls": 26,
+      "geometryCount": 26,
+      "revision": "R31",
+      "overflow": false,
+      "galleryImages": 11,
+      "artifactLinks": 11,
+      "idleFrameDelta": 0,
+      "offscreenFrameDelta": 0,
+      "result": "PASS"
+    }
+  ],
+  "errors": [],
+  "result": "PASS"
+}

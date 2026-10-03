@@ -67,6 +67,12 @@
       "url": "assets/Agents.md",
       "size": "Markdown",
       "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/Agents.md"
+    },
+    {
+      "label": "Complete source, model and review history \u00b7 ZIP",
+      "url": "https://github.com/ecooxai/gpt6-astra-pro-colabdev-blender-moonlit-pajamas/releases/download/checkpoint-r31-098bfc23/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas.zip",
+      "size": "110.0 MB",
+      "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas.zip"
     }
   ],
   "renders": [
@@ -314,5 +320,9 @@
   "modelRevision": "R31",
   "recoveryNote": "R07\u2013R17 were reviewed before an earlier Colab rollback but their images and source were lost. Retained-pass count includes only entries with preserved artifacts.",
   "requestedIterations": 20000,
-  "requestedScore": 95
+  "requestedScore": 95,
+  "sourceCommit": "098bfc234e499b3bec1b5179561949e3d49727cc",
+  "archiveRevision": "R31",
+  "archiveSha256": "dcd5cedf5f91bcafcaa6018e885e96b47f073011942b0bbb9cadae072c40bb48",
+  "releaseUrl": "https://github.com/ecooxai/gpt6-astra-pro-colabdev-blender-moonlit-pajamas/releases/tag/checkpoint-r31-098bfc23"
 }
