@@ -1,11 +1,12 @@
 from geometry import *
 from math import exp,sqrt
+from cloth_drape import fold_field
 
 def sleeve(name,start,end,material,piping):
     start=Vector(start);end=Vector(end);axis=(end-start).normalized();side=axis.cross(Vector((0,-1,0))).normalized();depth=side.cross(axis).normalized()
     verts=[];faces=[];uv=[];edge=[];ns=80;nr=20
     for i in range(nr+1):
-        t=i/nr;rad=.212+(.085 if 'raised' in name else .052)*sin(pi*t*.72)
+        t=i/nr;rad=.212+(.085 if 'raised' in name else .060)*sin(pi*t*.72)
         for j in range(ns+1):
             a=2*pi*j/ns;along=(end-start).length*t+.075*(.5+.5*cos((5 if 'raised' in name else 7)*a))*t**5
             p=start+axis*along+side*(rad*cos(a))+depth*(rad*sin(a));verts.append(p);uv.append((j/ns*1.5,-t*.64))
@@ -36,12 +37,13 @@ def build_clothes(M,legs):
     for i in range(nr+1):
         t=i/nr
         for j in range(ns+1):
-            a=2*pi*j/ns-pi;bottom=3.785+.055*cos(a)+.14*exp(-((a+.16)/.068)**2);top=5.395-.43*exp(-(a/.32)**2);z=bottom+(top-bottom)*t
-            rx=.49+.13*(1-t)**2+.065*t**6-.022*sin(t*pi);ry=.245+.045*(1-t)+.024*sin(t*pi)
+            a=2*pi*j/ns-pi;bottom=3.845-.110*cos(2*a)-.025*cos(a)+.170*exp(-((a+.16)/.075)**2);top=5.395-.43*exp(-(a/.32)**2);z=bottom+(top-bottom)*t
+            rx=.49+.13*(1-t)**2+.065*t**6-.052*sin(t*pi);ry=.245+.045*(1-t)+.024*sin(t*pi)
             ripple=1+.023*sin(7*a+z*5)*(1-t)+.012*sin(12*a-z*4)
             ripple+=.035*sin(18*a+z*8)*exp(-((t-.27)/.24)**2)
             x=.025*t+rx*sin(a)*ripple;y=.012-ry*cos(a)*ripple
-            verts.append((x,y,z));uv.append((j/ns*2.9,z*.91))
+            y-=max(0,cos(a))**3*fold_field(x,z)
+            verts.append((x,y,z));uv.append((j/ns*3.22+.085*sin(z*1.8),z*1.03))
             if i==0:hem.append((x,y-.001,z))
     for i in range(nr):
         for j in range(ns):
@@ -50,26 +52,35 @@ def build_clothes(M,legs):
     solid=shirt.modifiers.new('Cotton thickness','SOLIDIFY');solid.thickness=.015
     curve('Clothes_shirt_hem_seam',hem[::5],M['piping'],.0035,cyclic=True)
     sleeve('Clothes_raised_scalloped_sleeve',(-.43,.02,5.39),(-.77,-.015,5.32),M['fabric'],M['white'])
-    sleeve('Clothes_relaxed_scalloped_sleeve',(.455,.025,5.36),(.585,-.025,4.665),M['fabric'],M['white'])
+    sleeve('Clothes_relaxed_scalloped_sleeve',(.455,.025,5.36),(.585,-.025,4.475),M['fabric'],M['white'])
     shoulder_caps(M);fitted_shorts(M,legs)
     garment_details(M);close_shoulders(M)
 
 def garment_details(M):
-    # Rolled collar sits around the neck and flows into broad pajama lapels.
+    # A soft turn-down collar lies on the shoulders, rather than standing as two ovals.
     for sign in [-1,1]:
-        roll=[(sign*.135,-.085,5.47),(sign*.260,-.115,5.475),(sign*.448,-.197,5.365),
-              (sign*.410,-.263,5.285),(sign*.270,-.286,5.270),(sign*.163,-.236,5.344)]
-        roll=[(x if sign>0 else -.135+(x+.135)*.73,y-.09,z+.025*max(0,(5.40-z)/.13)) for x,y,z in roll]
-        ob,edge=panel('Clothes_white_rolled_collar_'+str(sign),roll,M['collarShade'],bulge=.012,thickness=.018)
-        curve('Clothes_rolled_collar_piping_'+str(sign),edge[::3],M['white'],.008,cyclic=True)
-    left=[(-.165,-.332,5.347),(-.267,-.290,5.268),(-.404,-.302,5.218),
-          (-.360,-.320,5.117),(-.165,-.352,4.936),(-.102,-.323,5.075)]
-    right=[(.161,-.325,5.346),(.273,-.289,5.275),(.350,-.318,5.188),
-           (.362,-.348,5.080),(-.150,-.366,4.945),(.148,-.309,5.183)]
+        roll=[(sign*.135,-.207,5.470),(sign*.275,-.238,5.448),
+              (sign*.440,-.295,5.345),(sign*.403,-.337,5.283),
+              (sign*.305,-.349,5.278),(sign*.172,-.305,5.329)]
+        ob,edge=panel('Clothes_white_rolled_collar_'+str(sign),roll,M['collarShade'],bulge=.007,thickness=.015)
+        curve('Clothes_rolled_collar_piping_'+str(sign),edge[::3],M['white'],.006,cyclic=True)
+    left=[(-.169,-.345,5.332),(-.305,-.352,5.262),(-.388,-.361,5.169),
+          (-.303,-.387,5.075),(-.157,-.403,4.943),(-.130,-.363,5.126)]
+    right=[(.172,-.349,5.333),(.302,-.359,5.270),(.385,-.375,5.189),
+           (.363,-.398,5.064),(-.153,-.413,4.943),(.101,-.382,5.162)]
+    def softly_rounded(bd):
+        out=[];points=[Vector(p) for p in bd]
+        for i,p in enumerate(points):
+            amount=.055 if i in (3,4) else .17
+            a=p.lerp(points[i-1],amount);b=p.lerp(points[(i+1)%len(points)],amount)
+            for j in range(7):
+                t=j/6;out.append((1-t)**2*a+2*t*(1-t)*p+t*t*b)
+        return out
     for label,bd in [('left',left),('right',right)]:
-        ob,edge=panel('Clothes_white_lapel_'+label,bd,M['white'],bulge=.012,thickness=.013)
-        curve('Clothes_lapel_piping_'+label,edge[::3],M['piping'],.0045,cyclic=True)
-    line=[(-.098,-.303,3.960),(-.112,-.308,4.13),(-.106,-.302,4.43),(-.108,-.307,4.72),(-.150,-.357,4.944)]
+        edge=softly_rounded(bd)
+        flat_panel('Clothes_white_lapel_'+label,edge,M['white'],thickness=.015)
+        crease('Clothes_lapel_piping_'+label,edge,M['piping'],.0040)
+    line=[(-.098,-.303,3.960),(-.112,-.308,4.13),(-.106,-.302,4.43),(-.108,-.307,4.72),(-.150,-.420,4.944)]
     curve('Clothes_button_placket',line,M['white'],.017)
     curve('Clothes_placket_stitch',[(x+.022,y+.003,z) for x,y,z in line],M['piping'],.003)
     for i,z in enumerate([4.81,4.47,4.12,3.90]):
