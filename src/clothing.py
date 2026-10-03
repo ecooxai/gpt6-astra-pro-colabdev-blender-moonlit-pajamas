@@ -1,6 +1,15 @@
 from geometry import *
 from math import exp,sqrt
 
+
+def shirt_top(a):
+    """Cut the real shirt edge along the underside of the authored lapels."""
+    x=.025+.555*sin(a)
+    if cos(a)<=0 or x<-.50 or x>.49:return 5.395
+    if x<-.255:return 4.987+(5.395-4.987)*min(1,(-x-.255)/.245)
+    if x<.335:return 4.987+.130*(x+.255)/.590
+    return 5.117+(5.395-5.117)*min(1,(x-.335)/.155)
+
 def sleeve(name,start,end,material,piping):
     start=Vector(start);end=Vector(end);axis=(end-start).normalized();side=axis.cross(Vector((0,-1,0))).normalized();depth=side.cross(axis).normalized()
     verts=[];faces=[];uv=[];edge=[];ns=80;nr=20
@@ -36,7 +45,7 @@ def build_clothes(M,legs):
     for i in range(nr+1):
         t=i/nr
         for j in range(ns+1):
-            a=2*pi*j/ns-pi;bottom=3.84+.21*sin(a)**2+.14*exp(-((a+.22)/.068)**2);top=5.395-.46*exp(-((a+.25)/.63)**4);z=bottom+(top-bottom)*t
+            a=2*pi*j/ns-pi;bottom=3.84+.21*sin(a)**2+.14*exp(-((a+.22)/.068)**2);top=shirt_top(a);z=bottom+(top-bottom)*t
             rx=.49+.13*(1-t)**2+.065*t**6-.022*sin(t*pi);ry=.245+.045*(1-t)+.024*sin(t*pi)
             ripple=1+.023*sin(7*a+z*5)*(1-t)+.012*sin(12*a-z*4)
             ripple+=.035*sin(18*a+z*8)*exp(-((t-.27)/.24)**2)
@@ -93,13 +102,13 @@ def garment_details(M):
 def close_shoulders(M):
     verts=[];faces=[];uv=[];n=128
     for i in range(n+1):
-        a=2*pi*i/n-pi;z=5.395-.46*exp(-((a+.25)/.63)**4)
+        a=2*pi*i/n-pi;z=shirt_top(a)
         r=1+.009*sin(12*a-z*4)
         outer=(.025+.555*sin(a)*r,.012-.245*cos(a)*r,z)
         inner=(.008+.14*sin(a),.012-.135*cos(a),5.435)
         verts.extend([outer,inner]);uv.extend([(outer[0],outer[2]),(inner[0],inner[2])])
     for i in range(n):
-        if abs(2*pi*(i+.5)/n-pi+.20)>.84:faces.append((2*i,2*i+2,2*i+3,2*i+1))
+        if abs(2*pi*(i+.5)/n-pi)>1.04:faces.append((2*i,2*i+2,2*i+3,2*i+1))
     mesh('Clothes_closed_shoulders',verts,faces,M['fabric'],uv)
 
 def leg_center(leg,z):
