@@ -1,5 +1,6 @@
 from geometry import *
 from math import exp,sqrt
+from cloth_drape import fold_field
 
 
 def shirt_top(a):
@@ -46,11 +47,12 @@ def build_clothes(M,legs):
         t=i/nr
         for j in range(ns+1):
             a=2*pi*j/ns-pi;bottom=3.84+.21*sin(a)**2+.14*exp(-((a+.22)/.068)**2);top=shirt_top(a);z=bottom+(top-bottom)*t
-            rx=.49+.13*(1-t)**2+.065*t**6-.022*sin(t*pi);ry=.245+.045*(1-t)+.024*sin(t*pi)
+            rx=.49+.13*(1-t)**2+.065*t**6-.042*sin(t*pi);ry=.245+.045*(1-t)+.024*sin(t*pi)
             ripple=1+.023*sin(7*a+z*5)*(1-t)+.012*sin(12*a-z*4)
             ripple+=.035*sin(18*a+z*8)*exp(-((t-.27)/.24)**2)
             x=.025*t+rx*sin(a)*ripple;y=.012-ry*cos(a)*ripple
-            verts.append((x,y,z));uv.append((j/ns*2.9,z*.91))
+            y-=max(0,cos(a))**3*fold_field(x,z)
+            verts.append((x,y,z));uv.append((j/ns*3.13+.052*sin(z*1.9),z*1.02))
             if i==0:hem.append((x,y-.001,z))
     for i in range(nr):
         for j in range(ns):

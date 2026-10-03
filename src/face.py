@@ -12,7 +12,7 @@ def face_y(x,z):
     return cy-ry*max(.004,1-(x/rx)**2)**.25-.031*exp(-(x/.067)**2-((z-5.94)/.09)**2)
 def eye_bounds(s):
     s=max(0,min(1,s));a=max(0,sin(pi*s))
-    return 6.025-.078*a**.70+.026*s,6.025+.062*a**.72+.026*s
+    return 6.025-.078*a**.70+.026*s,6.025+.074*a**.72+.026*s
 
 def build_face(M):
     verts=[];uv=[];faces=[];nr=82;ns=128
@@ -40,7 +40,7 @@ def build_face(M):
             for j in range(nv):
                 a=i*(nv+1)+j;faces.append((a,a+nv+1,a+nv+2,a+1) if sign>0 else (a,a+1,a+nv+2,a+nv+1))
         mesh('Head_eye_white_'+str(sign),verts,faces,M['eyeWhite'],uv)
-        cx=sign*.215;cz=6.034;rx=.078;rz=.087
+        cx=sign*.215;cz=6.034;rx=.084;rz=.093
         vv=[(cx,face_y(cx,cz)-.052,cz)];uu=[(.5,.5)];ff=[];sides=80;nr=9
         for k in range(1,nr+1):
             r=k/nr
@@ -56,7 +56,7 @@ def build_face(M):
         def pt(x,z,offset=.029):return (sign*x,face_y(sign*x,z)-offset,z)
         top=[pt(.07+.29*s,eye_bounds(s)[1],.027) for s in [0,.17,.4,.67,.87,1]]
         top.append(pt(.397,6.078,.022))
-        curve('Head_upper_eyelash_'+str(sign),top,M['lash'],.011,radii=[.12,.6,.95,1.2,1.3,.8,.015])
+        curve('Head_upper_eyelash_'+str(sign),top,M['lash'],.012,radii=[.12,.6,.95,1.2,1.3,.8,.015])
         panel('Head_lash_wing_'+str(sign),[pt(.342,6.083),pt(.392,6.106),pt(.362,6.047)],M['lash'],bulge=0,thickness=.002)
         pts=[pt(.07+.29*s,eye_bounds(s)[0],.016) for s in [.22,.43,.66,.89,.98]]
         curve('Head_lower_lid_'+str(sign),pts,M['mouth'],.0036,radii=[.1,.5,.7,.8,.1])
@@ -66,7 +66,7 @@ def build_face(M):
             x=sign*(.284+j*.032);z=5.933-j*.004
             curve('Head_blush_'+str(sign)+'_'+str(j),[(x-.007,face_y(x-.007,z-.016)-.002,z-.016),(x+.007,face_y(x+.007,z+.012)-.002,z+.012)],M['pinkLight'],.0022,radii=[.5,.3])
     z=5.825
-    curve('Head_quiet_mouth',[(-.009,face_y(-.009,z)-.005,z),(.006,face_y(.006,z+.003)-.005,z+.003),(.021,face_y(.021,z-.001)-.004,z-.001)],M['mouth'],.0042,radii=[.08,.8,.2])
+    curve('Head_quiet_mouth',[(-.009,face_y(-.009,z)-.005,z),(.006,face_y(.006,z+.003)-.005,z+.003),(.021,face_y(.021,z-.001)-.004,z-.001)],M['mouth'],.0032,radii=[.08,.8,.2])
     sphere('Head_nose_tip',(0,face_y(0,5.932)-.003,5.932),(.012,.007,.015),M['nail'],segments=24,rings=14)
     return head
 

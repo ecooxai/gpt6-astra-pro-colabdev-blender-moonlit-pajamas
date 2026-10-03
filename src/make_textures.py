@@ -51,3 +51,15 @@ for name,color in [('hairlight_roots_original.png',[136,129,178]),('hairdark_roo
     rgb=np.broadcast_to(rgb,(height,width,3)).copy()
     rgb+=3*np.exp(-((u-.43)/.24)**2)[:,:,None]*np.sin(np.pi*v)[:,:,None]
     Image.fromarray(np.uint8(np.clip(rgb,0,255)),'RGB').save(OUT/name)
+
+# Original common-height hair palettes: continuous crown, deeper lower locks.
+height,width=512,16
+v=1-np.arange(height,dtype=float)[:,None]/(height-1)
+t=np.clip((v-.12)/.84,0,1);t=t*t*(3-2*t)
+root=np.array([123.,121.,171.]);tip=np.array([83.,76.,124.])
+base=tip[None,None,:]*(1-t[:,:,None])+root[None,None,:]*t[:,:,None]
+fall=np.clip((.985-v)/.30,0,1);fall=fall*fall*(3-2*fall)
+for name,delta in [('hair_base_height_original.png',[0,0,0]),('hair_light_height_original.png',[9,8,12]),('hair_dark_height_original.png',[-8,-7,-9])]:
+    rgb=base+np.array(delta)[None,None,:]*fall[:,:,None]
+    rgb=np.broadcast_to(rgb,(height,width,3)).copy()
+    Image.fromarray(np.uint8(np.clip(rgb,0,255)),'RGB').save(OUT/name)

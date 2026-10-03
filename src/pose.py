@@ -12,7 +12,7 @@ def adjust_pose():
         elif name.startswith('HairLong_'):
             p.x*=1-.04*max(0,min(1,(z-5.35)/1.3));p.z+=.18*max(0,min(1,(z-4.0)/2.6))
         elif name.startswith('Clothes_') and not any(t in name for t in ['short','cuff']):
-            p.x-=.13*(1-max(0,min(1,(z-3.8)/1.6)));p.z=3.8+(z-3.8)*1.15
+            p.x-=.13*(1-max(0,min(1,(z-3.8)/1.6)));p.z=3.8+(z-3.8)*1.15+.075*max(0,min(1,(z-4.95)/.45))
         elif name.startswith('Body_neck'):p.z=3.8+(z-3.8)*1.15
         elif name.startswith('Body_raised_arm'):
             t=max(0,min(1,(z-6.01)/.17));angle=.55*t*t*(3-2*t);x=p.x+.71;y=p.y+.24;p.x=-.71+x*cos(angle)-y*sin(angle);p.y=-.24+x*sin(angle)+y*cos(angle)
