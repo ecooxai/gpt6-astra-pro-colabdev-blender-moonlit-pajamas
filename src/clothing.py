@@ -7,7 +7,7 @@ def sleeve(name,start,end,material,piping):
     for i in range(nr+1):
         t=i/nr;rad=.212+(.085 if 'raised' in name else .052)*sin(pi*t*.72)
         for j in range(ns+1):
-            a=2*pi*j/ns;along=(end-start).length*t+.075*(.5+.5*cos((5 if 'raised' in name else 7)*a)))*t**5
+            a=2*pi*j/ns;along=(end-start).length*t+.075*(.5+.5*cos((5 if 'raised' in name else 7)*a))*t**5
             p=start+axis*along+side*(rad*cos(a))+depth*(rad*sin(a));verts.append(p);uv.append((j/ns*1.5,-t*.64))
             if i==nr:edge.append(p)
     for i in range(nr):
