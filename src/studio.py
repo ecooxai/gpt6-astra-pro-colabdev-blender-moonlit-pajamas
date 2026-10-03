@@ -44,7 +44,7 @@ def finish(root,out,args,legs):
         target=Vector((.12,0,3.68));cam.data.ortho_scale=7.68
         positions={'front':(.12,-18,4.03),'quarter':(8,-16,4.8),'side':(18,0,4.1),'back':(.12,18,4.08),'face':(0,-12,6.44),'left':(-18,0,4.1)}
         if view=='face':target=Vector((0,0,6.39));cam.data.ortho_scale=2.05
-        details={'hand_side':((-.56,.02,6.40),(-4,-1.8,6.60),1.25),'hand':((-.70,-.27,6.32),(-1.4,-9,6.65),1.12),'grip':((.86,-.10,3.32),(3.7,-10,4.0),1.08),'feet':((-.24,-.06,.43),(1.3,-7,2.1),1.4)}
+        details={'hand_side':((-.56,.02,6.40),(-4,-1.8,6.60),1.25),'hand':((-.70,-.27,6.32),(-1.4,-9,6.65),1.12),'grip':((.86,-.10,3.32),(3.7,-10,4.0),1.08),'feet':((-.24,-.06,.43),(1.3,-7,2.1),1.4),'cuffs':((-.13,-.05,3.08),(.8,-8,3.35),1.60)}
         if view in details:
             point,position,scale=details[view];target=Vector(point);positions[view]=position;cam.data.ortho_scale=scale
         cam.location=positions[view];cam.rotation_euler=(target-cam.location).to_track_quat('-Z','Y').to_euler()

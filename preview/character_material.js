@@ -10,7 +10,7 @@ export function illustrationMaterial(source){
  fragmentShader:`uniform vec3 color,lightDirection,low;uniform sampler2D albedo;uniform bool hasMap,unshaded,skin;varying vec2 vUv;varying vec3 vN;
  void main(){vec4 base=hasMap?texture2D(albedo,vUv):vec4(color,1.0);vec3 n=normalize(vN);if(!gl_FrontFacing)n=-n;
  float l=dot(n,normalize(lightDirection));float level=smoothstep(-.13,.16,l)*.63+smoothstep(.40,.59,l)*.37;
- if(skin)level=.65+.35*smoothstep(-.42,.02,l);vec3 shade=unshaded?vec3(1.0):mix(low,vec3(1.0),level);gl_FragColor=vec4(base.rgb*shade,base.a);
+ if(skin)level=.65+.35*smoothstep(.18,.65,l);vec3 shade=unshaded?vec3(1.0):mix(low,vec3(1.0),level);gl_FragColor=vec4(base.rgb*shade,base.a);
  #include <colorspace_fragment>
  }`});cache.set(source.uuid,mat);return mat;
 }

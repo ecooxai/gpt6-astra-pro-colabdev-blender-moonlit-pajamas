@@ -9,7 +9,7 @@ def triangle_count(objects):
 def export_web(root,out,assets,objects):
     before=triangle_count(objects);source_objects=len(objects)
     for ob in objects:
-        if len(ob.data.polygons)<2200 or ob.name.startswith('Head_'):continue
+        if len(ob.data.polygons)<2200 or ob.name.startswith(('Head_','HairTop_','HairLong_')):continue
         ratio=.27 if 'arm' in ob.name else (.50 if ob.name.startswith('Clothes_') else .60)
         bpy.context.view_layer.objects.active=ob
         mod=ob.modifiers.new('Web-only surface reduction','DECIMATE');mod.ratio=ratio

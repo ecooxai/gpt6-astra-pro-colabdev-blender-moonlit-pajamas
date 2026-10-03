@@ -18,7 +18,8 @@ def sleeve(name,start,end,material,piping):
         t=i/nr;rad=(.185+.055*sin(pi*t*.72)) if 'raised' in name else (.212+.052*sin(pi*t*.72))
         for j in range(ns+1):
             a=2*pi*j/ns;along=(end-start).length*t+.075*(.5+.5*cos((5 if 'raised' in name else 7)*a))*t**5
-            p=start+axis*along+side*(rad*cos(a))+depth*(rad*sin(a));verts.append(p);uv.append((j/ns*1.5,-t*(end-start).length*.96))
+            fold=1+.048*cos((5 if 'raised' in name else 7)*a+.25)*sin(pi*t*.86)*t
+            p=start+axis*along+side*(rad*fold*cos(a))+depth*(rad*fold*sin(a));verts.append(p);uv.append((j/ns*1.5,-t*(end-start).length*.96))
             if i==nr:edge.append(p)
     for i in range(nr):
         for j in range(ns):
@@ -27,19 +28,29 @@ def sleeve(name,start,end,material,piping):
     curve(name+'_white_scallop_edge',edge[::5],piping,.008,cyclic=True)
 
 def cuff(name,cx,M,leg=None):
-    verts=[];faces=[];uv=[];ns=96;nr=10;edge=[]
-    for i in range(nr+1):
-        t=i/nr
-        for j in range(ns+1):
-            a=2*pi*j/ns;r=.285+.022*t+.035*sin(pi*t)+.012*cos(8*a)*sin(pi*t);z=3.04-.13*t-.095*(.5+.5*cos(8*a))*t**2
-            center=leg_center(leg,z) if leg else Vector((cx,.024,z))
-            p=(center.x+r*sin(a),center.y-(.251+.022*t+.030*sin(pi*t))*cos(a),z);verts.append(p);uv.append((j/ns*1.6,z*.91))
-            if i==0:edge.append(p)
-    for i in range(nr):
-        for j in range(ns):
-            a=i*(ns+1)+j;faces.append((a,a+1,a+ns+2,a+ns+1))
-    ob=mesh(name,verts,faces,M['fabricShade'],uv);sol=ob.modifiers.new('Rounded cuff thickness','SOLIDIFY');sol.thickness=.025
-    curve(name+'_upper_piping',edge[::4],M['fabricShade'],.003,cyclic=True)
+    """Eight rounded cotton petals; overlapping roots stay underneath the shorts."""
+    count=8;nu=20;nv=18
+    for petal in range(count):
+        middle=2*pi*petal/count;verts=[];faces=[];uv=[];fold=[]
+        for i in range(nv+1):
+            t=i/nv
+            for j in range(nu+1):
+                u=2*j/nu-1
+                rounded=max(0,1-u*u)**.53
+                angle=middle+u*pi/count*(1-.035*t)
+                z=3.075-.142*t-.116*rounded*t*t
+                center=leg_center(leg,z) if leg else Vector((cx,.024,z))
+                r=.288+.035*t+.024*sin(pi*t)+.016*rounded*sin(pi*t)
+                depth=.255+.024*t+.022*sin(pi*t)
+                point=(center.x+r*sin(angle),center.y-depth*cos(angle),z)
+                verts.append(point);uv.append(((petal+(u+1)/2)/count,z*.91))
+                if j==0:fold.append(point)
+        for i in range(nv):
+            for j in range(nu):
+                k=i*(nu+1)+j;faces.append((k,k+1,k+nu+2,k+nu+1))
+        ob=mesh(name+'_petal_'+str(petal),verts,faces,M['cuffCotton'],uv)
+        solid=ob.modifiers.new('Soft turned cotton hem','SOLIDIFY');solid.thickness=.018
+        curve(name+'_sewn_fold_'+str(petal),fold[3::3],M['piping'],.0018,radii=[.15]+[.40]*(len(fold[3::3])-2)+[.05])
 
 def build_clothes(M,legs):
     verts=[];faces=[];uv=[];ns=128;nr=48;hem=[]

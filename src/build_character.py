@@ -19,7 +19,7 @@ def material(name,h,texture=None,roughness=.86,emission=.15,metallic=0):
         im=bpy.data.images.load(str(ROOT/'src/textures'/texture));im.pack();t=n.new('ShaderNodeTexImage');t.image=im;t.extension='REPEAT';m.node_tree.links.new(t.outputs['Color'],p.inputs['Base Color']);m.node_tree.links.new(t.outputs['Color'],p.inputs['Emission Color'])
     return m
 M={}
-for key,h in dict(skin='fff0e9',hair='7772a2',hairLight='8881b2',hairDark='5d547f',hairInk='4d446b',white='faffff',fabricShade='a9cddf',collarShade='c4d5e0',piping='9dbccc',lash='363047',eyeWhite='fff9fb',mouth='b78190',pink='b96594',pinkLight='e2b0cb',nail='f9e2e8',sole='a9b1c4',halo='242732',haloTop='686b76',haloInner='181b25').items():M[key]=material(key,h,texture={'hair':'hair_base_height_original.png','hairLight':'hair_light_height_original.png','hairDark':'hair_dark_height_original.png'}.get(key))
+for key,h in dict(skin='fff0e9',hair='7772a2',hairLight='8881b2',hairDark='5d547f',hairInk='4d446b',white='faffff',fabricShade='a9cddf',cuffCotton='b8e0ef',collarShade='c4d5e0',piping='9dbccc',lash='363047',eyeWhite='fff9fb',mouth='b78190',pink='b96594',pinkLight='e2b0cb',nail='f9e2e8',sole='a9b1c4',halo='242732',haloTop='686b76',haloInner='181b25').items():M[key]=material(key,h,texture={'hair':'hair_base_height_original.png','hairLight':'hair_light_height_original.png','hairDark':'hair_dark_height_original.png'}.get(key))
 M['fabric']=material('Original cat-print cotton','d3f2fb','cat_cotton_original.png',emission=.2)
 M['face']=material('Original face wash','ffefe9','face_wash_original.png',emission=.24)
 M['iris']=material('Original violet iris','7262bb','violet_iris_original.png',roughness=.58,emission=.35)
