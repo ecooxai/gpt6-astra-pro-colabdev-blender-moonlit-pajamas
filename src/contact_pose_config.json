@@ -1,0 +1,27 @@
+{
+  "decision": "geometry-approved",
+  "base_revision": "R24",
+  "parameters": [
+    -0.004062419254038755,
+    -0.0026620141174988803,
+    -0.00473747615087652,
+    -0.3617239900481911,
+    0.039588645204469634,
+    0.04805751483697883
+  ],
+  "pivot": [
+    -1.2599999904632568,
+    -0.054999999701976776,
+    5.584444522857666
+  ],
+  "weight_start_offset": 0.025,
+  "weight_height": 0.32,
+  "baseline_index_center": [
+    -0.6025739908218384,
+    -0.32442134618759155,
+    6.456999778747559
+  ],
+  "index_pad_radius": 0.010006450000000002,
+  "candidate_tests": 26000,
+  "scope": "Elbow-based correction; wrist and hand are rigidly transformed above the transition region."
+}

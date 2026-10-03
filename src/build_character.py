@@ -5,7 +5,7 @@ from math import sin,cos,pi,sqrt,exp
 ROOT=pathlib.Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/'src'))
 from geometry import *
 from legs import rounded_leg
-P=argparse.ArgumentParser();P.add_argument('--revision',default='R01');P.add_argument('--quality',default='draft');P.add_argument('--views',default='front');P.add_argument('--no-export',action='store_true');A=P.parse_args(sys.argv[sys.argv.index('--')+1:] if '--' in sys.argv else [])
+P=argparse.ArgumentParser();P.add_argument('--revision',default='R01');P.add_argument('--quality',default='draft');P.add_argument('--views',default='front');P.add_argument('--no-export',action='store_true');P.add_argument('--no-contact',action='store_true');A=P.parse_args(sys.argv[sys.argv.index('--')+1:] if '--' in sys.argv else [])
 OUT=pathlib.Path(os.environ.get('BUILD_ROOT','/build'))/ROOT.name;OUT.mkdir(parents=True,exist_ok=True)
 CFG=json.loads((ROOT/'src/config.json').read_text()) if (ROOT/'src/config.json').exists() else {}
 bpy.ops.wm.read_factory_settings(use_empty=True)
@@ -60,5 +60,8 @@ for ob in list(bpy.context.scene.objects):
 head_root.rotation_euler=(0,-.075,-.045)
 from pose import blend_long_hair_pose
 blend_long_hair_pose(head_root)
+if not A.no_contact:
+    from contact_pose import apply
+    apply(ROOT)
 from studio import finish
 finish(ROOT,OUT,A,LEG_DATA)
