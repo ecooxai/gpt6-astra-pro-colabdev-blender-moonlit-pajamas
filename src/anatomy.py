@@ -31,6 +31,9 @@ def build_hands(M,raised,relaxed):
         pts=[root,root+Vector((.027,-.017,-.052)),root+Vector((.048,.016,-.102+abs(i-1)*.008)),root+Vector((.030,.063,-.100+abs(i-1)*.008))]
         r=.0145 if i==3 else .017
         parts.extend(digit('Hand_grip_digit_'+str(i),pts,r,M))
-    parts.extend(digit('Hand_grip_thumb',[(.788,-.189,3.240),(.828,-.230,3.202),(.878,-.241,3.162),(.902,-.219,3.126)],.025,M))
+    thumb_path=[(.788,-.189,3.240),(.841,-.236,3.185),(.902,-.256,3.112),(.939,-.229,3.048)]
+    parts.extend(digit('Hand_grip_thumb',thumb_path,.025,M))
     relaxed=union('Body_relaxed_arm_five_fingers',parts,.0065,5);relaxed['digits']=5
+    sphere('Body_relaxed_arm_thumb_nail',(.925,-.250,3.074),(.010,.0025,.017),M['nail'],segments=16,rings=10,rotation=(0,-.55,0))
+    curve('Body_relaxed_arm_knuckle_crease',[(.814,-.236,3.213),(.838,-.242,3.197),(.861,-.238,3.190)],M['pinkLight'],.0011,radii=[.02,.35,.02])
     return raised,relaxed

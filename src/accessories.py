@@ -9,6 +9,7 @@ def pillow_point(u,v,side):
     folds+=.018*sin(19*v-6*u)*exp(-((u-.83)**2+(v+.68)**2)/.18)
     folds+=.038*exp(-((u+.32-.22*v)/.085)**2)*max(0,1-v*v)**.6
     pinch=-.207*exp(-d/.085)
+    pinch-=.180*exp(-((u+.68)**2/.055+(v-.90)**2/.035))
     x=.86+.47*u+.45*v+.036*sin(pi*v)*(1-u*u)+.019*sin(3*pi*v)*abs(u)**9
     x-=.26*exp(-((u+1)**2+(v+1)**2)/.16)
     z=2.14-.44*u+.79*v+.027*sin(pi*u)*sin(pi*v)+.015*sin(3*pi*u)*abs(v)**9-.13*exp(-d/.12)
@@ -27,7 +28,10 @@ def build_pillow(M):
     perimeter=[i*(n+1) for i in range(n+1)]+[n*(n+1)+j for j in range(1,n+1)]+[i*(n+1)+n for i in range(n-1,-1,-1)]+[j for j in range(n-1,0,-1)]
     for i,a in enumerate(perimeter):
         b=perimeter[(i+1)%len(perimeter)];faces.append((a,b,b+offset,a+offset))
-    mesh('Accessory_inflated_cotton_pillow',verts,faces,M['white'],uv)
+    pillow=mesh('Accessory_inflated_cotton_pillow',verts,faces,M['white'],uv)
+    pillow.data.materials.append(M['pillowBack'])
+    for polygon in pillow.data.polygons:
+        if n*n<=polygon.index<2*n*n:polygon.material_index=1
     edge=[verts[k] for k in perimeter[::4]]
     curve('Accessory_pillow_piped_seam',edge,M['sole'],.0055,cyclic=True)
 

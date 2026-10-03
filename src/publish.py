@@ -29,7 +29,7 @@ for ext,label in [('glb','Interactive 3D model · GLB'),('blend','Editable Blend
         size=f.stat().st_size;files.append(dict(label=label,url='assets/'+f.name,size=f'{size/1048576:.1f} MB',path=str(f)))
         if ext=='glb':d['model']='assets/'+f.name
 renders=[]
-for view,label in [('front','Front silhouette'),('quarter','Three-quarter'),('back','Back construction'),('face','Face & expression'),('side','Side anatomy'),('hand','Raised hand detail'),('grip','Pillow grip detail'),('feet','Slippers and ribbons'),('cuffs','Rounded cotton gathers')]:
+for view,label in [('front','Front silhouette'),('quarter','Three-quarter'),('back','Back construction'),('face','Face & expression'),('side','Right-side anatomy'),('left','Left-side anatomy'),('hand_side','Raised hand profile'),('hand','Raised hand detail'),('grip','Pillow grip detail'),('feet','Slippers and ribbons'),('cuffs','Rounded cotton gathers')]:
     f=PREVIEW/'assets'/(ROOT.name+'_'+view+'.png')
     if f.is_file():renders.append(dict(label=label,url='assets/'+f.name,path=str(f)))
 
@@ -44,7 +44,7 @@ for name,label in [('validation.json','Model validation'),('browser_validation.j
     f=PREVIEW/'assets'/name
     if f.exists():files.append(dict(label=label,url='assets/'+name,size='JSON',path=str(f)))
 renders.sort(key=lambda item:(-int(item.get('revision','R00')[1:]),0 if 'front.png' in item['url'] else 1))
-files.append(dict(label='Render studies and rejected trials',url='studies/index.html',size='4 studies',path=str(PREVIEW/'studies/index.html')))
+files.append(dict(label='Render studies and rejected trials',url='studies/index.html',size=f"{len(list((PREVIEW/'studies').glob('T*.png')))} studies",path=str(PREVIEW/'studies/index.html')))
 d['files']=files;d['renders']=renders
 history=PREVIEW/'history';history.mkdir(exist_ok=True)
 if a.review:
