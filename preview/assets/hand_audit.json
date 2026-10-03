@@ -1,12 +1,12 @@
 {
-  "revision": "R21",
+  "revision": "R22",
   "result": "PASS",
   "hands": [
     {
       "object": "Body_raised_arm_five_fingers",
-      "vertices": 51520,
+      "vertices": 52184,
       "components": [
-        51520
+        52184
       ],
       "boundary_edges": 0,
       "nonmanifold_edges": 0,

@@ -1,6 +1,7 @@
 {
-  "revision": "R21",
-  "triangles": 534876,
+  "revision": "R22",
+  "source_commit": "32c76bf5d6bb8bca4a3d6aabd0722a8acdf6dc19",
+  "triangles": 538068,
   "objects": 170,
   "legs": {
     "front": {
@@ -42,6 +43,6 @@
   "lower_leg_length": 1.83,
   "digits_per_hand": 5,
   "asset_origin": "All geometry and textures authored from scratch",
-  "web_triangles": 332373,
-  "web_bytes": 7114680
+  "web_triangles": 331251,
+  "web_bytes": 7110696
 }

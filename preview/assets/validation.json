@@ -1,25 +1,25 @@
 {
-  "revision": "R21",
+  "revision": "R22",
   "result": "PASS",
   "exports": [
     {
       "file": "gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas.glb",
       "result": "PASS",
-      "bytes": 10863708,
-      "triangles": 534876,
-      "vertex_entries": 276824,
-      "embedded_images": 3,
+      "bytes": 10952052,
+      "triangles": 538068,
+      "vertex_entries": 278109,
+      "embedded_images": 5,
       "largest_meshes": [
         [
           108432,
           "Body_relaxed_continuous_mesh"
         ],
         [
-          103044,
+          104368,
           "Body_raised_continuous_mesh"
         ],
         [
-          46964,
+          55492,
           "Clothes_short_leg_rear_mesh"
         ],
         [
@@ -39,21 +39,21 @@
     {
       "file": "gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_web.glb",
       "result": "PASS",
-      "bytes": 7114680,
-      "triangles": 332373,
-      "vertex_entries": 174693,
-      "embedded_images": 3,
+      "bytes": 7110696,
+      "triangles": 331251,
+      "vertex_entries": 173789,
+      "embedded_images": 5,
       "largest_meshes": [
         [
           34698,
           "Body_relaxed_continuous_mesh"
         ],
         [
-          32974,
+          33396,
           "Body_raised_continuous_mesh"
         ],
         [
-          28178,
+          33294,
           "Clothes_short_leg_rear_mesh"
         ],
         [
