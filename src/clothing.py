@@ -36,7 +36,7 @@ def build_clothes(M,legs):
     for i in range(nr+1):
         t=i/nr
         for j in range(ns+1):
-            a=2*pi*j/ns-pi;bottom=3.84+.21*sin(a)**2+.14*exp(-((a+.22)/.068)**2);top=5.395-.43*exp(-((a+.40)/.36)**2);z=bottom+(top-bottom)*t
+            a=2*pi*j/ns-pi;bottom=3.84+.21*sin(a)**2+.14*exp(-((a+.22)/.068)**2);top=5.395-.46*exp(-((a+.25)/.63)**4);z=bottom+(top-bottom)*t
             rx=.49+.13*(1-t)**2+.065*t**6-.022*sin(t*pi);ry=.245+.045*(1-t)+.024*sin(t*pi)
             ripple=1+.023*sin(7*a+z*5)*(1-t)+.012*sin(12*a-z*4)
             ripple+=.035*sin(18*a+z*8)*exp(-((t-.27)/.24)**2)
@@ -55,20 +55,26 @@ def build_clothes(M,legs):
     garment_details(M);close_shoulders(M);fit_sewn_details(shirt)
 
 def garment_details(M):
-    # Rolled collar sits around the neck and flows into broad pajama lapels.
-    for sign in [-1,1]:
-        roll=[(sign*.135,-.085,5.47),(sign*.260,-.115,5.475),(sign*.448,-.197,5.365),
-              (sign*.410,-.263,5.285),(sign*.270,-.286,5.270),(sign*.163,-.236,5.344)]
-        roll=[(x if sign>0 else -.135+(x+.135)*.73,y-.09,z+.025*max(0,(5.40-z)/.13)) for x,y,z in roll]
-        ob,edge=panel('Clothes_white_rolled_collar_'+str(sign),roll,M['collarShade'],bulge=.012,thickness=.018)
-        curve('Clothes_rolled_collar_piping_'+str(sign),edge[::3],M['white'],.008,cyclic=True)
-    left=[(-.165,-.332,5.347),(-.267,-.290,5.268),(-.404,-.302,5.218),
-          (-.360,-.320,5.117),(-.250,-.352,4.978),(-.102,-.323,5.075)]
-    right=[(.161,-.325,5.346),(.273,-.289,5.275),(.350,-.318,5.188),
-           (.362,-.348,5.080),(-.235,-.366,4.986),(.148,-.309,5.183)]
+    # A shallow collar lies over the shoulder rather than standing as two petals.
+    collars={
+      'left':[(-.12,-.17,5.440),(-.30,-.12,5.415),(-.45,-.26,5.310),(-.355,-.35,5.245),(-.205,-.375,5.300),(-.135,-.29,5.385)],
+      'right':[(.12,-.17,5.430),(.30,-.12,5.390),(.49,-.245,5.290),(.415,-.355,5.235),(.225,-.385,5.295),(.13,-.28,5.375)]}
+    for label,roll in collars.items():
+        ob,edge=panel('Clothes_white_rolled_collar_'+label,roll,M['collarShade'],bulge=.006,thickness=.018)
+        curve('Clothes_rolled_collar_piping_'+label,edge[::3],M['white'],.007,cyclic=True)
+    left=[(-.23,-.377,5.290),(-.40,-.370,5.215),(-.38,-.390,5.090),(-.255,-.410,4.982),(-.232,-.36,5.115),(-.155,-.34,5.315)]
+    right=[(.205,-.390,5.295),(.30,-.382,5.225),(.335,-.405,5.10),(-.237,-.430,4.992),(.070,-.365,5.22),(.13,-.31,5.37)]
+    def rounded_corners(points):
+        points=[Vector(p) for p in points];edge=[]
+        for i,p in enumerate(points):
+            f=.08 if i==3 else .16;entry=p.lerp(points[i-1],f);exit=p.lerp(points[(i+1)%len(points)],f)
+            for j in range(6):
+                t=j/5;edge.append((1-t)**2*entry+2*t*(1-t)*p+t*t*exit)
+        return edge
     for label,bd in [('left',left),('right',right)]:
-        ob,edge=panel('Clothes_white_lapel_'+label,bd,M['white'],bulge=.012,thickness=.013)
-        curve('Clothes_lapel_piping_'+label,edge[::3],M['piping'],.0045,cyclic=True)
+        edge=rounded_corners(bd)
+        flat_panel('Clothes_white_lapel_'+label,edge,M['white'],thickness=.013)
+        crease('Clothes_lapel_piping_'+label,edge,M['piping'],.004)
     def button_x(z):return -.27+.13*(1-max(0,min(1,(z-3.8)/1.6)))
     line=[(button_x(z),-.31,z) for z in [3.98,4.13,4.42,4.68,4.98]]
     curve('Clothes_button_placket',line,M['white'],.017)
@@ -87,13 +93,13 @@ def garment_details(M):
 def close_shoulders(M):
     verts=[];faces=[];uv=[];n=128
     for i in range(n+1):
-        a=2*pi*i/n-pi;z=5.395-.43*exp(-((a+.40)/.36)**2)
+        a=2*pi*i/n-pi;z=5.395-.46*exp(-((a+.25)/.63)**4)
         r=1+.009*sin(12*a-z*4)
         outer=(.025+.555*sin(a)*r,.012-.245*cos(a)*r,z)
         inner=(.008+.14*sin(a),.012-.135*cos(a),5.435)
         verts.extend([outer,inner]);uv.extend([(outer[0],outer[2]),(inner[0],inner[2])])
     for i in range(n):
-        if abs(2*pi*(i+.5)/n-pi+.40)>.40:faces.append((2*i,2*i+2,2*i+3,2*i+1))
+        if abs(2*pi*(i+.5)/n-pi+.20)>.84:faces.append((2*i,2*i+2,2*i+3,2*i+1))
     mesh('Clothes_closed_shoulders',verts,faces,M['fabric'],uv)
 
 def leg_center(leg,z):

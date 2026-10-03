@@ -29,7 +29,7 @@ def build_hair(M):
              (.482*c,.07+.421*s,6.36),(.554*c,.07+.468*s,6.02),
              (.62*c+.095,.32+.24*s,5.32),(.78*c+.18,.32+.20*s,4.62),
              (.93*c+.24+.065*sin(i*1.7),.23+.18*s,4.02+.19*sin(i*1.73)**2)]
-        mat=M[['hair','hair','hairLight','hair','hairDark'][i%5]]
+        mat=M['hair']
         hair_lock('HairLong_layer_'+str(i+1),pts,[.002,.065,.105,.15,.176,.143,.001],
                   [.002,.014,.023,.035,.059,.040,.001],mat,normal=(c,s,0),groove_mat=M['hairInk'])
     for sign in [-1,1]:

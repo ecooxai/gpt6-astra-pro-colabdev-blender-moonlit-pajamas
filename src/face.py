@@ -60,13 +60,13 @@ def build_face(M):
         panel('Head_lash_wing_'+str(sign),[pt(.342,6.083),pt(.392,6.106),pt(.362,6.047)],M['lash'],bulge=0,thickness=.002)
         pts=[pt(.07+.29*s,eye_bounds(s)[0],.016) for s in [.22,.43,.66,.89,.98]]
         curve('Head_lower_lid_'+str(sign),pts,M['mouth'],.0036,radii=[.1,.5,.7,.8,.1])
-        pts=[pt(.152,6.235,.009),pt(.24,6.253,.009),pt(.336,6.243,.009),pt(.385,6.217,.009)]
+        pts=[pt(.075,6.235,.009),pt(.18,6.253,.009),pt(.280,6.249,.009),pt(.360,6.227,.009)]
         curve('Head_brow_'+str(sign),pts,M['hairDark'],.008,radii=[.22,1,.7,.08])
         for j in range(3):
             x=sign*(.284+j*.032);z=5.933-j*.004
             curve('Head_blush_'+str(sign)+'_'+str(j),[(x-.007,face_y(x-.007,z-.016)-.002,z-.016),(x+.007,face_y(x+.007,z+.012)-.002,z+.012)],M['pinkLight'],.0022,radii=[.5,.3])
     z=5.825
-    curve('Head_quiet_mouth',[(-.026,face_y(-.026,z)-.005,z),(-.002,face_y(-.002,z+.004)-.005,z+.004),(.025,face_y(.025,z-.008)-.004,z-.008)],M['mouth'],.0042,radii=[.08,.8,.2])
+    curve('Head_quiet_mouth',[(-.009,face_y(-.009,z)-.005,z),(.006,face_y(.006,z+.003)-.005,z+.003),(.021,face_y(.021,z-.001)-.004,z-.001)],M['mouth'],.0042,radii=[.08,.8,.2])
     sphere('Head_nose_tip',(0,face_y(0,5.932)-.003,5.932),(.012,.007,.015),M['nail'],segments=24,rings=14)
     return head
 
