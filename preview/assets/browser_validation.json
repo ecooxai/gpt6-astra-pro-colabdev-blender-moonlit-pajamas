@@ -1,0 +1,33 @@
+{
+  "testedAt": "2026-10-03T15:23:06.834Z",
+  "report": [
+    {
+      "device": "desktop",
+      "ready": true,
+      "triangles": 542952,
+      "revision": "R19",
+      "overflow": false,
+      "galleryImages": 5,
+      "artifactLinks": 2,
+      "idleFrameDelta": 0,
+      "offscreenFrameDelta": 0,
+      "result": "PASS"
+    },
+    {
+      "device": "mobile",
+      "ready": true,
+      "triangles": 542952,
+      "revision": "R19",
+      "overflow": false,
+      "galleryImages": 5,
+      "artifactLinks": 2,
+      "idleFrameDelta": 0,
+      "offscreenFrameDelta": 0,
+      "result": "PASS"
+    }
+  ],
+  "errors": [
+    "desktop: Failed to load resource: the server responded with a status of 404 (File not found)"
+  ],
+  "result": "FAIL"
+}

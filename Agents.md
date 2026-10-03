@@ -10,3 +10,5 @@ All geometry and texture pixels authored in Python here. The reference is viewed
 Push source and latest actual artifacts after each reviewed step. A prior runtime rollback erased unpushed work. Never start a new Colab instance or stop the current one without verified backup.
 
 R19 completed and reviewed: 84/100, seven retained review entries. Front, side, back, face, hand and grip images exist. Next: collar intersections, squared hair-cap ends, continuous wrist and actual slipper ribbons.
+
+R20 completed: 87/100 subjective. Eight retained reviews. New builds stage in /build/<project>/pending-preview; publish.py copies them only during an explicit publish. Browser controls passed on desktop/mobile but the report included an extraneous favicon 404; empty favicon added. Model web export is 333645 triangles vs 542952 full. Next R21: hand twist, more natural cloth gathers and collar asymmetry, cap toe openings.

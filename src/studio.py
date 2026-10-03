@@ -32,7 +32,7 @@ def finish(root,out,args,legs):
     for ob in character:normals(ob)
     scene,cam=setup(args.quality)
     import toon;toon.install()
-    assets=root/'preview/assets';assets.mkdir(exist_ok=True)
+    assets=out/'pending-preview';assets.mkdir(exist_ok=True)
     views=args.views.split(',')
     if 'all' in views:views=['front','quarter','side','back','face']
     def camera_view(view):
