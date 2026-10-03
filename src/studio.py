@@ -1,9 +1,10 @@
 import bpy,bmesh,math,json,shutil
 from mathutils import Vector
+from io_helpers import atomic_copy
 
 def setup(quality):
     s=bpy.context.scene;s.render.engine='BLENDER_EEVEE'
-    s.eevee.taa_render_samples=48 if quality=='draft' else 128
+    s.eevee.taa_render_samples=32 if quality=='draft' else 96
     s.eevee.use_gtao=True;s.eevee.gtao_distance=.13;s.eevee.gtao_factor=.85
     s.eevee.use_soft_shadows=True;s.render.film_transparent=True
     s.render.image_settings.file_format='PNG';s.render.image_settings.color_mode='RGBA'
@@ -42,17 +43,17 @@ def finish(root,out,args,legs):
         if view in details:
             point,position,scale=details[view];target=Vector(point);positions[view]=position;cam.data.ortho_scale=scale
         cam.location=positions[view];cam.rotation_euler=(target-cam.location).to_track_quat('-Z','Y').to_euler()
-        scene.render.resolution_x=800 if args.quality=='draft' else 1200
-        scene.render.resolution_y=1400 if args.quality=='draft' else 2100
+        scene.render.resolution_x=720 if args.quality=='draft' else 1200
+        scene.render.resolution_y=1260 if args.quality=='draft' else 2100
         if view in ['face','hand','grip','feet']:scene.render.resolution_y=scene.render.resolution_x
     camera_view('front')
     scene['author']='GPT-6 Astra Pro / MCP Colabdev / Blender';scene['source']='Entirely original procedural geometry and authored textures'
     scene['revision']=args.revision
-    blend=out/(root.name+'.blend');bpy.ops.wm.save_as_mainfile(filepath=str(blend));shutil.copy2(blend,assets/blend.name)
+    blend=out/(root.name+'.blend');bpy.ops.wm.save_as_mainfile(filepath=str(blend));atomic_copy(blend,assets/blend.name)
     for view in views:
         camera_view(view);path=out/(root.name+'_'+view+'.png');scene.render.filepath=str(path)
-        bpy.ops.render.render(write_still=True);shutil.copy2(path,assets/path.name)
-        review=root/'renders/review';review.mkdir(parents=True,exist_ok=True);shutil.copy2(path,review/(args.revision+'-'+view+'.png'))
+        bpy.ops.render.render(write_still=True);atomic_copy(path,assets/path.name)
+        review=root/'renders/review';review.mkdir(parents=True,exist_ok=True);atomic_copy(path,review/(args.revision+'-'+view+'.png'))
         print('RENDER_READY',view,str(path),flush=True)
     if not args.no_export:
         toon.export_fallback()
@@ -63,9 +64,11 @@ def finish(root,out,args,legs):
         for o in bpy.context.selected_objects:normals(o)
         glb=out/(root.name+'.glb')
         bpy.ops.export_scene.gltf(filepath=str(glb),export_format='GLB',use_selection=True,export_apply=True,export_extras=True,export_cameras=False,export_lights=False)
-        shutil.copy2(glb,assets/glb.name)
+        atomic_copy(glb,assets/glb.name)
         tri=sum(sum(max(0,len(p.vertices)-2) for p in o.data.polygons) for o in bpy.context.selected_objects if o.type=='MESH')
         stats={'revision':args.revision,'triangles':tri,'objects':len(bpy.context.selected_objects),'legs':legs,'upper_leg_length':scene['upper_leg_length'],'lower_leg_length':scene['lower_leg_length'],'digits_per_hand':5,'asset_origin':'All geometry and textures authored from scratch'}
-        (out/'model_stats.json').write_text(json.dumps(stats,indent=2));shutil.copy2(out/'model_stats.json',assets/'model_stats.json')
+        from web_export import export_web
+        stats.update(export_web(root,out,assets,list(bpy.context.selected_objects)))
+        (out/'model_stats.json').write_text(json.dumps(stats,indent=2));atomic_copy(out/'model_stats.json',assets/'model_stats.json')
         print('EXPORT_READY',str(glb),'triangles',tri,flush=True)
     print('BUILD_COMPLETE',args.revision,flush=True)

@@ -59,11 +59,12 @@ def garment_details(M):
     for sign in [-1,1]:
         roll=[(sign*.135,-.085,5.47),(sign*.260,-.115,5.475),(sign*.448,-.197,5.365),
               (sign*.410,-.263,5.285),(sign*.270,-.286,5.270),(sign*.163,-.236,5.344)]
+        roll=[(x,y-.09,z) for x,y,z in roll]
         ob,edge=panel('Clothes_white_rolled_collar_'+str(sign),roll,M['collarShade'],bulge=.012,thickness=.018)
         curve('Clothes_rolled_collar_piping_'+str(sign),edge[::3],M['white'],.008,cyclic=True)
-    left=[(-.165,-.242,5.347),(-.267,-.290,5.268),(-.404,-.302,5.218),
+    left=[(-.165,-.332,5.347),(-.267,-.290,5.268),(-.404,-.302,5.218),
           (-.360,-.320,5.117),(-.077,-.352,4.936),(-.102,-.323,5.075)]
-    right=[(.161,-.235,5.346),(.273,-.289,5.275),(.350,-.318,5.188),
+    right=[(.161,-.325,5.346),(.273,-.289,5.275),(.350,-.318,5.188),
            (.362,-.348,5.080),(-.062,-.366,4.945),(.148,-.309,5.183)]
     for label,bd in [('left',left),('right',right)]:
         ob,edge=panel('Clothes_white_lapel_'+label,bd,M['white'],bulge=.012,thickness=.013)
@@ -115,7 +116,7 @@ def fitted_shorts(M,legs):
         cuff('Clothes_'+label+'_gathered_cuff',sign*.29,M,leg=legs[label])
 
 def shoulder_caps(M):
-    specs=[('raised',(-.43,.02,5.35),(.255,.245,.17)),('relaxed',(.435,.015,5.34),(.24,.25,.17))]
+    specs=[('raised',(-.48,.02,5.32),(.185,.23,.15)),('relaxed',(.485,.015,5.30),(.17,.23,.14))]
     for label,location,scale in specs:
         ob=sphere('Clothes_'+label+'_shoulder_patch',location,scale,M['fabric'])
         bpy.context.view_layer.update();box_uv(ob,.96)

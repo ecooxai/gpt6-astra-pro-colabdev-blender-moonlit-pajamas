@@ -6,7 +6,11 @@ def digit(name,pts,r,M):
             sphere(name+'_pad',pts[-1],(r*.69,)*3,M['skin'],segments=16,rings=12)]
 
 def build_hands(M,raised,relaxed):
-    parts=[raised,tube('Hand_raised_palm',[(-.69,-.20,5.98),(-.700,-.227,6.055),(-.725,-.248,6.125),(-.728,-.246,6.188)],[.061,.064,.087,.065],M['skin'],flatten=.57,sides=28,steps=8)]
+    # A single varying-section surface runs through each wrist: no arm/palm cap seam.
+    bpy.data.objects.remove(raised,do_unlink=True)
+    raised=hair_lock('Body_raised_continuous',[(-.43,.025,5.31),(-.92,-.01,5.18),(-1.28,-.055,5.22),(-1.09,-.13,5.46),(-.88,-.17,5.75),(-.69,-.20,6.02),(-.710,-.235,6.09),(-.728,-.246,6.175)],
+        [.151,.143,.125,.12,.097,.061,.077,.066],[.151,.143,.125,.12,.097,.061,.046,.039],M['skin'],steps=10,sides=28)
+    parts=[raised]
     fingers=[
       ('index',[(-.665,-.246,6.168),(-.654,-.263,6.235),(-.605,-.276,6.253),(-.573,-.263,6.229)],.018),
       ('middle',[(-.702,-.246,6.186),(-.714,-.266,6.294),(-.683,-.278,6.333),(-.647,-.265,6.315)],.0185),
@@ -18,7 +22,10 @@ def build_hands(M,raised,relaxed):
     for name,pts,r in fingers:
         p=Vector(pts[-1]);p.y-=r*.61
         sphere('Body_raised_arm_nail_'+name,p,(r*.47,.002,r*.60),M['nail'],segments=16,rings=10,rotation=(0,-.5,0))
-    parts=[relaxed,tube('Hand_grip_palm',[(.755,-.154,3.35),(.793,-.17,3.26),(.836,-.19,3.183),(.855,-.188,3.151)],[.063,.062,.072,.062],M['skin'],flatten=.6,sides=28,steps=8)]
+    bpy.data.objects.remove(relaxed,do_unlink=True)
+    relaxed=hair_lock('Body_relaxed_continuous',[(.47,.025,5.25),(.56,-.015,4.70),(.55,-.04,4.21),(.63,-.12,3.74),(.78,-.16,3.29),(.813,-.176,3.215),(.846,-.191,3.160)],
+        [.15,.137,.101,.111,.058,.076,.068],[.15,.137,.101,.111,.059,.043,.039],M['skin'],steps=10,sides=28)
+    parts=[relaxed]
     for i in range(4):
         root=Vector((.795+i*.031,-.195+i*.009,3.171+i*.008))
         pts=[root,root+Vector((.027,-.017,-.052)),root+Vector((.048,.016,-.102+abs(i-1)*.008)),root+Vector((.030,.063,-.100+abs(i-1)*.008))]

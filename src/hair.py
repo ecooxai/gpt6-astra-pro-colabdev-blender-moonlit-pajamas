@@ -12,7 +12,7 @@ def build_hair(M):
         for j in range(ns+1):
             a=2*pi*j/ns-pi
             # Forehead opening stays in front; side and rear scalp wrap below the ears.
-            end=.98+1.32*smoothstep(.42,.88,abs(a))-.17*exp(-((a-.40)/.18)**2)
+            end=.98+1.08*smoothstep(.42,.88,abs(a))-.44*exp(-((a-.40)/.18)**2)
             p=.006+(end-.006)*i/nr
             c=cos(a); front=abs(c)**.48 if c>0 else abs(c)
             verts.append((.558*sin(p)*sin(a),.07-.478*sin(p)*front*(1 if c>=0 else -1),6.07+.660*cos(p)))
@@ -42,11 +42,12 @@ def build_hair(M):
                       M['hair' if i%2 else 'hairDark'],normal=(0,-1,0),groove_mat=M['hairInk'])
     def lock(name,pts,widths,key='hair'):
         return hair_lock('HairTop_'+name,pts,widths,[min(.044,max(.002,w*.31)) for w in widths],M[key],groove_mat=M['hairInk'],sides=16)
-    lock('left_outer_fringe',[(-.05,-.20,6.69),(-.31,-.32,6.46),(-.49,-.33,6.12),(-.48,-.30,5.84),(-.34,-.27,5.72)],[.085,.15,.15,.08,.002])
+    lock('left_outer_fringe',[(-.05,-.20,6.69),(-.31,-.32,6.46),(-.49,-.33,6.12),(-.50,-.345,5.85),(-.36,-.34,5.69)],[.085,.15,.15,.08,.002])
     lock('left_inner_fringe',[(-.07,-.22,6.69),(-.23,-.44,6.40),(-.33,-.46,6.27),(-.28,-.43,6.105)],[.06,.105,.085,.002],'hairLight')
-    lock('central_swept_fringe',[(-.035,-.24,6.70),(-.095,-.445,6.49),(-.055,-.50,6.27),(.13,-.455,6.085)],[.060,.150,.131,.002])
-    lock('right_outer_frame',[(.035,-.18,6.70),(.33,-.29,6.54),(.48,-.31,6.17),(.455,-.305,5.82),(.30,-.29,5.74)],[.07,.16,.135,.085,.002])
+    lock('fine_fringe_split',[(-.05,-.27,6.66),(-.20,-.47,6.38),(-.15,-.51,6.20),(-.025,-.47,6.105)],[.035,.070,.062,.001])
+    lock('central_swept_fringe',[(-.035,-.24,6.70),(-.095,-.445,6.49),(-.055,-.50,6.27),(.13,-.455,6.085)],[.045,.125,.125,.002])
+    lock('right_outer_frame',[(.035,-.18,6.70),(.33,-.29,6.54),(.48,-.31,6.17),(.475,-.34,5.84),(.31,-.33,5.70)],[.07,.16,.135,.085,.002])
     lock('right_inner_frame',[(.025,-.25,6.68),(.235,-.37,6.50),(.29,-.42,6.23),(.36,-.37,6.055)],[.05,.087,.060,.002],'hairLight')
     for sign in [-1,1]:
-        lock('temple_layer_'+str(sign),[(sign*.44,-.020,6.42),(sign*.545,-.095,6.10),(sign*.585,-.12,5.82),(sign*.53,-.18,5.53),(sign*.44,-.20,5.60)],[.07,.09,.104,.053,.002],'hairDark' if sign<0 else 'hair')
+        lock('temple_layer_'+str(sign),[(sign*.44,-.020,6.42),(sign*.545,-.095,6.10),(sign*.585,-.12,5.82),(sign*.53,-.21,5.68),(sign*.41,-.23,5.73)],[.07,.09,.104,.053,.002],'hairDark' if sign<0 else 'hair')
     lock('curled_flyaway',[(-.03,-.055,6.71),(-.37,-.07,6.67),(-.61,-.06,6.79),(-.59,-.045,6.93),(-.50,-.015,6.98)],[.013,.025,.028,.015,.001],'hairLight')

@@ -21,8 +21,8 @@ def sphere(name,loc,scale,mat,segments=32,rings=20,rotation=None):
     for p in ob.data.polygons:p.use_smooth=True
     return ob
 
-def curve(name,points,mat,radius=.006,resolution=12,cyclic=False,radii=None):
-    cu=bpy.data.curves.new(name+'_curve','CURVE');cu.dimensions='3D';cu.resolution_u=resolution;cu.bevel_depth=radius;cu.bevel_resolution=3
+def curve(name,points,mat,radius=.006,resolution=8,cyclic=False,radii=None):
+    cu=bpy.data.curves.new(name+'_curve','CURVE');cu.dimensions='3D';cu.resolution_u=resolution;cu.bevel_depth=radius;cu.bevel_resolution=2
     sp=cu.splines.new('BEZIER');sp.bezier_points.add(len(points)-1)
     for i,(bp,p) in enumerate(zip(sp.bezier_points,points)):
         bp.co=p;bp.handle_left_type='AUTO';bp.handle_right_type='AUTO';bp.radius=radii[i] if radii else 1
@@ -147,7 +147,7 @@ def flat_panel(name,boundary,mat,bulge=0,thickness=.014,uvscale=1):
     return ob,points
 
 def crease(name,points,mat,radius=.004,cyclic=True):
-    cu=bpy.data.curves.new(name+'_curve','CURVE');cu.dimensions='3D';cu.bevel_depth=radius;cu.bevel_resolution=3
+    cu=bpy.data.curves.new(name+'_curve','CURVE');cu.dimensions='3D';cu.bevel_depth=radius;cu.bevel_resolution=2
     sp=cu.splines.new('POLY');sp.points.add(len(points)-1)
     for p,co in zip(sp.points,points):p.co=(*co,1)
     sp.use_cyclic_u=cyclic;ob=bpy.data.objects.new(name,cu)
