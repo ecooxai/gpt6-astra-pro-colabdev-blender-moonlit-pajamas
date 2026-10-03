@@ -21,18 +21,18 @@ def cat(cx,cy,r,a):
         d.polygon(points,fill=(252,255,255))
 for dx in [-1,0,1]:
     for dy in [-1,0,1]:
-        cat(.23+dx,.24+dy,.155,-.22);cat(.75+dx,.75+dy,.165,.30)
+        cat(.20+dx,.23+dy,.15,-.18);cat(.72+dx,.28+dy,.15,.23);cat(.45+dx,.77+dy,.158,-.14)
 for cx,cy,r in[(.58,.30,.017),(.15,.76,.021),(.90,.14,.013),(.42,.65,.015)]:
     d.ellipse(((cx-r)*N*S,(cy-r)*N*S,(cx+r)*N*S,(cy+r)*N*S),fill=(250,255,255))
 im.resize((N,N),Image.Resampling.LANCZOS).save(OUT/'cat_cotton_original.png')
 N=512;y,x=np.mgrid[0:N,0:N];X=(x/(N-1)-.5)*2;Y=(y/(N-1)-.5)*2;r=np.sqrt(X*X+Y*Y);a=np.arctan2(Y,X)
 base=np.zeros((N,N,3),float);t=np.clip((Y+.75)/1.5,0,1)
-for k,(top,bottom) in enumerate(zip([48,34,93],[129,129,213])):base[:,:,k]=top+(bottom-top)*t
+for k,(top,bottom) in enumerate(zip([48,34,93],[137,109,207])):base[:,:,k]=top+(bottom-top)*t
 stri=(np.sin(a*54+np.sin(a*17)*2)+np.sin(a*117+r*18))*(np.clip((r-.23)*1.3,0,1))*4
 base+=stri[:,:,None]
 limbus=np.clip((r-.78)/.18,0,1);base=base*(1-limbus[:,:,None]*.76)
 blue=np.exp(-((X+.25)**2/.11+(Y-.62)**2/.08));base=base*(1-blue[:,:,None]*.5)+np.array([107,177,235])*blue[:,:,None]*.5
-pupil=(X/.36)**2+(Y/.58)**2<1;base[pupil]=[34,27,67];base[r>1]=[27,23,56]
+pupil=(X/.25)**2+(Y/.45)**2<1;base[pupil]=[34,27,67];base[r>1]=[27,23,56]
 ir=Image.fromarray(np.uint8(np.clip(base,0,255)),'RGB');di=ImageDraw.Draw(ir)
 di.ellipse((111,62,173,147),fill=(255,252,255));di.ellipse((290,335,317,364),fill=(225,249,255));di.ellipse((119,334,143,374),fill=(127,213,254));ir.save(OUT/'violet_iris_original.png')
 N=1024;yy,xx=np.mgrid[0:N,0:N];u=xx/(N-1);v=1-yy/(N-1);skin=np.empty((N,N,3),float);skin[:]=[255,239,234]

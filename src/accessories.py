@@ -2,11 +2,15 @@ from geometry import *
 from math import exp,sqrt
 
 def pillow_point(u,v,side):
-    inflate=.27*max(0,(1-u*u)*(1-v*v))**.53
-    fold=.026*sin(22*u+12*v)*exp(-((u+.85)**2+(v-.77)**2)/.16)
-    fold+=.017*sin(20*v-7*u)*exp(-((u-.82)**2+(v+.7)**2)/.2)
-    pinch=-.205*exp(-((u+1)**2+(v-1)**2)/.09)
-    return (.86+.47*u+.45*v+.024*sin(pi*v)*(1-u*u),.12+side*(.018+inflate+fold)+pinch,2.08-.37*u+.85*v+.022*sin(pi*u)*sin(pi*v))
+    d=(u+1)**2+(v-1)**2
+    inflate=.29*max(0,(1-u*u)*(1-v*v))**.55
+    folds=.040*exp(-((v-.77+.66*(u+1))/.065)**2)*exp(-d/1.65)
+    folds-=.028*exp(-((v-.72+.91*(u+1))/.075)**2)*exp(-d/1.30)
+    folds+=.018*sin(19*v-6*u)*exp(-((u-.83)**2+(v+.68)**2)/.18)
+    pinch=-.207*exp(-d/.085)
+    x=.86+.47*u+.45*v+.036*sin(pi*v)*(1-u*u)+.019*sin(3*pi*v)*abs(u)**9
+    z=2.08-.37*u+.85*v+.027*sin(pi*u)*sin(pi*v)+.015*sin(3*pi*u)*abs(v)**9
+    return (x,.12+side*(.018+inflate+folds)+pinch,z)
 
 def build_pillow(M):
     verts=[];faces=[];uv=[];n=52;offset=(n+1)**2
@@ -45,7 +49,7 @@ def build_headwear(M):
             verts.append(((.685+radial)*cos(a),(.40+radial)*sin(a),z))
     for i in range(ns):
         for j in range(4):faces.append((i*4+j,((i+1)%ns)*4+j,((i+1)%ns)*4+(j+1)%4,i*4+(j+1)%4))
-    halo=mesh('Accessory_dark_elliptical_halo',verts,faces,M['halo']);halo.location=(0,.045,7.31);halo.rotation_euler=(-.08,.045,0)
+    halo=mesh('Accessory_dark_elliptical_halo',verts,faces,M['halo']);halo.location=(0,.045,7.31);halo.rotation_euler=(-.15,.045,0)
     bevel=halo.modifiers.new('Machined halo bevel','BEVEL');bevel.width=.005;bevel.segments=3
     pts=[(.704*cos(2*pi*i/32),.419*sin(2*pi*i/32),-.011) for i in range(32)]
     glow=curve('Accessory_cyan_halo_inlay',pts,M['haloBlue'],.004,cyclic=True);glow.location=halo.location;glow.rotation_euler=halo.rotation_euler
@@ -58,7 +62,7 @@ def build_slippers(M,legs):
         loft('Accessory_'+label+'_slipper_sole',sections,M['sole'],sides=64,steps=3)
         edge=[(cx+.176*sin(2*pi*i/40),cy-.289*cos(2*pi*i/40),base+.072) for i in range(40)]
         curve('Accessory_'+label+'_sole_piping',edge,M['white'],.008,cyclic=True)
-        profiles=[(-.299,.018,.016),(-.26,.116,.066),(-.175,.17,.135),(-.07,.174,.176),(.015,.153,.155),(.084,.128,.128)]
+        profiles=[(-.299,.015,.027),(-.26,.116,.066),(-.175,.17,.135),(-.07,.174,.176),(.015,.153,.155),(.084,.128,.128)]
         verts=[];faces=[];uv=[];ns=32
         ps,width=sample([(0,y,0) for y,w,h in profiles],[w for y,w,h in profiles],5)
         _,height=sample([(0,y,0) for y,w,h in profiles],[h for y,w,h in profiles],5)
@@ -74,5 +78,5 @@ def build_slippers(M,legs):
         sol=ob.modifiers.new('Plush upper thickness','SOLIDIFY');sol.thickness=.021
         edge=verts[-(ns+1):];curve('Accessory_'+label+'_slipper_opening',edge[::3],M['white'],.012)
         for s in [-1,1]:
-            sphere('Accessory_'+label+'_pink_bow_loop_'+str(s),(cx+s*.052,cy-.130,base+.275),(.052,.035,.027),M['pink'],rotation=(0,0,s*.27))
-        sphere('Accessory_'+label+'_pink_bow_knot',(cx,cy-.131,base+.287),(.020,.026,.017),M['pinkLight'],segments=24,rings=16)
+            sphere('Accessory_'+label+'_pink_bow_loop_'+str(s),(cx+s*.052,cy-.130,base+.242),(.052,.035,.027),M['pink'],rotation=(0,0,s*.27))
+        sphere('Accessory_'+label+'_pink_bow_knot',(cx,cy-.131,base+.253),(.020,.026,.017),M['pinkLight'],segments=24,rings=16)

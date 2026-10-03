@@ -38,10 +38,13 @@ def finish(root,out,args,legs):
         target=Vector((.12,0,3.68));cam.data.ortho_scale=7.68
         positions={'front':(.12,-18,4.03),'quarter':(8,-16,4.8),'side':(18,0,4.1),'back':(.12,18,4.08),'face':(0,-12,6.44)}
         if view=='face':target=Vector((0,0,6.39));cam.data.ortho_scale=2.05
+        details={'hand':((-.70,-.27,6.32),(-1.4,-9,6.65),1.12),'grip':((.86,-.10,3.32),(3.7,-10,4.0),1.08),'feet':((-.24,-.06,.43),(1.3,-7,2.1),1.4)}
+        if view in details:
+            point,position,scale=details[view];target=Vector(point);positions[view]=position;cam.data.ortho_scale=scale
         cam.location=positions[view];cam.rotation_euler=(target-cam.location).to_track_quat('-Z','Y').to_euler()
         scene.render.resolution_x=800 if args.quality=='draft' else 1200
         scene.render.resolution_y=1400 if args.quality=='draft' else 2100
-        if view=='face':scene.render.resolution_y=scene.render.resolution_x
+        if view in ['face','hand','grip','feet']:scene.render.resolution_y=scene.render.resolution_x
     camera_view('front')
     scene['author']='GPT-6 Astra Pro / MCP Colabdev / Blender';scene['source']='Entirely original procedural geometry and authored textures'
     scene['revision']=args.revision
@@ -62,7 +65,7 @@ def finish(root,out,args,legs):
         bpy.ops.export_scene.gltf(filepath=str(glb),export_format='GLB',use_selection=True,export_apply=True,export_extras=True,export_cameras=False,export_lights=False)
         shutil.copy2(glb,assets/glb.name)
         tri=sum(sum(max(0,len(p.vertices)-2) for p in o.data.polygons) for o in bpy.context.selected_objects if o.type=='MESH')
-        stats={'revision':args.revision,'triangles':tri,'objects':len(bpy.context.selected_objects),'legs':legs,'upper_leg_length':1.59,'lower_leg_length':1.60,'digits_per_hand':5,'asset_origin':'All geometry and textures authored from scratch'}
+        stats={'revision':args.revision,'triangles':tri,'objects':len(bpy.context.selected_objects),'legs':legs,'upper_leg_length':scene['upper_leg_length'],'lower_leg_length':scene['lower_leg_length'],'digits_per_hand':5,'asset_origin':'All geometry and textures authored from scratch'}
         (out/'model_stats.json').write_text(json.dumps(stats,indent=2));shutil.copy2(out/'model_stats.json',assets/'model_stats.json')
         print('EXPORT_READY',str(glb),'triangles',tri,flush=True)
     print('BUILD_COMPLETE',args.revision,flush=True)

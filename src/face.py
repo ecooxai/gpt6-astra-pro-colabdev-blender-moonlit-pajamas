@@ -40,7 +40,7 @@ def build_face(M):
             for j in range(nv):
                 a=i*(nv+1)+j;faces.append((a,a+nv+1,a+nv+2,a+1) if sign>0 else (a,a+1,a+nv+2,a+nv+1))
         mesh('Head_eye_white_'+str(sign),verts,faces,M['eyeWhite'],uv)
-        cx=sign*.225;cz=6.030;rx=.076;rz=.086
+        cx=sign*.215;cz=6.034;rx=.078;rz=.087
         vv=[(cx,face_y(cx,cz)-.052,cz)];uu=[(.5,.5)];ff=[];sides=80;nr=9
         for k in range(1,nr+1):
             r=k/nr

@@ -1,24 +1,29 @@
+"""Original posed hands with continuous wrists and individually authored digits."""
 from geometry import *
 
+def digit(name,pts,r,M):
+    return [tube(name,pts,[r,r*.91,r*.79,r*.67],M['skin'],sides=16,steps=7),
+            sphere(name+'_pad',pts[-1],(r*.69,)*3,M['skin'],segments=16,rings=12)]
+
 def build_hands(M,raised,relaxed):
-    parts=[raised,sphere('Hand_raised_palm',(-.647,-.202,6.113),(.085,.044,.126),M['skin'])]
-    for i,length in enumerate([.153,.175,.151,.124]):
-        root=Vector((-.585-i*.042,-.212,6.204+.015*sin(i)))
-        side=-.018 if i>1 else .018
-        pts=[root,root+Vector((side,-.015,length*.53)),root+Vector((side*.7,.0,length)),root+Vector((.025,.037,length*.86))]
-        r=.014 if i==3 else .017
-        parts.append(tube('Hand_raised_digit_'+str(i+1),pts,[r,r*.9,r*.73,r*.55],M['skin'],sides=16))
-        parts.append(sphere('Hand_raised_tip_'+str(i),pts[-1],(r*.58,)*3,M['skin'],segments=16,rings=12))
-    pts=[(-.59,-.204,6.09),(-.55,-.24,6.13),(-.51,-.25,6.175),(-.48,-.22,6.17)]
-    parts.append(tube('Hand_raised_thumb',pts,[.027,.022,.018,.012],M['skin']))
-    raised=union('Body_raised_arm_five_fingers',parts,.008,4);raised['digits']=5
-    parts=[relaxed,sphere('Hand_grip_palm',(.814,-.175,3.225),(.075,.042,.112),M['skin'],rotation=(0,-.36,0))]
+    parts=[raised,tube('Hand_raised_palm',[(-.69,-.20,5.98),(-.700,-.227,6.055),(-.725,-.248,6.125),(-.728,-.246,6.188)],[.061,.064,.087,.065],M['skin'],flatten=.57,sides=28,steps=8)]
+    fingers=[
+      ('index',[(-.665,-.246,6.168),(-.654,-.263,6.235),(-.605,-.276,6.253),(-.573,-.263,6.229)],.018),
+      ('middle',[(-.702,-.246,6.186),(-.714,-.266,6.294),(-.683,-.278,6.333),(-.647,-.265,6.315)],.0185),
+      ('ring',[(-.740,-.242,6.180),(-.774,-.262,6.265),(-.756,-.280,6.298),(-.723,-.269,6.286)],.0175),
+      ('little',[(-.778,-.233,6.155),(-.814,-.245,6.227),(-.812,-.258,6.275),(-.794,-.251,6.284)],.0145),
+      ('thumb',[(-.669,-.241,6.080),(-.641,-.282,6.133),(-.595,-.295,6.170),(-.562,-.278,6.159)],.025)]
+    for name,pts,r in fingers:parts.extend(digit('Hand_raised_'+name,pts,r,M))
+    raised=union('Body_raised_arm_five_fingers',parts,.0065,4);raised['digits']=5
+    for name,pts,r in fingers:
+        p=Vector(pts[-1]);p.y-=r*.61
+        sphere('Body_raised_arm_nail_'+name,p,(r*.47,.002,r*.60),M['nail'],segments=16,rings=10,rotation=(0,-.5,0))
+    parts=[relaxed,tube('Hand_grip_palm',[(.755,-.154,3.35),(.793,-.17,3.26),(.836,-.19,3.183),(.855,-.188,3.151)],[.063,.062,.072,.062],M['skin'],flatten=.6,sides=28,steps=8)]
     for i in range(4):
-        root=Vector((.811+i*.031,-.178+i*.008,3.155+i*.009))
-        pts=[root,root+Vector((.035,-.015,-.047)),root+Vector((.045,.014,-.092)),root+Vector((.025,.064,-.087))]
-        r=.013 if i==3 else .016
-        parts.append(tube('Hand_grip_digit_'+str(i+1),pts,[r,r*.89,r*.76,r*.54],M['skin'],sides=16))
-    pts=[(.775,-.177,3.236),(.827,-.226,3.193),(.876,-.242,3.149),(.888,-.215,3.11)]
-    parts.append(tube('Hand_grip_thumb',pts,[.027,.023,.017,.011],M['skin']))
-    relaxed=union('Body_relaxed_arm_five_fingers',parts,.008,4);relaxed['digits']=5
+        root=Vector((.795+i*.031,-.195+i*.009,3.171+i*.008))
+        pts=[root,root+Vector((.027,-.017,-.052)),root+Vector((.048,.016,-.102+abs(i-1)*.008)),root+Vector((.030,.063,-.100+abs(i-1)*.008))]
+        r=.0145 if i==3 else .017
+        parts.extend(digit('Hand_grip_digit_'+str(i),pts,r,M))
+    parts.extend(digit('Hand_grip_thumb',[(.788,-.189,3.240),(.828,-.230,3.202),(.878,-.241,3.162),(.902,-.219,3.126)],.025,M))
+    relaxed=union('Body_relaxed_arm_five_fingers',parts,.0065,5);relaxed['digits']=5
     return raised,relaxed
