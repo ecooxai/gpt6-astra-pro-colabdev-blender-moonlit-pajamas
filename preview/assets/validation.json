@@ -1,13 +1,13 @@
 {
-  "revision": "R30",
+  "revision": "R31",
   "result": "PASS",
   "exports": [
     {
       "file": "gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas.glb",
       "result": "PASS",
-      "bytes": 11848796,
-      "triangles": 580352,
-      "vertex_entries": 302226,
+      "bytes": 11893708,
+      "triangles": 581452,
+      "vertex_entries": 302855,
       "embedded_images": 6,
       "largest_meshes": [
         [
@@ -19,7 +19,7 @@
           "Body_raised_continuous_mesh"
         ],
         [
-          55492,
+          56112,
           "Clothes_short_leg_rear_mesh"
         ],
         [
@@ -39,9 +39,9 @@
     {
       "file": "gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_web.glb",
       "result": "PASS",
-      "bytes": 8313440,
-      "triangles": 353762,
-      "vertex_entries": 187280,
+      "bytes": 8335848,
+      "triangles": 354552,
+      "vertex_entries": 187785,
       "embedded_images": 6,
       "largest_meshes": [
         [
@@ -49,7 +49,7 @@
           "Body_neck_and_shoulders_mesh"
         ],
         [
-          50286,
+          50596,
           "Clothes_pajama_shirt_mesh"
         ],
         [
@@ -77,8 +77,8 @@
       "lower": 1.8299999544705354
     },
     "rear": {
-      "upper": 1.3599999707592159,
-      "lower": 1.829999963075666
+      "upper": 1.3599999558237574,
+      "lower": 1.8300000877464262
     }
   },
   "scope": "Finite mesh data, valid indices, embedded textures, triangle-count agreement, and matching authored leg-center segment lengths. Not a visual score or animation-rig test."

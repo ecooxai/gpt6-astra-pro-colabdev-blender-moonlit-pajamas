@@ -1,0 +1,82 @@
+{
+  "revision": "R31",
+  "result": "PASS",
+  "testedAt": "2026-10-03T21:35:12+00:00",
+  "geometrySourceCommit": "51174593b1f55b41f66b30d7b3ab8d9c5ef92a82",
+  "retainedModelReviews": 19,
+  "renderStudies": 6,
+  "inspectionViews": 11,
+  "scope": "Revision integrity, required files and test-report consistency. This does not certify visual similarity or AAA production readiness.",
+  "files": [
+    {
+      "file": "gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas.blend",
+      "bytes": 8114552,
+      "sha256": "f8654027c48d12fdb93bfa908b5faa00eb6413d9503c7a8d760e6f75cbc33e1f"
+    },
+    {
+      "file": "gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas.glb",
+      "bytes": 11893708,
+      "sha256": "94f99110d0f701a7afd34dcee4abc2c69968710e543134304044f8ba2e566a72"
+    },
+    {
+      "file": "gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_back.png",
+      "bytes": 742272,
+      "sha256": "6cf45dd4ce0f31060c6762369568be96c4d03c265566fcfa3263e9055335335c"
+    },
+    {
+      "file": "gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_cuffs.png",
+      "bytes": 491487,
+      "sha256": "e1e8ba55a637f8a72c64ca6bd1bf71722392a9aa2e1a5e783312253fb267df97"
+    },
+    {
+      "file": "gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_face.png",
+      "bytes": 1338831,
+      "sha256": "f834fea304b42f16342330eed7c21398c41ffad09ff060b6c5233532c64ba1d0"
+    },
+    {
+      "file": "gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_feet.png",
+      "bytes": 368099,
+      "sha256": "0bea8b01b935d4a62e6e51babc52ef2377043fb6dd600f8b93f6be33a2280c42"
+    },
+    {
+      "file": "gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_front.png",
+      "bytes": 1968460,
+      "sha256": "c13a1309b00d65f10b51a2979a9b744c09651447676115c8f28c7a127b35ce0e"
+    },
+    {
+      "file": "gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_grip.png",
+      "bytes": 416044,
+      "sha256": "1feca5fea89847dfbcf67cdd517e5f965a7c0160da526d5d63a5b0ca190624a3"
+    },
+    {
+      "file": "gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_hand.png",
+      "bytes": 482363,
+      "sha256": "42beae4cf7504b1e5bfd0486b7a520e02355dd16078552d0b538e989c6fd2c02"
+    },
+    {
+      "file": "gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_hand_side.png",
+      "bytes": 526503,
+      "sha256": "bc1d566fcb7c0ef274b23acf34a85ab9910c6ed95e6bd3b7a26c894373c375d1"
+    },
+    {
+      "file": "gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_left.png",
+      "bytes": 671133,
+      "sha256": "fdc14a38fabd22476f29cb9656df01889d8de9f81a96077007fab2847aa196f6"
+    },
+    {
+      "file": "gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_quarter.png",
+      "bytes": 1961030,
+      "sha256": "4a9e7c83d294fb92c9afa47016ff0f237b7e073e7b710c40639b03cb10966279"
+    },
+    {
+      "file": "gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_side.png",
+      "bytes": 657127,
+      "sha256": "f9393e29159157f2755f1f2617c95f296016397705c720ba0bef8b679d81556a"
+    },
+    {
+      "file": "gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_web.glb",
+      "bytes": 8335848,
+      "sha256": "3828c858762203bd3520f7a2038628284dbc26e0556dbd1622a7293b7581a67c"
+    }
+  ]
+}

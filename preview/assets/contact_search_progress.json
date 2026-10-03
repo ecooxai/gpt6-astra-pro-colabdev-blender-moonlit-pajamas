@@ -1,7 +1,7 @@
 {
   "completed": 26000,
   "requested": 26000,
-  "stage": "previous search complete; selected pose audited in R30",
+  "stage": "previous search complete; selected pose audited in R31",
   "running": false,
   "scope": "Geometry candidate tests, not build-and-review iterations"
 }

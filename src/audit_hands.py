@@ -1,7 +1,9 @@
 """Read a saved Blender scene and audit only its two hand/arm mesh surfaces."""
 import bpy,bmesh,json,sys
 from pathlib import Path
-root=Path(__file__).resolve().parents[1];out=Path('/build')/root.name/'pending-preview';out.mkdir(parents=True,exist_ok=True)
+root=Path(__file__).resolve().parents[1]
+if not bpy.data.filepath:raise RuntimeError('Load the saved model before auditing it')
+out=Path(bpy.data.filepath).resolve().parent;out.mkdir(parents=True,exist_ok=True)
 reports=[]
 for name in ('Body_raised_arm_five_fingers','Body_relaxed_arm_five_fingers'):
     ob=bpy.data.objects[name];bm=bmesh.new();bm.from_mesh(ob.data);seen=set();counts=[]

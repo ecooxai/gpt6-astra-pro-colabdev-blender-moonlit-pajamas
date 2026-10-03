@@ -62,9 +62,9 @@ def finish(root,out,args,legs):
     install_ink(scene.render.resolution_x/720)
     scene['author']='GPT-6 Astra Pro / MCP Colabdev / Blender';scene['source']='Entirely original procedural geometry and authored textures'
     scene['revision']=args.revision
-    import subprocess
-    scene['geometry_source_commit']=subprocess.check_output(['git','rev-parse','HEAD'],cwd=str(root),text=True).strip()
-    scene['source_commit']=subprocess.check_output(['git','rev-parse','HEAD'],cwd=root,text=True).strip()
+    from provenance import source_commit
+    scene['geometry_source_commit']=source_commit(root)
+    scene['source_commit']=scene['geometry_source_commit']
     blend=out/(root.name+'.blend');bpy.ops.wm.save_as_mainfile(filepath=str(blend),compress=True);atomic_copy(blend,assets/blend.name)
     for view in views:
         camera_view(view);path=out/(root.name+'_'+view+'.png');scene.render.filepath=str(path)
