@@ -36,7 +36,7 @@ def build_clothes(M,legs):
     for i in range(nr+1):
         t=i/nr
         for j in range(ns+1):
-            a=2*pi*j/ns-pi;bottom=3.785+.045*cos(a);top=5.395-.43*exp(-(a/.32)**2);z=bottom+(top-bottom)*t
+            a=2*pi*j/ns-pi;bottom=3.755+.060*cos(a)+.14*exp(-(a/.068)**2);top=5.395-.43*exp(-(a/.32)**2);z=bottom+(top-bottom)*t
             rx=.49+.13*(1-t)**2+.065*t**6-.022*sin(t*pi);ry=.245+.045*(1-t)+.024*sin(t*pi)
             ripple=1+.013*sin(7*a+z*5)*(1-t)+.009*sin(12*a-z*4)
             x=.025*t+rx*sin(a)*ripple;y=.012-ry*cos(a)*ripple
@@ -55,10 +55,10 @@ def build_clothes(M,legs):
 
 def garment_details(M):
     for sign in [-1,1]:
-        boundary=[(sign*.14,-.135,5.46),(sign*.36,-.17,5.42),(sign*.48,-.235,5.30),(sign*.285,-.305,5.20),(sign*.35,-.265,5.055),(sign*.022,-.343,4.985),(sign*.16,-.267,5.315)]
-        ob,edge=flat_panel('Clothes_white_lapel_'+str(sign),boundary,M['white'],bulge=.017,thickness=.014)
-        crease('Clothes_collar_piping_'+str(sign),edge,M['piping'],.0045)
-    line=[(.005,-.30,3.83),(-.012,-.302,4.11),(.011,-.295,4.43),(.014,-.29,4.72),(.008,-.293,4.995)]
+        boundary=[(sign*.14,-.15,5.46),(sign*.29,-.185,5.445),(sign*.46,-.245,5.335),(sign*.405,-.30,5.255),(sign*.265,-.322,5.266),(sign*.348,-.333,5.135),(sign*.315,-.348,5.072),(sign*.022,-.355,4.985),(sign*.16,-.285,5.315)]
+        ob,edge=panel('Clothes_white_lapel_'+str(sign),boundary,M['white'],bulge=.017,thickness=.014)
+        curve('Clothes_collar_piping_'+str(sign),edge[::2],M['piping'],.0045,cyclic=True)
+    line=[(.005,-.30,3.965),(-.012,-.302,4.11),(.011,-.295,4.43),(.014,-.29,4.72),(.008,-.293,4.995)]
     curve('Clothes_button_placket',line,M['white'],.017)
     curve('Clothes_placket_stitch',[(x+.022,y+.003,z) for x,y,z in line],M['piping'],.003)
     for i,z in enumerate([4.78,4.46,4.13,3.9]):
