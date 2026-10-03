@@ -20,7 +20,7 @@ def adjust_pose():
             p.z+=.24-.1*max(0,min(1,(z-5.3)/.9))+.10*max(0,z-6.02)
         elif name.startswith('Body_relaxed_arm'):p.z=3.8+(z-3.8)*1.1+.17
         elif name.startswith('Accessory_') and 'pillow' in name:
-            t=max(0,min(1,(3.3-z)/2.44));p.x=.86+(p.x-.86)*1.10-.25*t;p.z=.86+(z-.86)*1.08
+            t=max(0,min(1,(3.3-z)/2.44));p.x=.86+(p.x-.86)*1.10-.36*t;p.z=.86+(z-.86)*1.08
         elif name.startswith(('Accessory_front_','Accessory_rear_')):
             front=name.startswith('Accessory_front_');cx=-.11 if front else -.34;cy=-.31 if front else .12;base=.035 if front else .38
             p.x=cx+(p.x-cx)*1.30;p.y=cy+(p.y-cy)*1.08

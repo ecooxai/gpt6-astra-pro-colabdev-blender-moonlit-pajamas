@@ -51,7 +51,9 @@ def build_headwear(M):
             verts.append(((.685+radial)*cos(a),(.40+radial)*sin(a),z))
     for i in range(ns):
         for j in range(4):faces.append((i*4+j,((i+1)%ns)*4+j,((i+1)%ns)*4+(j+1)%4,i*4+(j+1)%4))
-    halo=mesh('Accessory_dark_elliptical_halo',verts,faces,M['halo']);halo.location=(0,.045,7.31);halo.rotation_euler=(-.15,.045,0)
+    halo=mesh('Accessory_dark_elliptical_halo',verts,faces,M['halo']);halo.location=(0,.045,7.31);halo.rotation_euler=(.18,.045,0)
+    halo.data.materials.append(M['haloTop']);halo.data.materials.append(M['haloInner'])
+    for i,polygon in enumerate(halo.data.polygons):polygon.material_index=1 if i%4==2 else (2 if i%4==3 else 0)
     bevel=halo.modifiers.new('Machined halo bevel','BEVEL');bevel.width=.005;bevel.segments=3
     pts=[(.704*cos(2*pi*i/32),.419*sin(2*pi*i/32),-.011) for i in range(32)]
     glow=curve('Accessory_cyan_halo_inlay',pts,M['haloBlue'],.004,cyclic=True);glow.location=halo.location;glow.rotation_euler=halo.rotation_euler

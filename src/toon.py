@@ -21,7 +21,7 @@ def install():
             bw=n.new('ShaderNodeRGBToBW');links.new(rgb.outputs['Color'],bw.inputs[0])
             ramp=n.new('ShaderNodeValToRGB');ramp.color_ramp.interpolation='EASE'
             name=mat.name.lower()
-            dark=(.56,.43,.47,1) if 'skin' in name or 'face' in name else ((.43,.49,.66,1) if 'hair' in name else (.47,.63,.76,1))
+            dark=(.69,.40,.43,1) if 'skin' in name or 'face' in name else ((.43,.49,.66,1) if 'hair' in name else (.47,.63,.76,1))
             ramp.color_ramp.elements.remove(ramp.color_ramp.elements[1])
             e=ramp.color_ramp.elements[0];e.position=.16;e.color=dark
             e=ramp.color_ramp.elements.new(.39);e.color=(.81,.84,.91,1)

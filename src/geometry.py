@@ -96,9 +96,9 @@ def panel(name,boundary,mat,bulge=.012,thickness=.014,uvscale=1):
     return ob,bd
 
 def hair_lock(name,points,widths,depths,mat,normal=(0,-1,0),steps=8,sides=12,groove_mat=None):
-    ps,ws=sample(points,widths,steps);_,ds=sample(points,depths,steps);norm=Vector(normal);verts=[];faces=[];uv=[];edges=[]
+    ps,ws=sample(points,widths,steps);_,ds=sample(points,depths,steps);norm=Vector(normal);verts=[];faces=[];uv=[];edges=[];strands=[]
     for i,p in enumerate(ps):
-        t=(ps[min(i+1,len(ps)-1)]-ps[max(0,i-1)]).normalized();b=t.cross(norm).normalized();n=b.cross(t).normalized();w=max(.001,ws[i]);d=max(.001,ds[i]);edges.append(p+b*w*.80+n*d*.60)
+        t=(ps[min(i+1,len(ps)-1)]-ps[max(0,i-1)]).normalized();b=t.cross(norm).normalized();n=b.cross(t).normalized();w=max(.001,ws[i]);d=max(.001,ds[i]);edges.append(p+b*w*.80+n*d*.60);strands.append(p+b*w*.18+n*d*.979)
         for j in range(sides):
             a=2*pi*j/sides;verts.append(p+b*(w*cos(a))+n*(d*sin(a)));uv.append((j/sides,i/(len(ps)-1)))
     for i in range(len(ps)-1):
@@ -109,6 +109,9 @@ def hair_lock(name,points,widths,depths,mat,normal=(0,-1,0),steps=8,sides=12,gro
     if groove_mat and len(edges)>8:
         pp=[edges[i] for i in range(3,len(edges)-3,5) if not name.startswith('HairLong_') or edges[i].z<6.15]
         if len(pp)>=2:curve(name+'_edge_ink',pp,groove_mat,.0025,radii=[.04]+[.7]*(len(pp)-2)+[.03])
+    if groove_mat and len(strands)>15:
+        pp=[strands[i] for i in range(int(len(strands)*.34),int(len(strands)*.90),5)]
+        if len(pp)>2:curve(name+'_fine_flow',pp,groove_mat,.0013,radii=[.02]+[.45]*(len(pp)-2)+[.02])
     return ob
 
 def union(name,objects,voxel=.015,smooth=3):

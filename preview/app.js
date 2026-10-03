@@ -17,7 +17,7 @@ async function refresh(){try{const r=await fetch('status.json?t='+Date.now(),{ca
 refresh();setInterval(refresh,8000);window.addEventListener('keydown',e=>{if(e.key==='0')setView('front');});
 
 function invalidate(){if(!pending&&visible&&!document.hidden&&mode==='3d')pending=requestAnimationFrame(draw);}
-function draw(){pending=0;if(!visible||document.hidden||mode!=='3d'||!renderer)return;controls.update();camera.updateMatrixWorld();characterLight.value.copy(worldLight).transformDirection(camera.matrixWorldInverse);renderer.render(scene,camera);window.__renderFrames++;if(controls.autoRotate)invalidate();}
+function draw(){pending=0;if(!visible||document.hidden||mode!=='3d'||!renderer)return;controls.update();camera.updateMatrixWorld();characterLight.value.copy(worldLight).transformDirection(camera.matrixWorldInverse);renderer.render(scene,camera);window.__drawCalls=renderer.info.render.calls;window.__geometryCount=renderer.info.memory.geometries;window.__renderFrames++;if(controls.autoRotate)invalidate();}
 $('#shading').onclick=()=>{style=style==='illustration'?'studio':'illustration';model?.traverse(o=>{if(o.isMesh)o.material=style==='illustration'?o.userData.illustration:o.userData.original;});$('#shading').textContent=style==='illustration'?'Illustration':'Studio lighting';invalidate();};
 document.addEventListener('visibilitychange',()=>{if(!document.hidden)invalidate();});
 

@@ -4,8 +4,16 @@ import json,datetime,argparse,shutil
 from io_helpers import atomic_copy
 ROOT=Path(__file__).resolve().parents[1];OUT=Path('/build')/ROOT.name;PREVIEW=ROOT/'preview'
 p=argparse.ArgumentParser();p.add_argument('--revision',required=True);p.add_argument('--score',type=int);p.add_argument('--title',required=True);p.add_argument('--notes',required=True);p.add_argument('--review',action='store_true');a=p.parse_args()
+previous=json.loads((PREVIEW/'status.json').read_text())
+previous_views={Path(f['url']).stem.rsplit('_',1)[-1]:f.get('revision','unknown') for f in previous.get('renders',[])}
+staged_views={}
 pending=OUT/'pending-preview'
-if pending.exists():
+if pending.exists() and a.review:
+    staged_stats=pending/'model_stats.json'
+    if not staged_stats.exists() or json.loads(staged_stats.read_text()).get('revision')!=a.revision:
+        raise SystemExit('Refusing to publish missing or mismatched staged model revision')
+    metadata=pending/'render_versions.json'
+    if metadata.exists():staged_views=json.loads(metadata.read_text())
     for source in pending.iterdir():
         if source.is_file():atomic_copy(source,PREVIEW/'assets'/source.name)
 status_path=PREVIEW/'status.json';d=json.loads(status_path.read_text());now=datetime.datetime.now(datetime.timezone.utc).isoformat(timespec='seconds')
@@ -25,8 +33,7 @@ for view,label in [('front','Front silhouette'),('quarter','Three-quarter'),('ba
 
 for item in renders:
     view=Path(item['url']).stem.rsplit('_',1)[-1]
-    versions=list((ROOT/'renders/review').glob('R*-'+view+'.png'))
-    if versions:item['revision']=max(versions,key=lambda p:int(p.stem.split('-')[0][1:])).stem.split('-')[0]
+    item['revision']=staged_views.get(view,previous_views.get(view,'unknown'))
 web=PREVIEW/'assets'/(ROOT.name+'_web.glb')
 if web.exists():
     files.insert(0,dict(label='Optimized interactive model · GLB',url='assets/'+web.name,size=f'{web.stat().st_size/1048576:.1f} MB',path=str(web)))
@@ -35,6 +42,7 @@ for name,label in [('validation.json','Model validation'),('browser_validation.j
     f=PREVIEW/'assets'/name
     if f.exists():files.append(dict(label=label,url='assets/'+name,size='JSON',path=str(f)))
 renders.sort(key=lambda item:(-int(item.get('revision','R00')[1:]),0 if 'front.png' in item['url'] else 1))
+files.append(dict(label='Render studies and rejected trials',url='studies/index.html',size='4 studies',path=str(PREVIEW/'studies/index.html')))
 d['files']=files;d['renders']=renders
 history=PREVIEW/'history';history.mkdir(exist_ok=True)
 if a.review:

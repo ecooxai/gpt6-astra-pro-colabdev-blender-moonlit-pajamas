@@ -19,8 +19,8 @@ for(const [name,width,height] of [['desktop',1440,1000],['mobile',390,844]]){
  await page.evaluate(async()=>{for(const image of document.querySelectorAll('#renders img')){image.loading='eager';try{await image.decode();}catch{}}});
  await page.evaluate(()=>scrollTo(0,document.body.scrollHeight));await page.waitForTimeout(500);const c=await page.evaluate(()=>window.__renderFrames);await page.waitForTimeout(1000);const d=await page.evaluate(()=>window.__renderFrames);
  await page.evaluate(()=>scrollTo(0,0));await page.screenshot({path:'renders/review/ui-'+name+'.png',fullPage:true});
- const state=await page.evaluate(()=>({ready:window.__modelReady,triangles:window.__modelTriangles,revision:document.querySelector('#revision').textContent,overflow:document.documentElement.scrollWidth>innerWidth,galleryImages:[...document.querySelectorAll('#renders img')].filter(i=>i.naturalWidth>0).length,artifactLinks:document.querySelectorAll('#downloads a').length}));
- const result={device:name,...state,idleFrameDelta:b-a,offscreenFrameDelta:d-c,result:state.ready&&!state.overflow&&d-c===0?'PASS':'FAIL'};report.push(result);console.log(JSON.stringify(result));await page.close();
+ const state=await page.evaluate(()=>({ready:window.__modelReady,triangles:window.__modelTriangles,drawCalls:window.__drawCalls,geometryCount:window.__geometryCount,revision:document.querySelector('#revision').textContent,overflow:document.documentElement.scrollWidth>innerWidth,galleryImages:[...document.querySelectorAll('#renders img')].filter(i=>i.naturalWidth>0).length,artifactLinks:document.querySelectorAll('#downloads a').length}));
+ const result={device:name,...state,idleFrameDelta:b-a,offscreenFrameDelta:d-c,result:state.ready&&!state.overflow&&d-c===0&&state.galleryImages===8&&state.drawCalls<=48?'PASS':'FAIL'};report.push(result);console.log(JSON.stringify(result));await page.close();
 }
 }finally{await browser.close();}
 const out={testedAt:new Date().toISOString(),report,errors,result:errors.length||report.some(r=>r.result==='FAIL')?'FAIL':'PASS'};

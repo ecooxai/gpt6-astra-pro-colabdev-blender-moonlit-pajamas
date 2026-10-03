@@ -52,6 +52,8 @@ def finish(root,out,args,legs):
         scene.render.resolution_y=1260 if args.quality=='draft' else 2100
         if view in ['face','hand','hand_side','grip','feet']:scene.render.resolution_y=scene.render.resolution_x
     camera_view('front')
+    from render_ink import install as install_ink
+    install_ink(scene.render.resolution_x/720)
     scene['author']='GPT-6 Astra Pro / MCP Colabdev / Blender';scene['source']='Entirely original procedural geometry and authored textures'
     scene['revision']=args.revision
     scene['source_commit']=subprocess.check_output(['git','rev-parse','HEAD'],cwd=root,text=True).strip()
