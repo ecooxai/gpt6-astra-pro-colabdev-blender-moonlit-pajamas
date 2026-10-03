@@ -1,0 +1,7 @@
+{
+  "completed": 26000,
+  "requested": 26000,
+  "stage": "completed previously; selected pose audited in R28",
+  "running": false,
+  "provenance": "Count recovered from committed contact_pose_config.json. Geometry candidate tests are not visual build-and-review iterations."
+}

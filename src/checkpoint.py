@@ -18,6 +18,13 @@ if __name__=='__main__':
     print('ARCHIVE',str(dest),dest.stat().st_size,'COMMIT',commit)
     if a.deploy:
         pages=OUT/'pages-deploy';pages.mkdir(parents=True,exist_ok=True)
+        if not (pages/'.git').exists():
+            if any(pages.iterdir()):raise RuntimeError('Deployment folder is not an empty Git checkout')
+            remote=run(['git','remote','get-url','origin'])
+            run(['git','clone','--depth','1','--single-branch','--branch','gh-pages',remote,str(pages)])
+            for key in ['user.name','user.email']:
+                value=run(['git','config',key]);run(['git','config',key,value],pages)
+        else:run(['git','pull','--ff-only','origin','gh-pages'],pages)
         with zipfile.ZipFile(dest) as archive:
             prefix=ROOT.name+'/preview/'
             for info in archive.infolist():

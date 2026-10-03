@@ -1,0 +1,19 @@
+{
+  "revision": "R28",
+  "result": "PASS",
+  "contact_center": [
+    -0.5746071338653564,
+    0.03236221894621849,
+    6.4644083976745605
+  ],
+  "closest_band_point": [
+    -0.5615347027778625,
+    0.03612963855266571,
+    6.462529182434082
+  ],
+  "pad_radius": 0.010006450000000002,
+  "triangle_surface_gap": 0.0037272080082774144,
+  "contact_candidate_tests": 26000,
+  "units": "Blender authoring units",
+  "scope": "Actual triangle-distance check for the authored index pad and headband. Other contacts and overall appearance still require inspection."
+}

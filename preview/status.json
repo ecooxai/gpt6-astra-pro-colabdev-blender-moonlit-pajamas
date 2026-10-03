@@ -1,23 +1,23 @@
 {
-  "revision": "R27",
-  "phase": "Body-aware collar fit and coherent hair depth",
-  "note": "Front, face, side and back visually inspected. Skin clipping is removed and the lapels now follow the torso in profile. Hair transitions deepen toward the ends; eyes and cotton folds are clearer. All eight inspection images were rendered from R27. Remaining gaps: illustrative line definition, hair grouping, pillow drape and browser draw-call cost.",
-  "iterations": 15,
-  "score": 92,
+  "revision": "R28",
+  "phase": "Illustrated finish and a lighter interactive model",
+  "note": "Actual front, three-quarter, back and grip renders inspected. Selective colored contours and the corrected cyan halo edge improve the illustration match. The browser copy now batches 199 source mesh objects into 21 material groups without changing the editable master. Remaining: softer cuff gathers and more reference-like pillow grip.",
+  "iterations": 16,
+  "score": 93,
   "projectPath": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas",
   "buildPath": "/build/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas",
-  "updated": "2026-10-03T20:08:34+00:00",
+  "updated": "2026-10-03T20:28:48+00:00",
   "files": [
     {
       "label": "Optimized interactive model \u00b7 GLB",
       "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_web.glb",
-      "size": "6.9 MB",
+      "size": "7.3 MB",
       "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_web.glb"
     },
     {
       "label": "Interactive 3D model \u00b7 GLB",
       "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas.glb",
-      "size": "10.6 MB",
+      "size": "10.9 MB",
       "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas.glb"
     },
     {
@@ -49,6 +49,18 @@
       "url": "assets/hand_audit.json",
       "size": "JSON",
       "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/hand_audit.json"
+    },
+    {
+      "label": "Render studies and rejected trials",
+      "url": "studies/index.html",
+      "size": "4 studies",
+      "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/studies/index.html"
+    },
+    {
+      "label": "Fingertip / headband contact audit",
+      "url": "assets/contact_surface_audit.json",
+      "size": "JSON",
+      "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/contact_surface_audit.json"
     }
   ],
   "renders": [
@@ -56,49 +68,49 @@
       "label": "Front silhouette",
       "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_front.png",
       "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_front.png",
-      "revision": "R27"
+      "revision": "R28"
     },
     {
       "label": "Three-quarter",
       "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_quarter.png",
       "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_quarter.png",
-      "revision": "R27"
+      "revision": "R28"
     },
     {
       "label": "Back construction",
       "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_back.png",
       "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_back.png",
-      "revision": "R27"
+      "revision": "R28"
     },
     {
       "label": "Face & expression",
       "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_face.png",
       "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_face.png",
-      "revision": "R27"
+      "revision": "R28"
     },
     {
       "label": "Side anatomy",
       "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_side.png",
       "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_side.png",
-      "revision": "R27"
+      "revision": "R28"
     },
     {
       "label": "Raised hand detail",
       "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_hand.png",
       "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_hand.png",
-      "revision": "R27"
+      "revision": "R28"
     },
     {
       "label": "Pillow grip detail",
       "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_grip.png",
       "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_grip.png",
-      "revision": "R27"
+      "revision": "R28"
     },
     {
       "label": "Slippers and ribbons",
       "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_feet.png",
       "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_feet.png",
-      "revision": "R27"
+      "revision": "R28"
     }
   ],
   "journal": [
@@ -236,10 +248,19 @@
       "time": "2026-10-03T20:08:34+00:00",
       "kind": "Subjective visual review",
       "image": "history/R27/index.html"
+    },
+    {
+      "revision": "R28",
+      "title": "Illustrated finish and a lighter interactive model",
+      "notes": "Actual front, three-quarter, back and grip renders inspected. Selective colored contours and the corrected cyan halo edge improve the illustration match. The browser copy now batches 199 source mesh objects into 21 material groups without changing the editable master. Remaining: softer cuff gathers and more reference-like pillow grip.",
+      "score": 93,
+      "time": "2026-10-03T20:28:48+00:00",
+      "kind": "Subjective visual review",
+      "image": "history/R28/index.html"
     }
   ],
   "model": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_web.glb",
-  "modelRevision": "R27",
+  "modelRevision": "R28",
   "recoveryNote": "R07\u2013R17 were reviewed before an earlier Colab rollback but their images and source were lost. Retained-pass count includes only entries with preserved artifacts.",
   "requestedIterations": 20000,
   "requestedScore": 95,
