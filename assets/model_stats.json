@@ -1,7 +1,7 @@
 {
-  "revision": "R19",
-  "triangles": 608272,
-  "objects": 162,
+  "revision": "R20",
+  "triangles": 542952,
+  "objects": 168,
   "legs": {
     "front": {
       "hip": [
@@ -41,5 +41,7 @@
   "upper_leg_length": 1.36,
   "lower_leg_length": 1.83,
   "digits_per_hand": 5,
-  "asset_origin": "All geometry and textures authored from scratch"
+  "asset_origin": "All geometry and textures authored from scratch",
+  "web_triangles": 333645,
+  "web_bytes": 7130968
 }

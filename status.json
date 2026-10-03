@@ -1,24 +1,36 @@
 {
-  "revision": "R19",
-  "phase": "Reconstructed proportions, hands and soft pajama details",
-  "note": "Actual front, face, side and grip renders reviewed. Matched leg lengths and a higher knee line improve the pose; the original print and pocket have been rebuilt. Remaining defects: blunt side-hair endings, collar intersections, a wrist crease and underspecified slipper bows. This is a recovery checkpoint, not the 95/100 target.",
-  "iterations": 7,
-  "score": 84,
+  "revision": "R20",
+  "phase": "Continuous wrists, cleaned collar and folded slipper bows",
+  "note": "Reviewed actual front, portrait, grip and slipper renders. The wrist cap crease is removed; the hair ends are pointed and the collar no longer intersects the shoulder patches. Slipper ribbons are real folded meshes. Remaining work: the raised-hand gesture, cloth drape, collar asymmetry, small toe-cap openings, and closer head proportions. The 95/100 target is not yet met.",
+  "iterations": 8,
+  "score": 87,
   "projectPath": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas",
   "buildPath": "/build/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas",
-  "updated": "2026-10-03T15:15:31+00:00",
+  "updated": "2026-10-03T15:30:15+00:00",
   "files": [
+    {
+      "label": "Optimized interactive model \u00b7 GLB",
+      "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_web.glb",
+      "size": "6.8 MB",
+      "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_web.glb"
+    },
     {
       "label": "Interactive 3D model \u00b7 GLB",
       "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas.glb",
-      "size": "11.8 MB",
+      "size": "10.5 MB",
       "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas.glb"
     },
     {
       "label": "Editable Blender source \u00b7 BLEND",
       "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas.blend",
-      "size": "18.0 MB",
+      "size": "17.9 MB",
       "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas.blend"
+    },
+    {
+      "label": "Desktop / mobile test report",
+      "url": "assets/browser_validation.json",
+      "size": "JSON",
+      "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/browser_validation.json"
     }
   ],
   "renders": [
@@ -26,13 +38,31 @@
       "label": "Front silhouette",
       "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_front.png",
       "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_front.png",
-      "revision": "R19"
+      "revision": "R20"
     },
     {
-      "label": "Three-quarter",
-      "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_quarter.png",
-      "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_quarter.png",
-      "revision": "R03"
+      "label": "Face & expression",
+      "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_face.png",
+      "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_face.png",
+      "revision": "R20"
+    },
+    {
+      "label": "Raised hand detail",
+      "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_hand.png",
+      "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_hand.png",
+      "revision": "R20"
+    },
+    {
+      "label": "Pillow grip detail",
+      "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_grip.png",
+      "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_grip.png",
+      "revision": "R20"
+    },
+    {
+      "label": "Slippers and ribbons",
+      "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_feet.png",
+      "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_feet.png",
+      "revision": "R20"
     },
     {
       "label": "Back construction",
@@ -41,16 +71,16 @@
       "revision": "R19"
     },
     {
-      "label": "Face & expression",
-      "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_face.png",
-      "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_face.png",
-      "revision": "R19"
-    },
-    {
       "label": "Side anatomy",
       "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_side.png",
       "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_side.png",
       "revision": "R19"
+    },
+    {
+      "label": "Three-quarter",
+      "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_quarter.png",
+      "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_quarter.png",
+      "revision": "R03"
     }
   ],
   "journal": [
@@ -116,10 +146,19 @@
       "time": "2026-10-03T15:15:31+00:00",
       "kind": "Subjective visual review",
       "image": "history/R19-front.png"
+    },
+    {
+      "revision": "R20",
+      "title": "Continuous wrists, cleaned collar and folded slipper bows",
+      "notes": "Reviewed actual front, portrait, grip and slipper renders. The wrist cap crease is removed; the hair ends are pointed and the collar no longer intersects the shoulder patches. Slipper ribbons are real folded meshes. Remaining work: the raised-hand gesture, cloth drape, collar asymmetry, small toe-cap openings, and closer head proportions. The 95/100 target is not yet met.",
+      "score": 87,
+      "time": "2026-10-03T15:30:15+00:00",
+      "kind": "Subjective visual review",
+      "image": "history/R20-front.png"
     }
   ],
-  "model": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas.glb",
-  "modelRevision": "R19",
+  "model": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_web.glb",
+  "modelRevision": "R20",
   "recoveryNote": "R07\u2013R17 were reviewed before an earlier Colab rollback but their images and source were lost. Retained-pass count includes only entries with preserved artifacts.",
   "requestedIterations": 20000,
   "requestedScore": 95
