@@ -37,5 +37,6 @@ for name,pts,r in fingers:
     centers.append(np.asarray([warp('Body_raised_arm',p) for p in ps],dtype=float));radii.append(rs);names.append(name)
 pivot=np.asarray(warp('Body_raised_arm',Vector((-.69,-.20,6.02))),dtype=float)
 meta={'revision':bpy.context.scene.get('revision'),'source_commit':bpy.context.scene.get('source_commit'),'finger_names':names,'pivot':pivot.tolist(),'scope':'Generated Blender geometry only; original reference pixels are not inputs.'}
-np.savez_compressed(OUT/'input.npz',hand=hand,hand_normals=hand_normals,edges=edges,band=band,band_normals=band_normals,head=head,head_normals=head_normals,centers=np.stack(centers),radii=np.asarray(radii),pivot=pivot,metadata=np.asarray(json.dumps(meta)))
+elbow=np.asarray(warp('Body_raised_arm',Vector((-1.26,-.055,5.35))),dtype=float)
+np.savez_compressed(OUT/'input.npz',elbow=elbow,hand=hand,hand_normals=hand_normals,edges=edges,band=band,band_normals=band_normals,head=head,head_normals=head_normals,centers=np.stack(centers),radii=np.asarray(radii),pivot=pivot,metadata=np.asarray(json.dumps(meta)))
 print('CONTACT_DATASET',json.dumps({'revision':meta['revision'],'hand_vertices':len(hand),'band_vertices':len(band),'head_vertices':len(head),'pivot':pivot.tolist(),'path':str(OUT/'input.npz')}))
