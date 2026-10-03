@@ -1,5 +1,5 @@
 {
-  "revision": "R24",
+  "revision": "R31",
   "result": "PASS",
   "hands": [
     {
@@ -14,9 +14,9 @@
     },
     {
       "object": "Body_relaxed_arm_five_fingers",
-      "vertices": 54216,
+      "vertices": 54614,
       "components": [
-        54216
+        54614
       ],
       "boundary_edges": 0,
       "nonmanifold_edges": 0,

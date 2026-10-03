@@ -3,3 +3,5 @@
 #shading{margin-left:auto}.file-path{overflow-wrap:anywhere}#canvas[hidden],#hero-render[hidden]{display:none!important}
 
 @media(max-width:600px){.view-controls{flex-wrap:wrap;gap:8px}.view-controls>div{width:100%;display:flex;justify-content:space-between}.view-controls button{min-height:34px;font-size:11px}.journal-entry p{font-size:12px;line-height:1.65}}
+
+.contact-progress{font-size:11px;line-height:1.65;color:#b5abd9;border-top:1px solid #30303e;padding-top:12px;margin-top:15px}

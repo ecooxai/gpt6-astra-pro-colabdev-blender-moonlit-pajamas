@@ -1,14 +1,16 @@
 {
-  "testedAt": "2026-10-03T16:19:05.155Z",
+  "testedAt": "2026-10-03T21:35:11.988Z",
   "report": [
     {
       "device": "desktop",
       "ready": true,
-      "triangles": 330321,
-      "revision": "R24",
+      "triangles": 354552,
+      "drawCalls": 26,
+      "geometryCount": 26,
+      "revision": "R31",
       "overflow": false,
-      "galleryImages": 8,
-      "artifactLinks": 7,
+      "galleryImages": 11,
+      "artifactLinks": 10,
       "idleFrameDelta": 0,
       "offscreenFrameDelta": 0,
       "result": "PASS"
@@ -16,11 +18,13 @@
     {
       "device": "mobile",
       "ready": true,
-      "triangles": 330321,
-      "revision": "R24",
+      "triangles": 354552,
+      "drawCalls": 26,
+      "geometryCount": 26,
+      "revision": "R31",
       "overflow": false,
-      "galleryImages": 8,
-      "artifactLinks": 7,
+      "galleryImages": 11,
+      "artifactLinks": 10,
       "idleFrameDelta": 0,
       "offscreenFrameDelta": 0,
       "result": "PASS"
