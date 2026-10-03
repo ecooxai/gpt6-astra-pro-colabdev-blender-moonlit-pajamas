@@ -1,0 +1,27 @@
+{
+  "revision": "R21",
+  "result": "PASS",
+  "hands": [
+    {
+      "object": "Body_raised_arm_five_fingers",
+      "vertices": 51520,
+      "components": [
+        51520
+      ],
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "result": "PASS"
+    },
+    {
+      "object": "Body_relaxed_arm_five_fingers",
+      "vertices": 54216,
+      "components": [
+        54216
+      ],
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "result": "PASS"
+    }
+  ],
+  "scope": "Surface connectivity and closedness, not a claim that anatomy or pose is perfect."
+}
