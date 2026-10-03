@@ -1,0 +1,2 @@
+# Older-snapshot garment trial T01
+The local runtime initially contained R21. A garment trial was built as R22 before fetching revealed remote R24/R25 work. Its source is preserved on branch gpt6-astra-pro_mcp-colabdev_likeness-r22. The actual front render was visually reviewed at 88/100: longer sleeve and curved tails improve drape, but the blue neckline intrusion remains. It is not the historical production R22, and must not replace that review. Keep trial distinct from production iterations.

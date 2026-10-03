@@ -1,0 +1,193 @@
+{
+  "revision": "R21",
+  "phase": "Refined pose, collar asymmetry and closed slippers",
+  "note": "Reviewed actual front, back and three-quarter views. The elbow height and garment asymmetry are closer to the reference; slippers have closed toe caps, and both complete hand/arm meshes pass the one-component, closed-surface audit. Remaining priorities are the raised-hand silhouette, shirt/sleeve hem proportions, and softer transitions at the back-hair roots. Target 95/100 remains unmet.",
+  "iterations": 9,
+  "score": 88,
+  "projectPath": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas",
+  "buildPath": "/build/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas",
+  "updated": "2026-10-03T15:44:24+00:00",
+  "files": [
+    {
+      "label": "Optimized interactive model \u00b7 GLB",
+      "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_web.glb",
+      "size": "6.8 MB",
+      "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_web.glb"
+    },
+    {
+      "label": "Interactive 3D model \u00b7 GLB",
+      "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas.glb",
+      "size": "10.4 MB",
+      "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas.glb"
+    },
+    {
+      "label": "Editable Blender source \u00b7 BLEND",
+      "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas.blend",
+      "size": "17.6 MB",
+      "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas.blend"
+    },
+    {
+      "label": "Model validation",
+      "url": "assets/validation.json",
+      "size": "JSON",
+      "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/validation.json"
+    },
+    {
+      "label": "Desktop / mobile test report",
+      "url": "assets/browser_validation.json",
+      "size": "JSON",
+      "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/browser_validation.json"
+    },
+    {
+      "label": "Hand surface audit",
+      "url": "assets/hand_audit.json",
+      "size": "JSON",
+      "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/hand_audit.json"
+    },
+    {
+      "label": "Complete source and model \u00b7 ZIP",
+      "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas.zip",
+      "size": "52.5 MB",
+      "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas.zip"
+    }
+  ],
+  "renders": [
+    {
+      "label": "Front silhouette",
+      "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_front.png",
+      "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_front.png",
+      "revision": "R21"
+    },
+    {
+      "label": "Three-quarter",
+      "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_quarter.png",
+      "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_quarter.png",
+      "revision": "R21"
+    },
+    {
+      "label": "Back construction",
+      "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_back.png",
+      "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_back.png",
+      "revision": "R21"
+    },
+    {
+      "label": "Face & expression",
+      "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_face.png",
+      "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_face.png",
+      "revision": "R21"
+    },
+    {
+      "label": "Side anatomy",
+      "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_side.png",
+      "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_side.png",
+      "revision": "R21"
+    },
+    {
+      "label": "Raised hand detail",
+      "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_hand.png",
+      "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_hand.png",
+      "revision": "R20"
+    },
+    {
+      "label": "Pillow grip detail",
+      "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_grip.png",
+      "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_grip.png",
+      "revision": "R20"
+    },
+    {
+      "label": "Slippers and ribbons",
+      "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_feet.png",
+      "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_feet.png",
+      "revision": "R20"
+    }
+  ],
+  "journal": [
+    {
+      "revision": "R01",
+      "title": "First assembled model: lighting correction needed",
+      "notes": "The complete original model renders and exports. Visual review found severe highlight clipping, one eye partly obscured by the fringe, and a cylindrical garment silhouette. The next pass corrects shading and opens both eyes before judging finer detail.",
+      "score": 40,
+      "time": "2026-10-03T11:15:34+00:00",
+      "kind": "Subjective visual review",
+      "image": "history/R01/index.html"
+    },
+    {
+      "revision": "R02",
+      "title": "Colors restored; both eyes readable",
+      "notes": "Bounded cel illumination restores the lavender hair and original cat print. Both eyes are visible. Close inspection reveals a hair-cap intersection in the forehead opening, an overly rounded collar, stiff shirt shaping, and insufficiently asymmetric back hair. These are the next geometry corrections.",
+      "score": 62,
+      "time": "2026-10-03T11:21:16+00:00",
+      "kind": "Subjective visual review",
+      "image": "history/R02/index.html"
+    },
+    {
+      "revision": "R03",
+      "title": "Five-view inspection: anatomy and garment fit",
+      "notes": "The face, proportions, and collar are closer. Side and back checks exposed overly sharp knee bends, thighs intersecting the shorts, visible sleeve-root gaps, and abrupt back-hair roots. The next pass rebuilds rounded knees and fits the shorts to the actual posed thighs.",
+      "score": 65,
+      "time": "2026-10-03T11:41:12+00:00",
+      "kind": "Subjective visual review",
+      "image": "history/R03/index.html"
+    },
+    {
+      "revision": "R04",
+      "title": "Rounded knees; fitted shorts",
+      "notes": "The legs retain matched segment lengths, the knee transitions are rounded in profile, and the thighs stay inside the shorts. Remaining priorities are the visible back-hair roots, side-scalp coverage, sleeve joins, and a softer pillow silhouette.",
+      "score": 74,
+      "time": "2026-10-03T11:47:23+00:00",
+      "kind": "Subjective visual review",
+      "image": "history/R04/index.html"
+    },
+    {
+      "revision": "R05",
+      "title": "R05 reviewed: hair and profile corrections next",
+      "notes": "Reviewed front, side, back, and face. The model is recognizable, with rounded equal-length legs and original clothing. Side-scalp gaps, abrupt back-hair roots, a squared collar, and stiff raised fingers remain visible.",
+      "score": 75,
+      "time": "2026-10-03T12:02:08+00:00",
+      "kind": "Subjective visual review",
+      "image": "history/R05/index.html"
+    },
+    {
+      "revision": "R06",
+      "title": "Crown-rooted hair and quieter expression",
+      "notes": "Reviewed actual front, side, and back renders. Back tresses now flow from the crown and the eyelids better match the quiet reference expression. The side forehead still escapes the scalp shell, and the collar became too scalloped; these need targeted geometry fixes, not a higher claimed score.",
+      "score": 78,
+      "time": "2026-10-03T12:07:25+00:00",
+      "kind": "Subjective visual review",
+      "image": "history/R06/index.html"
+    },
+    {
+      "revision": "R19",
+      "title": "Reconstructed proportions, hands and soft pajama details",
+      "notes": "Actual front, face, side and grip renders reviewed. Matched leg lengths and a higher knee line improve the pose; the original print and pocket have been rebuilt. Remaining defects: blunt side-hair endings, collar intersections, a wrist crease and underspecified slipper bows. This is a recovery checkpoint, not the 95/100 target.",
+      "score": 84,
+      "time": "2026-10-03T15:15:31+00:00",
+      "kind": "Subjective visual review",
+      "image": "history/R19/index.html"
+    },
+    {
+      "revision": "R20",
+      "title": "Continuous wrists, cleaned collar and folded slipper bows",
+      "notes": "Reviewed actual front, portrait, grip and slipper renders. The wrist cap crease is removed; the hair ends are pointed and the collar no longer intersects the shoulder patches. Slipper ribbons are real folded meshes. Remaining work: the raised-hand gesture, cloth drape, collar asymmetry, small toe-cap openings, and closer head proportions. The 95/100 target is not yet met.",
+      "score": 87,
+      "time": "2026-10-03T15:30:15+00:00",
+      "kind": "Subjective visual review",
+      "image": "history/R20/index.html"
+    },
+    {
+      "revision": "R21",
+      "title": "Refined pose, collar asymmetry and closed slippers",
+      "notes": "Reviewed actual front, back and three-quarter views. The elbow height and garment asymmetry are closer to the reference; slippers have closed toe caps, and both complete hand/arm meshes pass the one-component, closed-surface audit. Remaining priorities are the raised-hand silhouette, shirt/sleeve hem proportions, and softer transitions at the back-hair roots. Target 95/100 remains unmet.",
+      "score": 88,
+      "time": "2026-10-03T15:44:24+00:00",
+      "kind": "Subjective visual review",
+      "image": "history/R21/index.html"
+    }
+  ],
+  "model": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_web.glb",
+  "modelRevision": "R21",
+  "recoveryNote": "R07\u2013R17 were reviewed before an earlier Colab rollback but their images and source were lost. Retained-pass count includes only entries with preserved artifacts.",
+  "requestedIterations": 20000,
+  "requestedScore": 95,
+  "sourceCommit": "6eadf02ce598d4f8d297550f682223e0b72a88a1"
+}
