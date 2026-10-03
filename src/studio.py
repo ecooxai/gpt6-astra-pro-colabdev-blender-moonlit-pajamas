@@ -9,12 +9,12 @@ def setup(quality):
     s.render.image_settings.file_format='PNG';s.render.image_settings.color_mode='RGBA'
     s.render.resolution_percentage=100
     try:
-        s.view_settings.view_transform='Standard';s.view_settings.look='Medium High Contrast'
+        s.view_settings.view_transform='Standard';s.view_settings.look='None'
     except Exception:pass
     w=bpy.data.worlds.new('Soft neutral studio');w.use_nodes=True
     w.node_tree.nodes['Background'].inputs[0].default_value=(.68,.72,.82,1)
-    w.node_tree.nodes['Background'].inputs[1].default_value=.45;s.world=w
-    for name,pos,energy,size,color in [('Key',(-4,-6,9),1400,5,(1,.92,.88)),('Fill',(4,-3,6),650,4,(.82,.89,1)),('Rim',(1,4,8),1700,4,(.88,.83,1))]:
+    w.node_tree.nodes['Background'].inputs[1].default_value=.16;s.world=w
+    for name,pos,energy,size,color in [('Key',(-4,-6,9),620,5,(1,.92,.88)),('Fill',(4,-3,6),170,4,(.82,.89,1)),('Rim',(1,4,8),450,4,(.88,.83,1))]:
         d=bpy.data.lights.new(name,'AREA');d.energy=energy;d.shape='DISK';d.size=size;d.color=color
         o=bpy.data.objects.new(name,d);s.collection.objects.link(o);o.location=pos
         o.rotation_euler=(Vector((0,0,3.7))-o.location).to_track_quat('-Z','Y').to_euler()
@@ -30,13 +30,14 @@ def finish(root,out,args,legs):
     character=[o for o in bpy.context.scene.objects if o.type in {'MESH','CURVE','EMPTY'}]
     for ob in character:normals(ob)
     scene,cam=setup(args.quality)
+    import toon;toon.install()
     assets=root/'preview/assets';assets.mkdir(exist_ok=True)
     views=args.views.split(',')
     if 'all' in views:views=['front','quarter','side','back','face']
     def camera_view(view):
         target=Vector((.12,0,3.68));cam.data.ortho_scale=7.68
-        positions={'front':(.12,-18,4.03),'quarter':(8,-16,4.8),'side':(18,0,4.1),'back':(.12,18,4.08),'face':(0,-12,6.28)}
-        if view=='face':target=Vector((0,0,6.21));cam.data.ortho_scale=1.93
+        positions={'front':(.12,-18,4.03),'quarter':(8,-16,4.8),'side':(18,0,4.1),'back':(.12,18,4.08),'face':(0,-12,6.44)}
+        if view=='face':target=Vector((0,0,6.39));cam.data.ortho_scale=2.05
         cam.location=positions[view];cam.rotation_euler=(target-cam.location).to_track_quat('-Z','Y').to_euler()
         scene.render.resolution_x=800 if args.quality=='draft' else 1200
         scene.render.resolution_y=1400 if args.quality=='draft' else 2100
@@ -51,6 +52,7 @@ def finish(root,out,args,legs):
         review=root/'renders/review';review.mkdir(parents=True,exist_ok=True);shutil.copy2(path,review/(args.revision+'-'+view+'.png'))
         print('RENDER_READY',view,str(path),flush=True)
     if not args.no_export:
+        toon.export_fallback()
         bpy.ops.object.select_all(action='DESELECT')
         selected=[o for o in character if o.type in {'MESH','CURVE'}]
         for o in selected:o.select_set(True)

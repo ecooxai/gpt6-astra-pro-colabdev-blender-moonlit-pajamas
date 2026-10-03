@@ -36,7 +36,7 @@ def build_clothes(M):
         t=i/nr
         for j in range(ns+1):
             a=2*pi*j/ns-pi;bottom=3.785+.045*cos(a);top=5.395-.43*exp(-(a/.32)**2);z=bottom+(top-bottom)*t
-            rx=.559+.061*(1-t)**3+.009*sin(t*pi);ry=.26+.035*(1-t)+.015*sin(t*pi)
+            rx=.49+.13*(1-t)**2+.065*t**6-.022*sin(t*pi);ry=.245+.045*(1-t)+.024*sin(t*pi)
             ripple=1+.013*sin(7*a+z*5)*(1-t)+.009*sin(12*a-z*4)
             x=.025*t+rx*sin(a)*ripple;y=.012-ry*cos(a)*ripple
             verts.append((x,y,z));uv.append((j/ns*2.9,z*.91))
@@ -56,13 +56,13 @@ def build_clothes(M):
     pants.append(loft('Clothes_short_waist',[(0,.03,3.42,.59,.291),(0,.025,3.67,.615,.305),(0,.02,3.86,.604,.294)],M['fabric'],sides=80,steps=4,uvscale=2.8))
     pants=union('Clothes_soft_pajama_shorts',pants,.019,4);box_uv(pants,.96)
     cuff('Clothes_left_gathered_cuff',-.29,M);cuff('Clothes_right_gathered_cuff',.29,M)
-    garment_details(M)
+    garment_details(M);close_shoulders(M)
 
 def garment_details(M):
     for sign in [-1,1]:
         boundary=[(sign*.14,-.135,5.46),(sign*.36,-.17,5.42),(sign*.48,-.185,5.30),(sign*.285,-.305,5.20),(sign*.35,-.265,5.055),(sign*.022,-.343,4.985),(sign*.16,-.267,5.315)]
-        ob,edge=panel('Clothes_white_lapel_'+str(sign),boundary,M['white'],bulge=.017,thickness=.014)
-        curve('Clothes_collar_piping_'+str(sign),edge[::4],M['piping'],.0045,cyclic=True)
+        ob,edge=flat_panel('Clothes_white_lapel_'+str(sign),boundary,M['white'],bulge=.017,thickness=.014)
+        crease('Clothes_collar_piping_'+str(sign),edge,M['piping'],.0045)
     line=[(.005,-.30,3.83),(-.012,-.302,4.11),(.011,-.295,4.43),(.014,-.29,4.72),(.008,-.293,4.995)]
     curve('Clothes_button_placket',line,M['white'],.017)
     curve('Clothes_placket_stitch',[(x+.022,y+.003,z) for x,y,z in line],M['piping'],.003)
@@ -70,7 +70,19 @@ def garment_details(M):
         x=.004*sin(z*7);y=-.318
         sphere('Clothes_pearl_button_'+str(i),(x,y,z),(.027,.012,.030),M['white'],segments=24,rings=16)
         for s in [-1,1]:sphere('Clothes_button_hole_'+str(i)+'_'+str(s),(x+s*.008,y-.012,z),(.0035,.002,.0045),M['sole'],segments=12,rings=8)
-    border=[(.20,-.29,4.65),(.49,-.173,4.63),(.46,-.185,4.31),(.28,-.272,4.30),(.20,-.298,4.38)]
+    border=[(.20,-.29,4.65),(.41,-.173,4.63),(.40,-.185,4.31),(.28,-.272,4.30),(.20,-.298,4.38)]
     ob,edge=panel('Clothes_chest_pocket',border,M['fabric'],bulge=.012,thickness=.010,uvscale=.96)
     curve('Clothes_pocket_stitch',edge[::4],M['piping'],.0033,cyclic=True)
     curve('Clothes_pocket_opening',border[:2],M['white'],.010)
+
+def close_shoulders(M):
+    verts=[];faces=[];uv=[];n=128
+    for i in range(n+1):
+        a=2*pi*i/n-pi;z=5.395-.43*exp(-(a/.32)**2)
+        r=1+.009*sin(12*a-z*4)
+        outer=(.025+.555*sin(a)*r,.012-.245*cos(a)*r,z)
+        inner=(.008+.14*sin(a),.012-.135*cos(a),5.435)
+        verts.extend([outer,inner]);uv.extend([(outer[0],outer[2]),(inner[0],inner[2])])
+    for i in range(n):
+        if abs(2*pi*(i+.5)/n-pi)>.36:faces.append((2*i,2*i+2,2*i+3,2*i+1))
+    mesh('Clothes_closed_shoulders',verts,faces,M['fabric'],uv)

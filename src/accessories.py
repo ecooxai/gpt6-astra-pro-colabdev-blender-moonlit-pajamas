@@ -51,7 +51,7 @@ def build_headwear(M):
     glow=curve('Accessory_cyan_halo_inlay',pts,M['haloBlue'],.004,cyclic=True);glow.location=halo.location;glow.rotation_euler=halo.rotation_euler
 
 def build_slippers(M,legs):
-    for label,base in [('front',.035),('rear',.20)]:
+    for label,base in [('front',.035),('rear',.38)]:
         ankle=Vector(legs[label]['ankle']);cx=ankle.x;cy=ankle.y-.13
         sphere('Body_'+label+'_foot',(cx,ankle.y-.06,base+.132),(.097,.232,.091),M['skin'])
         sections=[(cx,cy,base,.152,.25),(cx,cy,base+.021,.176,.29),(cx,cy,base+.058,.179,.294),(cx,cy,base+.076,.166,.28)]
@@ -74,5 +74,5 @@ def build_slippers(M,legs):
         sol=ob.modifiers.new('Plush upper thickness','SOLIDIFY');sol.thickness=.021
         edge=verts[-(ns+1):];curve('Accessory_'+label+'_slipper_opening',edge[::3],M['white'],.012)
         for s in [-1,1]:
-            sphere('Accessory_'+label+'_pink_bow_loop_'+str(s),(cx+s*.052,cy-.010,base+.257),(.052,.035,.019),M['pink'],rotation=(0,0,s*.27))
-        sphere('Accessory_'+label+'_pink_bow_knot',(cx,cy-.011,base+.267),(.020,.026,.017),M['pinkLight'],segments=24,rings=16)
+            sphere('Accessory_'+label+'_pink_bow_loop_'+str(s),(cx+s*.052,cy-.130,base+.275),(.052,.035,.027),M['pink'],rotation=(0,0,s*.27))
+        sphere('Accessory_'+label+'_pink_bow_knot',(cx,cy-.131,base+.287),(.020,.026,.017),M['pinkLight'],segments=24,rings=16)

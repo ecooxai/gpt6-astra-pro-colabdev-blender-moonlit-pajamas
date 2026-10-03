@@ -1,13 +1,81 @@
 {
-  "revision": "R00",
-  "phase": "Building the first silhouette",
-  "note": "Blender is installed. Geometry, print designs, and textures are being created from scratch.",
-  "iterations": 0,
-  "score": null,
+  "revision": "R03",
+  "phase": "Five-view inspection: anatomy and garment fit",
+  "note": "The face, proportions, and collar are closer. Side and back checks exposed overly sharp knee bends, thighs intersecting the shorts, visible sleeve-root gaps, and abrupt back-hair roots. The next pass rebuilds rounded knees and fits the shorts to the actual posed thighs.",
+  "iterations": 3,
+  "score": 65,
   "projectPath": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas",
   "buildPath": "/build/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas",
-  "updated": "2026-10-03T10:33:19.158097+00:00",
-  "files": [],
-  "renders": [],
-  "journal": []
+  "updated": "2026-10-03T11:41:12+00:00",
+  "files": [
+    {
+      "label": "Interactive 3D model \u00b7 GLB",
+      "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas.glb",
+      "size": "8.8 MB",
+      "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas.glb"
+    },
+    {
+      "label": "Editable Blender source \u00b7 BLEND",
+      "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas.blend",
+      "size": "13.5 MB",
+      "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas.blend"
+    }
+  ],
+  "renders": [
+    {
+      "label": "Front silhouette",
+      "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_front.png",
+      "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_front.png"
+    },
+    {
+      "label": "Three-quarter",
+      "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_quarter.png",
+      "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_quarter.png"
+    },
+    {
+      "label": "Back construction",
+      "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_back.png",
+      "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_back.png"
+    },
+    {
+      "label": "Face & expression",
+      "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_face.png",
+      "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_face.png"
+    },
+    {
+      "label": "Side anatomy",
+      "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_side.png",
+      "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_side.png"
+    }
+  ],
+  "journal": [
+    {
+      "revision": "R01",
+      "title": "First assembled model: lighting correction needed",
+      "notes": "The complete original model renders and exports. Visual review found severe highlight clipping, one eye partly obscured by the fringe, and a cylindrical garment silhouette. The next pass corrects shading and opens both eyes before judging finer detail.",
+      "score": 40,
+      "time": "2026-10-03T11:15:34+00:00",
+      "kind": "Subjective visual review",
+      "image": "history/R01-front.png"
+    },
+    {
+      "revision": "R02",
+      "title": "Colors restored; both eyes readable",
+      "notes": "Bounded cel illumination restores the lavender hair and original cat print. Both eyes are visible. Close inspection reveals a hair-cap intersection in the forehead opening, an overly rounded collar, stiff shirt shaping, and insufficiently asymmetric back hair. These are the next geometry corrections.",
+      "score": 62,
+      "time": "2026-10-03T11:21:16+00:00",
+      "kind": "Subjective visual review",
+      "image": "history/R02-front.png"
+    },
+    {
+      "revision": "R03",
+      "title": "Five-view inspection: anatomy and garment fit",
+      "notes": "The face, proportions, and collar are closer. Side and back checks exposed overly sharp knee bends, thighs intersecting the shorts, visible sleeve-root gaps, and abrupt back-hair roots. The next pass rebuilds rounded knees and fits the shorts to the actual posed thighs.",
+      "score": 65,
+      "time": "2026-10-03T11:41:12+00:00",
+      "kind": "Subjective visual review",
+      "image": "history/R03-front.png"
+    }
+  ],
+  "model": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas.glb"
 }

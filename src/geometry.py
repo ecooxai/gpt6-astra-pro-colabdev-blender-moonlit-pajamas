@@ -1,4 +1,4 @@
-import bpy, math
+import bpy, bmesh, math
 from mathutils import Vector
 from math import sin,cos,pi
 
@@ -112,7 +112,12 @@ def hair_lock(name,points,widths,depths,mat,normal=(0,-1,0),steps=8,sides=12,gro
 
 def union(name,objects,voxel=.015,smooth=3):
     bpy.ops.object.select_all(action='DESELECT')
-    for ob in objects:ob.select_set(True)
+    for ob in objects:
+        ob.select_set(True)
+        if ob.type=='MESH':
+            bm=bmesh.new();bm.from_mesh(ob.data)
+            bmesh.ops.remove_doubles(bm,verts=list(bm.verts),dist=.000001)
+            bmesh.ops.recalc_face_normals(bm,faces=list(bm.faces));bm.to_mesh(ob.data);bm.free()
     bpy.context.view_layer.objects.active=objects[0];bpy.ops.object.convert(target='MESH');bpy.ops.object.join();ob=bpy.context.object;ob.name=name
     rem=ob.modifiers.new('Continuous anatomical surface','REMESH');rem.mode='VOXEL';rem.voxel_size=voxel;rem.use_smooth_shade=True;bpy.ops.object.modifier_apply(modifier=rem.name)
     sm=ob.modifiers.new('Soft tissue relaxation','SMOOTH');sm.factor=.7;sm.iterations=smooth;bpy.ops.object.modifier_apply(modifier=sm.name)
@@ -129,3 +134,22 @@ def box_uv(ob,scale=1.0):
 
 def parent_keep(ob,parent):
     mx=ob.matrix_world.copy();ob.parent=parent;ob.matrix_world=mx
+
+def flat_panel(name,boundary,mat,bulge=0,thickness=.014,uvscale=1):
+    from mathutils.geometry import tessellate_polygon
+    points=[Vector(p) for p in boundary]
+    triangles=tessellate_polygon([points])
+    faces=[tuple(v if isinstance(v,int) else min(range(len(points)),key=lambda i:(points[i]-v).length_squared) for v in tri) for tri in triangles]
+    ob=mesh(name,points,faces,mat,[(p.x*uvscale,p.z*uvscale) for p in points])
+    if thickness:
+        solid=ob.modifiers.new('Sewn panel thickness','SOLIDIFY');solid.thickness=thickness
+        bevel=ob.modifiers.new('Soft fabric edge','BEVEL');bevel.width=.005;bevel.segments=3
+    return ob,points
+
+def crease(name,points,mat,radius=.004,cyclic=True):
+    cu=bpy.data.curves.new(name+'_curve','CURVE');cu.dimensions='3D';cu.bevel_depth=radius;cu.bevel_resolution=3
+    sp=cu.splines.new('POLY');sp.points.add(len(points)-1)
+    for p,co in zip(sp.points,points):p.co=(*co,1)
+    sp.use_cyclic_u=cyclic;ob=bpy.data.objects.new(name,cu)
+    bpy.context.collection.objects.link(ob);cu.materials.append(mat)
+    return ob

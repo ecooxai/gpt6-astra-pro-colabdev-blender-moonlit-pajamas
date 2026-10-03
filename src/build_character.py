@@ -33,7 +33,7 @@ bpy.context.scene['upper_leg_length']=L1;bpy.context.scene['lower_leg_length']=L
 LEG_DATA={}
 def knee_position(hip,ankle):
     v=ankle-hip;d=v.length;axis=v.normalized();along=(L1*L1-L2*L2+d*d)/(2*d);height=sqrt(max(0,L1*L1-along*along));pole=Vector((0,-1,0));pole=(pole-axis*pole.dot(axis)).normalized();return hip+axis*along+pole*height
-for label,hip,ankle in [('front',Vector((.25,.025,3.38)),Vector((-.025,-.18,.235))),('rear',Vector((-.26,.07,3.38)),Vector((-.29,.25,.40)))]:
+for label,hip,ankle in [('front',Vector((.25,.025,3.38)),Vector((-.025,-.18,.235))),('rear',Vector((-.26,.07,3.38)),Vector((-.29,.25,.58)))]:
     knee=knee_position(hip,ankle);sections=[]
     for t,rx,ry in [(0,.231,.217),(.18,.233,.207),(.45,.211,.181),(.76,.166,.153),(.95,.146,.14),(1,.144,.145)]:
         p=hip.lerp(knee,t);sections.append((*p,rx,ry))
@@ -50,7 +50,10 @@ from clothing import build_clothes
 from accessories import build_pillow,build_headwear,build_slippers
 build_hands(M,upper,lower);build_face(M);build_hair(M);build_clothes(M)
 build_pillow(M);build_headwear(M);build_slippers(M,LEG_DATA)
-bpy.ops.object.empty_add(location=(0,0,6.12));head_root=bpy.context.object;head_root.name='Character_head_pose'
+from pose import adjust_pose
+bpy.context.view_layer.update();adjust_pose()
+bpy.context.view_layer.update()
+bpy.ops.object.empty_add(location=(0,0,6.30));head_root=bpy.context.object;head_root.name='Character_head_pose'
 for ob in list(bpy.context.scene.objects):
     if ob.name.startswith(('Head_','HairTop_','HeadWear_')):parent_keep(ob,head_root)
 head_root.rotation_euler=(0,-.065,-.035)
