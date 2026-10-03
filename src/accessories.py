@@ -91,6 +91,7 @@ def build_slippers(M,legs):
         for i in range(len(ps)-1):
             for j in range(ns):
                 a=i*(ns+1)+j;faces.append((a,a+1,a+ns+2,a+ns+1))
+        faces.append(tuple(reversed(range(ns+1))))
         ob=mesh('Accessory_'+label+'_soft_slipper_upper',verts,faces,M['white'],uv)
         sol=ob.modifiers.new('Plush upper thickness','SOLIDIFY');sol.thickness=.021
         edge=verts[-(ns+1):];curve('Accessory_'+label+'_slipper_opening',edge[::3],M['white'],.012)

@@ -30,11 +30,11 @@ base=np.zeros((N,N,3),float);t=np.clip((Y+.75)/1.5,0,1)
 for k,(top,bottom) in enumerate(zip([48,34,93],[137,109,207])):base[:,:,k]=top+(bottom-top)*t
 stri=(np.sin(a*54+np.sin(a*17)*2)+np.sin(a*117+r*18))*(np.clip((r-.23)*1.3,0,1))*4
 base+=stri[:,:,None]
-limbus=np.clip((r-.78)/.18,0,1);base=base*(1-limbus[:,:,None]*.76)
+limbus=np.clip((r-.85)/.13,0,1);base=base*(1-limbus[:,:,None]*.76)
 blue=np.exp(-((X+.25)**2/.11+(Y-.62)**2/.08));base=base*(1-blue[:,:,None]*.5)+np.array([107,177,235])*blue[:,:,None]*.5
-pupil=(X/.25)**2+(Y/.45)**2<1;base[pupil]=[34,27,67];base[r>1]=[27,23,56]
+pupil=(X/.27)**2+(Y/.60)**2<1;base[pupil]=[34,27,67];base[r>1]=[27,23,56]
 ir=Image.fromarray(np.uint8(np.clip(base,0,255)),'RGB');di=ImageDraw.Draw(ir)
-di.ellipse((111,62,173,147),fill=(255,252,255));di.ellipse((290,335,317,364),fill=(225,249,255));di.ellipse((119,334,143,374),fill=(127,213,254));ir.save(OUT/'violet_iris_original.png')
+di.ellipse((111,62,173,147),fill=(255,252,255));di.ellipse((290,335,317,364),fill=(225,249,255));di.ellipse((119,334,143,374),fill=(127,213,254));di.polygon([(274,341),(292,356),(280,393),(269,373)],fill=(182,106,206));di.polygon([(141,346),(154,360),(147,393),(132,380)],fill=(109,190,239));ir.save(OUT/'violet_iris_original.png')
 N=1024;yy,xx=np.mgrid[0:N,0:N];u=xx/(N-1);v=1-yy/(N-1);skin=np.empty((N,N,3),float);skin[:]=[255,239,234]
 for c in [.385,.615]:
     w=np.exp(-((u-c)/.043)**2-((v-.27)/.068)**2)*.42;skin=skin*(1-w[:,:,None])+np.array([244,157,165])*w[:,:,None]

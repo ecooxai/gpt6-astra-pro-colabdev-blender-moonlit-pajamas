@@ -8,7 +8,7 @@ def digit(name,pts,r,M):
 def build_hands(M,raised,relaxed):
     # A single varying-section surface runs through each wrist: no arm/palm cap seam.
     bpy.data.objects.remove(raised,do_unlink=True)
-    raised=hair_lock('Body_raised_continuous',[(-.43,.025,5.31),(-.92,-.01,5.18),(-1.28,-.055,5.22),(-1.09,-.13,5.46),(-.88,-.17,5.75),(-.69,-.20,6.02),(-.710,-.235,6.09),(-.728,-.246,6.175)],
+    raised=hair_lock('Body_raised_continuous',[(-.43,.025,5.31),(-.92,-.01,5.29),(-1.26,-.055,5.35),(-1.09,-.13,5.55),(-.88,-.17,5.75),(-.69,-.20,6.02),(-.710,-.235,6.09),(-.728,-.246,6.175)],
         [.151,.143,.125,.12,.097,.061,.077,.066],[.151,.143,.125,.12,.097,.061,.046,.039],M['skin'],steps=10,sides=28)
     parts=[raised]
     fingers=[

@@ -42,7 +42,7 @@ for label,hip,ankle in [('front',Vector((.13,.025,3.38)),Vector((-.11,-.18,.235)
         p=knee.lerp(ankle,t);sections.append((*p,rx,ry))
     ob=rounded_leg(label,hip,knee,ankle,M['skin']);ob['upper_segment']=L1;ob['lower_segment']=L2;LEG_DATA[label]={'hip':list(hip),'knee':list(knee),'ankle':list(ankle)}
 # Raised arm and relaxed arm have curved elbow transitions, not stacked primitives.
-upper=tube('Body_raised_arm',[(-.43,.025,5.31),(-.92,-.01,5.18),(-1.28,-.055,5.22),(-1.09,-.13,5.46),(-.88,-.17,5.75),(-.69,-.20,6.02)],[.151,.143,.125,.12,.097,.061],M['skin'],sides=28,steps=8)
+upper=tube('Body_raised_arm',[(-.43,.025,5.31),(-.92,-.01,5.29),(-1.26,-.055,5.35),(-1.09,-.13,5.55),(-.88,-.17,5.75),(-.69,-.20,6.02)],[.151,.143,.125,.12,.097,.061],M['skin'],sides=28,steps=8)
 lower=tube('Body_relaxed_arm',[(.47,.025,5.25),(.56,-.015,4.70),(.55,-.04,4.21),(.63,-.12,3.74),(.78,-.16,3.29)],[.15,.137,.101,.111,.061],M['skin'],sides=28,steps=8)
 from anatomy import build_hands
 from face import build_face

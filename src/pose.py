@@ -1,19 +1,21 @@
 """Pose offsets shared by anatomy and garment surfaces; no image measurements."""
 import bpy
 from mathutils import Vector
+from math import sin,cos
 
 def adjust_pose():
     def warp(name,p):
         p=p.copy();z=p.z
-        if name.startswith(('Head_','HairTop_')):p.z+=.18;p.x*=.96
-        elif name.startswith('HeadWear_soft'):p.z+=.18;p.x*=.96
-        elif name.startswith('HeadWear_'):p.z=6.95+(z-6.85)*.85;p.x*=1.08
+        if name.startswith(('Head_','HairTop_')):p.z+=.18;p.x*=.90
+        elif name.startswith('HeadWear_soft'):p.z+=.18;p.x*=.90
+        elif name.startswith('HeadWear_'):p.z=6.95+(z-6.85)*.85;p.x*=1.15
         elif name.startswith('HairLong_'):
             p.x*=1-.04*max(0,min(1,(z-5.35)/1.3));p.z+=.18*max(0,min(1,(z-4.0)/2.6))
         elif name.startswith('Clothes_') and not any(t in name for t in ['short','cuff']):
             p.x-=.13*(1-max(0,min(1,(z-3.8)/1.6)));p.z=3.8+(z-3.8)*1.15
         elif name.startswith('Body_neck'):p.z=3.8+(z-3.8)*1.15
         elif name.startswith('Body_raised_arm'):
+            t=max(0,min(1,(z-6.01)/.17));angle=.55*t*t*(3-2*t);x=p.x+.71;y=p.y+.24;p.x=-.71+x*cos(angle)-y*sin(angle);p.y=-.24+x*sin(angle)+y*cos(angle)
             w=max(0,min(1,(z-5.8)/.22));p.y-=.12*w;p.x-=.008*w
             p.z+=.24-.1*max(0,min(1,(z-5.3)/.9))+.10*max(0,z-6.02)
         elif name.startswith('Body_relaxed_arm'):p.z=3.8+(z-3.8)*1.1+.17

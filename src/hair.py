@@ -37,9 +37,10 @@ def build_hair(M):
             pts=[(sign*.47,.13,5.99-i*.09),(sign*(.59+i*.025),.18,5.36-i*.1),
                  (sign*(.86+i*.05),.17,4.72-i*.15),(sign*(1.13-i*.16),.08,4.55-i*.22)]
             hair_lock('HairLong_side_wisp_'+str(sign)+'_'+str(i),pts,
-                      ([.018,.060,.038,.001] if sign<0 else [.035,.09,.075,.001]),
+                      ([.025,.085,.065,.001] if sign<0 else [.035,.09,.075,.001]),
                       ([.008,.022,.016,.001] if sign<0 else [.020,.037,.028,.001]),
                       M['hair' if i%2 else 'hairDark'],normal=(0,-1,0),groove_mat=M['hairInk'])
+    hair_lock('HairLong_flowing_outer_curl',[(.40,.20,6.22),(.56,.29,5.45),(.87,.27,4.97),(1.17,.19,4.64),(1.23,.12,4.31),(1.03,.12,4.07)],[.040,.12,.17,.13,.075,.001],[.016,.040,.060,.042,.024,.001],M['hair'],groove_mat=M['hairInk'])
     def lock(name,pts,widths,key='hair'):
         return hair_lock('HairTop_'+name,pts,widths,[min(.044,max(.002,w*.31)) for w in widths],M[key],groove_mat=M['hairInk'],sides=16)
     lock('left_outer_fringe',[(-.05,-.20,6.69),(-.31,-.32,6.46),(-.49,-.33,6.12),(-.50,-.345,5.85),(-.36,-.34,5.69)],[.085,.15,.15,.08,.002])
