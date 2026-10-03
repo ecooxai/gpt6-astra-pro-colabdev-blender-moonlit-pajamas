@@ -1,13 +1,13 @@
 {
-  "revision": "R23",
+  "revision": "R24",
   "result": "PASS",
   "exports": [
     {
       "file": "gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas.glb",
       "result": "PASS",
-      "bytes": 10939556,
-      "triangles": 536852,
-      "vertex_entries": 277569,
+      "bytes": 10943184,
+      "triangles": 536836,
+      "vertex_entries": 277529,
       "embedded_images": 5,
       "largest_meshes": [
         [
@@ -39,9 +39,9 @@
     {
       "file": "gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_web.glb",
       "result": "PASS",
-      "bytes": 7103700,
-      "triangles": 330337,
-      "vertex_entries": 173402,
+      "bytes": 7107328,
+      "triangles": 330321,
+      "vertex_entries": 173362,
       "embedded_images": 5,
       "largest_meshes": [
         [

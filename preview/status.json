@@ -1,12 +1,12 @@
 {
-  "revision": "R23",
-  "phase": "Shallow collar and clearer fingers; precise neckline seam next",
-  "note": "Reviewed actual front, back and hand renders. Unified back-hair color removes the abrupt striping, and the finger paths are now separated. The wider opening fixes the blue neckline intrusion but leaves a narrow gap beneath the lapels. The next pass matches the shirt cut edge directly to that seam. Overall score remains 88.",
-  "iterations": 11,
-  "score": 88,
+  "revision": "R24",
+  "phase": "Sewn neckline, natural collar support and consistent side profile",
+  "note": "Reviewed the front and side renders. The shirt cut edge now follows the underside of the lapels, removing both the blue intrusion and exposed seam gap. The pocket and placket remain fitted to the generated cloth. Remaining priorities are physical fingertip contact with the headband, cloth-fold shading, and finer illustrated hair definition. The visual target of 95 remains in progress.",
+  "iterations": 12,
+  "score": 90,
   "projectPath": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas",
   "buildPath": "/build/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas",
-  "updated": "2026-10-03T16:14:13+00:00",
+  "updated": "2026-10-03T16:18:42+00:00",
   "files": [
     {
       "label": "Optimized interactive model \u00b7 GLB",
@@ -56,7 +56,19 @@
       "label": "Front silhouette",
       "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_front.png",
       "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_front.png",
-      "revision": "R23"
+      "revision": "R24"
+    },
+    {
+      "label": "Face & expression",
+      "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_face.png",
+      "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_face.png",
+      "revision": "R24"
+    },
+    {
+      "label": "Side anatomy",
+      "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_side.png",
+      "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_side.png",
+      "revision": "R24"
     },
     {
       "label": "Back construction",
@@ -65,22 +77,10 @@
       "revision": "R23"
     },
     {
-      "label": "Face & expression",
-      "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_face.png",
-      "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_face.png",
-      "revision": "R23"
-    },
-    {
       "label": "Raised hand detail",
       "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_hand.png",
       "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_hand.png",
       "revision": "R23"
-    },
-    {
-      "label": "Side anatomy",
-      "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_side.png",
-      "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_side.png",
-      "revision": "R22"
     },
     {
       "label": "Pillow grip detail",
@@ -200,10 +200,19 @@
       "time": "2026-10-03T16:14:13+00:00",
       "kind": "Subjective visual review",
       "image": "history/R23/index.html"
+    },
+    {
+      "revision": "R24",
+      "title": "Sewn neckline, natural collar support and consistent side profile",
+      "notes": "Reviewed the front and side renders. The shirt cut edge now follows the underside of the lapels, removing both the blue intrusion and exposed seam gap. The pocket and placket remain fitted to the generated cloth. Remaining priorities are physical fingertip contact with the headband, cloth-fold shading, and finer illustrated hair definition. The visual target of 95 remains in progress.",
+      "score": 90,
+      "time": "2026-10-03T16:18:42+00:00",
+      "kind": "Subjective visual review",
+      "image": "history/R24/index.html"
     }
   ],
   "model": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_web.glb",
-  "modelRevision": "R23",
+  "modelRevision": "R24",
   "recoveryNote": "R07\u2013R17 were reviewed before an earlier Colab rollback but their images and source were lost. Retained-pass count includes only entries with preserved artifacts.",
   "requestedIterations": 20000,
   "requestedScore": 95,
