@@ -1,12 +1,12 @@
 {
-  "revision": "R24",
-  "phase": "Sewn neckline, natural collar support and consistent side profile",
-  "note": "Reviewed the front and side renders. The shirt cut edge now follows the underside of the lapels, removing both the blue intrusion and exposed seam gap. The pocket and placket remain fitted to the generated cloth. Remaining priorities are physical fingertip contact with the headband, cloth-fold shading, and finer illustrated hair definition. The visual target of 95 remains in progress.",
-  "iterations": 12,
-  "score": 90,
+  "revision": "R25",
+  "phase": "Recovered hand contact; verified five-view rebuild",
+  "note": "Visually reviewed actual front, face, hand and side renders. The raised index now reaches the headband without elongating the wrist. Likeness still needs hair value separation, more expressive eyes, cloth definition and lapels that follow the torso in profile. Subjective visual review, not a certified benchmark.",
+  "iterations": 13,
+  "score": 91,
   "projectPath": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas",
   "buildPath": "/build/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas",
-  "updated": "2026-10-03T16:18:42+00:00",
+  "updated": "2026-10-03T19:53:29+00:00",
   "files": [
     {
       "label": "Optimized interactive model \u00b7 GLB",
@@ -23,7 +23,7 @@
     {
       "label": "Editable Blender source \u00b7 BLEND",
       "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas.blend",
-      "size": "18.0 MB",
+      "size": "7.5 MB",
       "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas.blend"
     },
     {
@@ -56,49 +56,49 @@
       "label": "Front silhouette",
       "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_front.png",
       "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_front.png",
-      "revision": "R24"
-    },
-    {
-      "label": "Face & expression",
-      "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_face.png",
-      "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_face.png",
-      "revision": "R24"
-    },
-    {
-      "label": "Side anatomy",
-      "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_side.png",
-      "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_side.png",
-      "revision": "R24"
+      "revision": "R25"
     },
     {
       "label": "Back construction",
       "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_back.png",
       "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_back.png",
-      "revision": "R23"
+      "revision": "R25"
+    },
+    {
+      "label": "Face & expression",
+      "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_face.png",
+      "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_face.png",
+      "revision": "R25"
+    },
+    {
+      "label": "Side anatomy",
+      "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_side.png",
+      "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_side.png",
+      "revision": "R25"
     },
     {
       "label": "Raised hand detail",
       "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_hand.png",
       "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_hand.png",
-      "revision": "R23"
-    },
-    {
-      "label": "Pillow grip detail",
-      "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_grip.png",
-      "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_grip.png",
-      "revision": "R22"
-    },
-    {
-      "label": "Slippers and ribbons",
-      "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_feet.png",
-      "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_feet.png",
-      "revision": "R22"
+      "revision": "R25"
     },
     {
       "label": "Three-quarter",
       "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_quarter.png",
       "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_quarter.png",
       "revision": "R21"
+    },
+    {
+      "label": "Pillow grip detail",
+      "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_grip.png",
+      "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_grip.png",
+      "revision": "R20"
+    },
+    {
+      "label": "Slippers and ribbons",
+      "url": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_feet.png",
+      "path": "/home/dev/project/3d/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas/preview/assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_feet.png",
+      "revision": "R20"
     }
   ],
   "journal": [
@@ -209,10 +209,19 @@
       "time": "2026-10-03T16:18:42+00:00",
       "kind": "Subjective visual review",
       "image": "history/R24/index.html"
+    },
+    {
+      "revision": "R25",
+      "title": "Recovered hand contact; verified five-view rebuild",
+      "notes": "Visually reviewed actual front, face, hand and side renders. The raised index now reaches the headband without elongating the wrist. Likeness still needs hair value separation, more expressive eyes, cloth definition and lapels that follow the torso in profile. Subjective visual review, not a certified benchmark.",
+      "score": 91,
+      "time": "2026-10-03T19:53:29+00:00",
+      "kind": "Subjective visual review",
+      "image": "history/R25/index.html"
     }
   ],
   "model": "assets/gpt6-astra-pro_mcp-colabdev_blender_moonlit-pajamas_web.glb",
-  "modelRevision": "R24",
+  "modelRevision": "R25",
   "recoveryNote": "R07\u2013R17 were reviewed before an earlier Colab rollback but their images and source were lost. Retained-pass count includes only entries with preserved artifacts.",
   "requestedIterations": 20000,
   "requestedScore": 95,

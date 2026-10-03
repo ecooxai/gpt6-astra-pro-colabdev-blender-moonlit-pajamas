@@ -1,6 +1,6 @@
 {
-  "revision": "R24",
-  "source_commit": "322c7a38a1ac3a5b359dce7ff366b8b8e36a9ca9",
+  "revision": "R25",
+  "source_commit": "4aa265468842396f58930f021f00155ae237cdad",
   "triangles": 536836,
   "objects": 170,
   "legs": {
@@ -44,5 +44,5 @@
   "digits_per_hand": 5,
   "asset_origin": "All geometry and textures authored from scratch",
   "web_triangles": 330321,
-  "web_bytes": 7107328
+  "web_bytes": 7107064
 }

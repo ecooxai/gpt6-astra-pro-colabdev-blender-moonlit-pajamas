@@ -18,3 +18,5 @@ R21 completed and reviewed from front/back/three-quarter: 88/100 subjective, nin
 R22 reviewed: 88/100, ten retained reviewed passes. Better projected pocket/placket and curved shirt hem. Remaining/new defects: blue shoulder-panel intrusion in neck opening, too-close index/middle finger paths, stiff rolled collar. Hand connectivity audited. R23 must correct the actual garment neckline and finger paths. Full and web exports preserved.
 
 R24 reviewed: 90/100 subjective; twelve retained reviewed passes. Shirt neckline now sewn to exact lapel underside, no visible blue intrusion or skin gap. Front and side inspected, hand topology audited and desktop/mobile tested. Full GLB 536836 triangles; web 330321. Next: true fingertip/headband contact using generated-mesh geometry tests, followed by illustrated shading and hair/cloth definition.
+
+R25: rebuilt after restoring remote code. Reviewed front, face, hand and side at 91/100 subjective. 13 retained production reviews; separate older-source trial T01 is not historical R22. Current branch: gpt6-astra-pro_mcp-colabdev_likeness-r26.
